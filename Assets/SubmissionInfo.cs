@@ -12,17 +12,16 @@ public static class SubmissionInfo
     public static readonly string RepoURL = "https://github.com/COMP30019/project-2-";
     
     // Come up with a team name below (plain text, no more than 50 chars).
-    public static readonly string TeamName = "Replace with your team name";
+    public static readonly string TeamName = "TRYHARDS";
     
     // List every team member below. Ensure student names/emails match official
     // UniMelb records exactly (e.g. avoid nicknames or aliases).
     public static readonly TeamMember[] Team = new[]
     {
-        new TeamMember("Student Name 1", "...@student.unimelb.edu.au"),
-        new TeamMember("Student Name 2", "...@student.unimelb.edu.au"),
-        new TeamMember("Student Name 3", "...@student.unimelb.edu.au"),
-        // Remove the following line if you have a group of 3
-        new TeamMember("Student Name 4", "...@student.unimelb.edu.au"), 
+        new TeamMember("Andrew De Leonardis", " andrew.deleonardis@student.unimelb.edu.au"),
+        new TeamMember("Rajneesh Gokool", "rgokool@student.unimelb.edu.au"),
+        new TeamMember("Natasha Chiorsac", "nchiorsac@student.unimelb.edu.au"),
+        new TeamMember("Meaghan Gaunt", "mgaunt@student.unimelb.edu.au"), 
     };
 
     // This may be a "working title" to begin with, but ensure it is final by
