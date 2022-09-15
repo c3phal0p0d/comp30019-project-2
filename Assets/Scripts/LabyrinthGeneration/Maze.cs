@@ -25,19 +25,19 @@ public class Maze
 
     private System.Random random;
 
-    public Maze(int width, int height, Tuple<int,int> start)
+    public Maze(int width, int height, Tuple<int,int> start, System.Random random)
     {
         this.width = width;
         this.height = height;
         this.startPosition = start;
         walls = new List<Wall>();
 
-        random = new System.Random();
+        this.random = random;
 
-        GenerateGaps();
+        GenerateWalls();
     }
 
-    private void GenerateGaps()
+    private void GenerateWalls()
     {
         Stack<Tuple<int, int>> path = new Stack<Tuple<int, int>>();
         bool[,] traversedSquares = new bool[width, height];
@@ -61,7 +61,7 @@ public class Maze
 
     private void RecursiveGenerateGaps(Stack<Tuple<int,int>> path, bool[,] traversedSquares, bool[,] horizontalGaps, bool[,] verticalGaps)
     {
-        Debug.Log(path.Peek());
+        //Debug.Log(path.Peek());
         traversedSquares[path.Peek().Item1, path.Peek().Item2] = true;
         int x = path.Peek().Item1, y = path.Peek().Item2;
 
@@ -130,7 +130,6 @@ public class Maze
                 return i;
         }
         // Shouldn't happen
-        Debug.LogError("indexOfNthTrue failed.");
         return -1;
     }
 

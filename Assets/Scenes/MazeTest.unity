@@ -233,13 +233,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1412042947}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 624c33a8776e426439cbb8f21bf50f79, type: 3}
+  m_Script: {fileID: 11500000, guid: c26e1f7938e025b43b0b7dbb74df3856, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 10
-  height: 10
+  numSections: 10
+  mazeWidth: 20
+  mazeHeight: 8
   cellWidth: 1
-  wallWidth: 0.1
+  wallDepth: 0.1
+  wallHeight: 1.5
   origin: {fileID: 1412042947}
 --- !u!4 &1412042949
 Transform:
