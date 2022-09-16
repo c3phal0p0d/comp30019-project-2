@@ -9,7 +9,7 @@ public static class SubmissionInfo
     // for extra details related to use of this file.
 
     // URL to your group's project 2 repository on GitHub.
-    public static readonly string RepoURL = "https://github.com/COMP30019/project-2-";
+    public static readonly string RepoURL = "https://github.com/COMP30019/project-2-tryhards";
     
     // Come up with a team name below (plain text, no more than 50 chars).
     public static readonly string TeamName = "TRYHARDS";
@@ -26,14 +26,17 @@ public static class SubmissionInfo
 
     // This may be a "working title" to begin with, but ensure it is final by
     // the video milestone deadline (plain text, no more than 50 chars).
-    public static readonly string GameName = "Replace with your game name";
+    public static readonly string GameName = "Minotaur's Maze";
 
     // Write a brief blurb of your game, no more than 200 words. Again, ensure
     // this is final by the video milestone deadline.
     public static readonly string GameBlurb = 
-@"Write a blurb of your game here in plain text. This is a
-multiline verbatim string,
-so don't worry about keeping it to one line, just be sure not to indent it.
+@"The Minotaur is a mythical creature of great might, who had a labyrinth created around it just to contain its power. Every year the king sends nine of his greatest warriors to try and defeat the unstoppable beast and after forty winters, no mortal has yet had the power to defeat it. 
+
+Theseus, son of Aegeus and the undefeated champion of Greece, has taken upon himself the challenge of defeating the Minotaur. Our courageous champion has decided to face the beast alone. 
+
+Traverse the labyrinth as Theseus, collect items and fight monsters, and delve deeper into the brink to finally kill the accursed beast.
+
 ";
     
     // By the gameplay video milestone deadline this should be a direct link
