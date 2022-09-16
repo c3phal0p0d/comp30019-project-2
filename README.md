@@ -72,7 +72,9 @@ For more details you can find a guide [here](https://docs.github.com/en/github/w
 * [Code Snipets](#code-snippets)
 
 ### Game Summary
-_Exciting title_ is a first-person shooter (FPS) set in...
+The Minotaur is a mythical creature of great might, who had a labyrinth created around it just to contain its power. Every year the king sends nine of his greatest warriors to try and defeat the unstoppable beast and after forty winters, no mortal has yet had the power to defeat it. 
+Theseus, son of Aegeus and the undefeated champion of Greece, has taken upon himself the challenge of defeating the Minotaur. Our courageous champion has decided to face the beast alone. 
+Traverse the labyrinth as Theseus, collect items and fight monsters, and delve deeper into the brink to finally kill the accursed beast
 
 ### Technologies
 Project is created with:
