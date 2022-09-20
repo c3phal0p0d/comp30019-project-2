@@ -13,7 +13,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void Start()
     {
-        currentHealth = new SpringyValue(0, maxHealth, 1, 1, 1);
+        currentHealth = new SpringyValue(0, maxHealth, 1, 1, 2);
         IncrementMaxHealth(0);
         IncrementHealth(0);
     }
@@ -35,6 +35,8 @@ public class PlayerHealth : MonoBehaviour
     private void Update()
     {
         currentHealth.UpdateValue();
-        uibar.OverBarWidth = currentHealth.CurrentValue;
+        float toShow = (currentHealth.CurrentValue > maxHealth) ? 2 * maxHealth - currentHealth.CurrentValue : currentHealth.CurrentValue;
+        toShow = (toShow < 0) ? -toShow : toShow;
+        uibar.OverBarWidth = toShow;
     }
 }
