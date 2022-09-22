@@ -27,14 +27,14 @@ public class LabyrinthCreator
 
         CreateLabyrinth();
     }
-    
+
     private void CreateMaze(Maze maze, GameObject mazeOrigin)
     {
         GameObject floor = GameObject.CreatePrimitive(PrimitiveType.Cube);
         floor.name = "Floor";
         floor.transform.SetParent(mazeOrigin.transform);
         floor.transform.localScale = new Vector3(maze.Width * cellWidth + wallDepth, wallDepth, maze.Height * cellWidth + wallDepth);
-        floor.transform.localPosition = new Vector3(maze.Width * cellWidth / 2, 0, maze.Height * cellWidth / 2 );
+        floor.transform.localPosition = new Vector3(maze.Width * cellWidth / 2, 0, maze.Height * cellWidth / 2);
 
         GameObject startPos = GameObject.CreatePrimitive(PrimitiveType.Cube);
         startPos.name = "StartPos";
@@ -50,7 +50,7 @@ public class LabyrinthCreator
                 GameObject wallObj = GameObject.CreatePrimitive(PrimitiveType.Cube);
                 wallObj.name = "InnerWall" + i;
                 wallObj.transform.SetParent(mazeOrigin.transform);
-                wallObj.transform.localScale= new Vector3(cellWidth + wallDepth, wallHeight, wallDepth);
+                wallObj.transform.localScale = new Vector3(cellWidth + wallDepth, wallHeight, wallDepth);
                 wallObj.transform.localPosition = new Vector3(cellWidth * (wall.x + 0.5f), wallHeight / 2, cellWidth * (wall.y + 1));
             }
             else
@@ -86,7 +86,7 @@ public class LabyrinthCreator
             y += dy;
 
             // Outer Walls
-            if (dxPrev != 1 && (i == numSections-1 || dx != -1))
+            if (dxPrev != 1 && (i == numSections - 1 || dx != -1))
                 CreateOuterWall(0, false, mazeOrigin, "OuterWallLeft");
             if (dxPrev != -1 && (i == numSections - 1 || dx != 1))
                 CreateOuterWall(1, false, mazeOrigin, "OuterWallRight");
@@ -109,7 +109,7 @@ public class LabyrinthCreator
         if (dyPrev != 0)
         {
             int x = random.Next() % 2;
-            return (x, (1-x) * dyPrev); // x=0 -> (0,dyPrev)   x=1 -> (1,0)
+            return (x, (1 - x) * dyPrev); // x=0 -> (0,dyPrev)   x=1 -> (1,0)
         }
         else
         {
@@ -123,7 +123,7 @@ public class LabyrinthCreator
         GameObject outerWall = GameObject.CreatePrimitive(PrimitiveType.Cube);
         outerWall.name = name;
         outerWall.transform.SetParent(mazeOrigin.transform);
-        
+
         if (isHorizontal)
         {
             outerWall.transform.localScale = new Vector3(mazeWidth * cellWidth + wallDepth, wallHeight, wallDepth);

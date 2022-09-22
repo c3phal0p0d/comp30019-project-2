@@ -8,8 +8,9 @@ public class PlayerCharacter : BaseCharacter
     // List<Pickup> pickups;
     private Vector3 playerMovementInput;
 
+    [SerializeField]
     private CharacterController characterController;
-    public void PlayerClass()
+    public PlayerCharacter()
     {
         CharacterType = "player";
         CharacterDescription = "Hero that is trying to escape the maze";
@@ -23,6 +24,8 @@ public class PlayerCharacter : BaseCharacter
 
     public void update()
     {
+
+
 
         playerMovementInput = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical")) * Speed * Time.deltaTime;
 
