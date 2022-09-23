@@ -71,6 +71,7 @@ public class UIBar3D : MonoBehaviour
         underBarWrapper = new GameObject("UnderBarWrapper");
         underBarWrapper.layer = ui_camera_layer;
         underBarWrapper.transform.SetParent(origin.transform);
+        underBarWrapper.transform.localScale = Vector3.one;
         underBarWrapper.transform.localPosition = new Vector3(0.5f, -1, 0);
 
         underBar = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -84,6 +85,7 @@ public class UIBar3D : MonoBehaviour
         overBarWrapper = new GameObject("OverBarWrapper");
         overBarWrapper.layer = ui_camera_layer;
         overBarWrapper.transform.SetParent(origin.transform);
+        overBarWrapper.transform.localScale = Vector3.one;
         overBarWrapper.transform.localPosition = new Vector3(0.5f, -1, 0);
 
         overBar = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -130,7 +132,6 @@ public class UIBar3D : MonoBehaviour
         back.transform.localScale = new Vector3(barWidth + 1, 2, 0.5f);
         back.transform.localPosition = new Vector3((barWidth + 1) / 2, -1, 0.25f);
 
-        right.transform.localPosition = new Vector3((barWidth + 1) / 2, -0.25f, -0.25f);
         right.transform.localPosition = new Vector3(barWidth + 0.75f, -1, -0.25f);
 
         up.transform.localScale = new Vector3(barWidth + 1, 0.5f, 0.5f);

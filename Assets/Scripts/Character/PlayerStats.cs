@@ -6,7 +6,9 @@ using System;
 public class PlayerStats : MonoBehaviour
 {
     [SerializeField]
-    private PlayerHealth playerHealth;
+    private BarStat playerHealth;
+    [SerializeField]
+    private BarStat playerStamina;
 
     public class Stat
     {
@@ -29,20 +31,23 @@ public class PlayerStats : MonoBehaviour
 
     public enum StatType
     {
-        Health,
+        MaxHealth,
+        MaxStamina,
         Armor,
-        Stamina,
         Speed,
         Strength
     }
 
     private Stat[] stats;
 
-    private void Start()
+    private void Awake()
     {
         stats = new Stat[Enum.GetNames(typeof(StatType)).Length];
         for (int i = 0; i < stats.Length; i++)
-            stats[i] = new Stat(0, int.MaxValue, 10);
+            stats[i] = new Stat(0, int.MaxValue, 20);
+
+        playerHealth.SetStat(GetStat(StatType.MaxHealth));
+        playerStamina.SetStat(GetStat(StatType.MaxStamina));
     }
 
     public Stat GetStat(StatType statType)
