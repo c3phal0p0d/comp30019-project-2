@@ -18,7 +18,7 @@ public class ItemDatabase : MonoBehaviour
 
     void BuildDatabase() {
         items = new List<Item>() {
-            new Item(0, "apple", "food item restoring 1 health", Resources.Load<Sprite>("Assets/Items/apple"), 1, 2)
+            new Item(0, "apple", "FoodItem","food item restoring 1 health", Resources.Load<Sprite>("Assets/Items/apple"), 1, 2)
         };
     
         }
