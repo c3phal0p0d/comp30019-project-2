@@ -16,7 +16,18 @@ public class Item{
         this.id = id;
         this.title = title;
         this.description= description;
-        this.icon = Resources.Load<Sprite>("Sprites/Items" + title); 
+        this.icon = Resources.Load<Sprite>("Assets/Items" + title); 
+        this.power = power;
+        this.health = health;
+    }
+
+    public Item(Item item)
+    {
+
+        this.id = item.id;
+        this.title = item.title;
+        this.description = item.description;
+        this.icon = Resources.Load<Sprite>("Assets/Items" + item.title);
         this.power = item.power;
         this.health = item.health;
     }
