@@ -7,7 +7,7 @@ public class EnemyController : MonoBehaviour
 {
 
     public float lookRadius = 10f;
-    // Start is called before the first frame update
+
     Transform target;
     NavMeshAgent agent;
 
@@ -25,11 +25,10 @@ public class EnemyController : MonoBehaviour
 
         if (distance <= lookRadius)
         {
-            Debug.Log(distance);
-            Debug.Log(agent);
-            Debug.Log(target);
+
             agent.SetDestination(target.position);
         }
+
 
         if (distance <= agent.stoppingDistance)
         {
