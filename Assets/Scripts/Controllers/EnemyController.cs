@@ -5,17 +5,16 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
+    [SerializeField]
+    private float lookRadius = 10f;
 
-    public float lookRadius = 10f;
-
-    Transform target;
-    NavMeshAgent agent;
+    private Transform target;
+    private NavMeshAgent agent;
 
     void Start()
     {
-        target = PlayerManager.instance.player.transform;
+        target = PlayerManager.instance.PlayerObject.transform;
         agent = GetComponent<NavMeshAgent>();
-
     }
 
     // Update is called once per frame
@@ -25,7 +24,6 @@ public class EnemyController : MonoBehaviour
 
         if (distance <= lookRadius)
         {
-
             agent.SetDestination(target.position);
         }
 

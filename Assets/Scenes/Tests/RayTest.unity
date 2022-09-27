@@ -235,7 +235,6 @@ GameObject:
   - component: {fileID: 151442731}
   - component: {fileID: 151442730}
   - component: {fileID: 151442729}
-  - component: {fileID: 151442732}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -309,20 +308,6 @@ Transform:
   m_Father: {fileID: 163703753}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &151442732
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 151442728}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84312a37474f35846b188917d5cc8ca7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mouseSens: 100
-  player: {fileID: 163703753}
 --- !u!1 &163703751
 GameObject:
   m_ObjectHideFlags: 0
@@ -408,11 +393,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 163703751}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67dd291d3e29154438e88eb7274a8eed, type: 3}
+  m_Script: {fileID: 11500000, guid: 84312a37474f35846b188917d5cc8ca7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalhealth: 100
-  totalArmor: 100
+  mouseSens: 500
+  head: {fileID: 151442731}
 --- !u!1 &306507111
 GameObject:
   m_ObjectHideFlags: 0
@@ -639,7 +624,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c78501ffe3095c44f98496e46ad1f478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 163703751}
+  PlayerObject: {fileID: 163703751}
 --- !u!4 &1016286431
 Transform:
   m_ObjectHideFlags: 0
