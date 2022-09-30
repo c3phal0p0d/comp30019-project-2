@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -639,8 +639,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c78501ffe3095c44f98496e46ad1f478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 163703751}
---- !u!4 &1016286431
+  numSections: 10
+  mazeWidth: 20
+  mazeHeight: 8
+  cellWidth: 2
+  wallDepth: 0.5
+  wallHeight: 1.5
+  origin: {fileID: 1412042947}
+--- !u!4 &1412042949
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
