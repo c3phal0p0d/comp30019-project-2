@@ -11,10 +11,11 @@ public class LabyrinthCreator
     private float wallDepth = 0.1f;
     private float wallHeight = 1.5f;
     private GameObject origin;
+    private Material brickMaterial;
 
     private System.Random random;
 
-    public LabyrinthCreator(int numSections, int mazeWidth, int mazeHeight, float cellWidth, float wallHeight, float wallDepth, GameObject origin, System.Random random)
+    public LabyrinthCreator(int numSections, int mazeWidth, int mazeHeight, float cellWidth, float wallHeight, float wallDepth, GameObject origin, Material brickMaterial, System.Random random)
     {
         this.numSections = numSections;
         this.mazeWidth = mazeWidth;
@@ -24,23 +25,27 @@ public class LabyrinthCreator
         this.wallDepth = wallDepth;
         this.origin = origin;
         this.random = random;
+        this.brickMaterial = brickMaterial;
 
         CreateLabyrinth();
     }
     
-    private void CreateMaze(Maze maze, GameObject mazeOrigin)
+    private void CreateMaze(Maze maze, GameObject mazeOrigin, Material brickMaterial)
     {
         GameObject floor = GameObject.CreatePrimitive(PrimitiveType.Cube);
         floor.name = "Floor";
         floor.transform.SetParent(mazeOrigin.transform);
         floor.transform.localScale = new Vector3(maze.Width * cellWidth + wallDepth, wallDepth, maze.Height * cellWidth + wallDepth);
         floor.transform.localPosition = new Vector3(maze.Width * cellWidth / 2, 0, maze.Height * cellWidth / 2 );
+        floor.GetComponent<Renderer>().material = brickMaterial;
+        floor.GetComponent<Renderer>().material.SetTextureScale("_MainTex", new Vector2(12, 12));
 
         GameObject startPos = GameObject.CreatePrimitive(PrimitiveType.Cube);
         startPos.name = "StartPos";
         startPos.transform.SetParent(mazeOrigin.transform);
         startPos.transform.localScale = new Vector3(cellWidth, 3 * wallDepth, cellWidth);
         startPos.transform.localPosition = new Vector3(cellWidth * (maze.StartX + 0.5f), 0, cellWidth * (maze.StartY + 0.5f));
+        startPos.GetComponent<Renderer>().material = brickMaterial;
 
         int i = 0;
         foreach (Maze.Wall wall in maze.Walls)
@@ -52,6 +57,7 @@ public class LabyrinthCreator
                 wallObj.transform.SetParent(mazeOrigin.transform);
                 wallObj.transform.localScale= new Vector3(cellWidth + wallDepth, wallHeight, wallDepth);
                 wallObj.transform.localPosition = new Vector3(cellWidth * (wall.x + 0.5f), wallHeight / 2, cellWidth * (wall.y + 1));
+                wallObj.GetComponent<Renderer>().material = brickMaterial;
             }
             else
             {
@@ -60,7 +66,9 @@ public class LabyrinthCreator
                 wallObj.transform.SetParent(mazeOrigin.transform);
                 wallObj.transform.localScale = new Vector3(wallDepth, wallHeight, cellWidth + wallDepth);
                 wallObj.transform.localPosition = new Vector3(cellWidth * (wall.x + 1), wallHeight / 2, cellWidth * (wall.y + 0.5f));
+                wallObj.GetComponent<Renderer>().material = brickMaterial;
             }
+
             i++;
         }
     }
@@ -97,7 +105,7 @@ public class LabyrinthCreator
 
             // Generate inner walls
             Maze maze = new Maze(mazeWidth, mazeHeight, new System.Tuple<int, int>(random.Next() % mazeWidth, random.Next() % mazeHeight), random);
-            CreateMaze(maze, mazeOrigin);
+            CreateMaze(maze, mazeOrigin, brickMaterial);
 
             dxPrev = dx;
             dyPrev = dy;
@@ -123,6 +131,8 @@ public class LabyrinthCreator
         GameObject outerWall = GameObject.CreatePrimitive(PrimitiveType.Cube);
         outerWall.name = name;
         outerWall.transform.SetParent(mazeOrigin.transform);
+        outerWall.GetComponent<Renderer>().material = brickMaterial;
+        outerWall.GetComponent<Renderer>().material.SetTextureScale("_MainTex", new Vector2(8, 1));
         
         if (isHorizontal)
         {
