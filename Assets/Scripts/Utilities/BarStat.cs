@@ -12,7 +12,7 @@ public class BarStat : MonoBehaviour
         Value = maxValue.Value;
     }
 
-    public void Increment(float amount)
+    public virtual void Increment(float amount)
     {
         Value += amount;
         Value = (Value < 0) ? 0 : (Value > maxValue.Value) ? maxValue.Value : Value;
@@ -20,4 +20,6 @@ public class BarStat : MonoBehaviour
 
     public float Value { get; private set; }
     public float MaxValue => maxValue.Value;
+    public bool IsEmpty => Value == maxValue.Min;
+    public bool IsFull => Value == maxValue.Value;
 }

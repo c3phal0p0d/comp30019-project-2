@@ -27,6 +27,8 @@ public class PlayerStats : MonoBehaviour
         }
 
         public float Value => value;
+        public float Min => min;
+        public float Max => max;
     }
 
     public enum StatType
