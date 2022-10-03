@@ -19,7 +19,6 @@ public class EnemyController : MonoBehaviour
         lastKnownPosition = transform.position;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (playerDetector.CanDetect())

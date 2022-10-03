@@ -7,9 +7,9 @@ public class PlayerDetector : MonoBehaviour
     [SerializeField]
     private string selfTag;
     [SerializeField]
-    private float sightDistance;
-    [SerializeField]
     private string targetTag;
+    [SerializeField]
+    private float sightDistance;
     [SerializeField]
     private Transform origin;
 
@@ -25,7 +25,7 @@ public class PlayerDetector : MonoBehaviour
         return false;
     }
 
-    void onDrawGizmosSelected()
+    void OnDrawGizmosSelected()
     {
 
         Gizmos.color = Color.red;
