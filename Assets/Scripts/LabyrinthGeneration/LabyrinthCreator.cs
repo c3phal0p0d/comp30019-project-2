@@ -42,7 +42,7 @@ public class LabyrinthCreator
         floor.GetComponent<Renderer>().material = brickMaterial;
         floor.GetComponent<Renderer>().material.SetTextureScale("_MainTex", new Vector2(12, 12));
 
-        GameObject startPos = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        GameObject startPos = new GameObject();
         startPos.name = "StartPos";
         startPos.transform.SetParent(mazeOrigin.transform);
         startPos.transform.localScale = new Vector3(cellWidth, 3 * wallDepth, cellWidth);
