@@ -6,39 +6,32 @@ using UnityEngine.AI;
 public class EnemyController : MonoBehaviour
 {
     [SerializeField]
-    private float lookRadius = 10f;
+    private PlayerDetector playerDetector;
 
     private Transform target;
+    private Vector3 lastKnownPosition;
     private NavMeshAgent agent;
 
     void Start()
     {
         target = PlayerManager.instance.PlayerObject.transform;
         agent = GetComponent<NavMeshAgent>();
+        lastKnownPosition = transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        float distance = Vector3.Distance(target.position, transform.position);
-
-        if (distance <= lookRadius)
+        if (playerDetector.CanDetect())
         {
+            lastKnownPosition = target.position;
             agent.SetDestination(target.position);
         }
 
-
-        if (distance <= agent.stoppingDistance)
+        if (Vector3.Distance(transform.position, lastKnownPosition) <= agent.stoppingDistance)
         {
             FaceTarget();
         }
-    }
-
-    void onDrawGizmosSelected()
-    {
-
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, lookRadius);
     }
 
     void FaceTarget()
