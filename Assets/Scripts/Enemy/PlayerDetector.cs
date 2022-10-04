@@ -31,10 +31,4 @@ public class PlayerDetector : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, sightDistance);
     }
-
-    private void Update()
-    {
-        if (CanDetect())
-            Debug.Log("Omgggg");
-    }
 }

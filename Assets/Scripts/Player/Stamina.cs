@@ -11,21 +11,34 @@ public class Stamina : BarStat
     [SerializeField]
     private float exhaustionTime;
 
-    private float exhaustionCounter;
 
+
+    private float exhaustionTimer;
+    private bool privIsExhausted;
+
+    public void ConsumeStamina()
+    {
+        Increment(-(UseRate + RechargeRate) * Time.deltaTime);
+        if (IsEmpty)
+        {
+            exhaustionTimer = exhaustionTime;
+            privIsExhausted = true;
+        }
+    }
 
     private void Update()
     {
-        if (!IsExhausted && IsEmpty)
-        {
-            exhaustionCounter = exhaustionTime;
-        }
-        else
-            exhaustionCounter -= Time.deltaTime;
-        exhaustionCounter = (exhaustionCounter < 0) ? 0 : exhaustionCounter;
+        if (IsExhausted)
+            exhaustionTimer -= Time.deltaTime;
+
+        if (privIsExhausted && exhaustionTimer < float.Epsilon)
+            privIsExhausted = false;
+
+        if (!privIsExhausted)
+            Increment(rechargeRate * Time.deltaTime);
     }
 
-    public bool IsExhausted => exhaustionCounter > 0;
+    public bool IsExhausted => exhaustionTimer > 0;
     public float UseRate => useRate;
     public float RechargeRate => rechargeRate;
 }

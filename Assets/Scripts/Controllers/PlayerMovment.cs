@@ -7,36 +7,51 @@ public class PlayerMovment : MonoBehaviour
     // Start is called before the first frame update
     public CharacterController controller;
 
-    public float speed = 12;
-    public float gravity = -9.81f;
-    public float jumpHeight = 1.8f;
-    public Transform groundCheck;
-    public float groundDistance = 0.4f;
-    public LayerMask groundMask;
+    [SerializeField]
+    private float walkSpeed = 12;
+    [SerializeField]
+    private float runSpeed = 18;
+    [SerializeField]
+    private float gravity = -9.81f;
+    [SerializeField]
+    private float jumpHeight = 1.8f;
+    [SerializeField]
+    private Transform groundCheck;
+    [SerializeField]
+    private float groundDistance = 0.4f;
+    [SerializeField]
+    private LayerMask groundMask;
+    [SerializeField]
+    private Stamina stamina;
 
-    bool isGrounded;
+    private bool isGrounded;
 
-    Vector3 velocity;
+    private Vector3 velocity;
     
-    // Update is called once per frame
     void Update()
     {
-
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
-        //
+        float localSpeed = walkSpeed;
+
         if (isGrounded && velocity.y < 0)
         {
             velocity.y = -2f;
-
         }
 
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
-
+        bool isMoving = !(x < float.Epsilon && z < float.Epsilon);
+          
+        // Sprinting logic
+        if (isMoving && Input.GetKey(KeyCode.LeftShift) && !stamina.IsExhausted)
+        {
+            localSpeed = runSpeed;
+            stamina.ConsumeStamina();
+        }
 
         Vector3 move = transform.right * x + transform.forward * z;
-        controller.Move(move * speed * Time.deltaTime);
+        controller.Move(move * localSpeed * Time.deltaTime);
 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
