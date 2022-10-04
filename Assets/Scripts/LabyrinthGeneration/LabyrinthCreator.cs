@@ -37,7 +37,7 @@ public class LabyrinthCreator
         GameObject floor = GameObject.CreatePrimitive(PrimitiveType.Cube);
         floor.name = "Floor";
         floor.transform.SetParent(mazeOrigin.transform);
-        floor.transform.localScale = new Vector3(maze.Width * cellWidth + wallDepth, wallDepth, maze.Height * cellWidth + wallDepth);
+        floor.transform.localScale = new Vector3(maze.Width * cellWidth + wallDepth, 0.5f, maze.Height * cellWidth + wallDepth);
         floor.transform.localPosition = new Vector3(maze.Width * cellWidth / 2, 0, maze.Height * cellWidth / 2 );
         floor.GetComponent<Renderer>().material = brickMaterial;
         floor.GetComponent<Renderer>().material.SetTextureScale("_MainTex", new Vector2(12, 12));
@@ -61,8 +61,8 @@ public class LabyrinthCreator
                 wallObj.GetComponent<Renderer>().material = brickMaterial;
 
                 // Add torch to wall
-                int randomInt = Random.Range(1,5);
-                if (randomInt%4==0){    // reduce number of torches spawned
+                int randomInt = Random.Range(1,3);
+                if (randomInt%2==0){    // reduce number of torches spawned
                     if (i%2==0){    // alternate between sides of walls
                         GameObject wallTorch = GameObject.Instantiate(wallTorchPrefab, wallObj.transform.position + new Vector3(0, wallHeight/10, wallDepth/2), Quaternion.identity);
                         wallTorch.transform.rotation = Quaternion.AngleAxis(90, Vector3.up);
@@ -83,8 +83,8 @@ public class LabyrinthCreator
                 wallObj.GetComponent<Renderer>().material = brickMaterial;
 
                 // Add torch to wall
-                int randomInt = Random.Range(1,5);
-                if (randomInt%4==0){     // reduce number of torches spawned
+                int randomInt = Random.Range(1,3);
+                if (randomInt%2==0){     // reduce number of torches spawned
                     if (i%2==0){    // alternate between sides of walls
                         GameObject wallTorch = GameObject.Instantiate(wallTorchPrefab, wallObj.transform.position + new Vector3(wallDepth/2, wallHeight/10, 0), Quaternion.identity);
                         wallTorch.transform.rotation = Quaternion.AngleAxis(180, Vector3.up);
