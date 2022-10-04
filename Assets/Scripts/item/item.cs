@@ -36,5 +36,54 @@ public class Item: MonoBehaviour
         this.health = item.health;
     }
 
+    public GameObject myHands; 
+    bool canpickup; 
+    public GameObject myobject; 
+    bool hasItem;
+    public bool equipped;
+    public bool addtoinventory = false;
 
+    void Start()
+    {
+        canpickup = false;   
+        hasItem = false;
+    }
+
+    void Update()
+    {
+        if (canpickup == true) 
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                Debug.Log("click");
+                equipped = true;
+                myobject.GetComponent<Rigidbody>().isKinematic = true;
+                myobject.transform.position = myHands.transform.position;
+                myobject.transform.parent = myHands.transform;
+            }
+            if (Input.GetMouseButtonDown(1))
+            {
+                addtoinventory = true;
+            }
+        }
+        if (Input.GetButtonDown("q") && hasItem == true) 
+        {
+            myobject.GetComponent<Rigidbody>().isKinematic = false;
+
+            myobject.transform.parent = null; 
+        }
+    }
+    private void OnTriggerEnter(Collider other) 
+    {
+        if (other.gameObject.tag == "item") 
+        {
+            canpickup = true;
+            myobject = other.gameObject; 
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        canpickup = false; 
+
+    }
 }

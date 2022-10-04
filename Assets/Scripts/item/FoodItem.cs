@@ -17,12 +17,11 @@ public class FoodItem : Item
     }
 
     public Inventory gameinventory;
-    public bool canpickup;
     public FoodItem thisobject;
 
     void Start()
     {
-        canpickup = false;
+  
     }
 
     public void Eat()
@@ -36,37 +35,22 @@ public class FoodItem : Item
     }
 
     private void Update()
-    {
-        if (canpickup == true)
+    {   
+
+        if (Input.GetMouseButtonDown(0))
         {
-
-            if (Input.GetMouseButtonDown(0))
-            {
-                Debug.Log("click");
-                thisobject.Eat();
-            }
-
-            if (Input.GetMouseButtonDown(1))
-            {
-                Debug.Log("click");
-                thisobject.AddtoInventory(gameinventory);
-            }
-
+            Debug.Log("click");
+            thisobject.Eat();
         }
 
-    }
-
-    public void OnCollisionEnter(Collision myobject)
-    {
-        if (myobject.collider.name == "item")
+        if (addtoinventory == true)
         {
-            canpickup = true;
+            thisobject.AddtoInventory(gameinventory);
+            addtoinventory = false;
         }
-    }
 
-    private void OnTriggerExit(Collider myobject)
-    {
-        canpickup = false; 
+        
 
     }
+
 }

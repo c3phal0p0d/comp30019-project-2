@@ -17,41 +17,31 @@ public class WeaponItem: Item
     }
 
     public bool canpickup;
-    public WeaponItem thisweapon;
-    public GameObject playerHands;
+    public GameObject myenemy;
 
-    public void OnCollisionEnter(Collision myobject)
+
+    public void OnCollisionEnter(Collision enemy) //if player collides with item canpickup is set to true
     {
-        if (myobject.collider.name == "item")
+        if (enemy.collider.name == "enemy")
         {
-            canpickup = true;
+            if (equipped == true) //only works if weapon is equipped
+            {
+                //do damage to enemy
+            }
         }
     }
 
-    private void OnTriggerExit(Collider myobject)
-    {
-        canpickup = false;
 
+    public void OnTriggerExit(Collider other)
+    {
+        //stop doing damage to enemy
     }
 
-    public void Equip()
-    {
-        thisweapon.GetComponent<Rigidbody>().isKinematic = true;
-        thisweapon.transform.position = playerHands.transform.position;
-        thisweapon.transform.parent = playerHands.transform; 
-    }
+
+
     private void Update()
     {
-        if (canpickup == true)
-        {
-
-            if (Input.GetMouseButtonDown(0))
-            {
-                Debug.Log("click");
-                thisweapon.Equip();
-            }
-
-        }
+ 
 
     }
 }

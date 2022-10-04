@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Inventory : ItemDatabase
 {
+    public int numItems = 0;
+    public int maxItems = 10;
     public List<Item> items = new List<Item>();
 
     private void Awake()
@@ -27,7 +29,7 @@ public class Inventory : ItemDatabase
         items = new List<Item>() {
             new Item(0, "apple", "FoodItem","food item restoring 1 health", Resources.Load<Sprite>("Assets/Items/apple"), 1, 2)
         };
-
+        numItems = 1;
     }
 
     void UpdateDatabase()
@@ -36,7 +38,11 @@ public class Inventory : ItemDatabase
 
     public void AddItem(Item newitem)
     {
-        items.Add(newitem);
+        if (numItems < maxItems)
+        {
+            items.Add(newitem);
+            numItems += 1;
+        }
 
     }
 
