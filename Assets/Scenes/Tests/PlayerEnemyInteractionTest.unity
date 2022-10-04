@@ -370,8 +370,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selfTag: Enemy
-  sightDistance: 10
   targetTag: Player
+  sightDistance: 10
   origin: {fileID: 1836479819}
 --- !u!1 &285071492
 GameObject:
@@ -1107,7 +1107,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 1068859165}
-  speed: 12
+  walkSpeed: 12
+  runSpeed: 18
   gravity: -9.81
   jumpHeight: 1.8
   groundCheck: {fileID: 864218085}
@@ -1115,6 +1116,7 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 8
+  stamina: {fileID: 0}
 --- !u!114 &1068859161
 MonoBehaviour:
   m_ObjectHideFlags: 0
