@@ -43,7 +43,7 @@ public class FoodItem : Item
             thisobject.Eat();
         }
 
-        if (addtoinventory == true)
+        if (addtoinventory == true) //addtoinventory bool found in item class
         {
             thisobject.AddtoInventory(gameinventory);
             addtoinventory = false;

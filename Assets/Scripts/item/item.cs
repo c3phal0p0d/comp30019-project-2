@@ -69,7 +69,6 @@ public class Item: MonoBehaviour
         if (Input.GetButtonDown("q") && hasItem == true) 
         {
             myobject.GetComponent<Rigidbody>().isKinematic = false;
-
             myobject.transform.parent = null; 
         }
     }
