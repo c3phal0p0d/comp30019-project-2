@@ -59,10 +59,10 @@ public class LabyrinthCreator
                 wallObj.transform.localScale= new Vector3(cellWidth + wallDepth, wallHeight, wallDepth);
                 wallObj.transform.localPosition = new Vector3(cellWidth * (wall.x + 0.5f), wallHeight / 2, cellWidth * (wall.y + 1));
                 wallObj.GetComponent<Renderer>().material = brickMaterial;
-
+                
                 // Add torch to wall
-                int randomInt = Random.Range(1,3);
-                if (randomInt%2==0){    // reduce number of torches spawned
+                int randomInt = Random.Range(1,5);
+                if (randomInt%4==0){    // reduce number of torches spawned
                     if (i%2==0){    // alternate between sides of walls
                         GameObject wallTorch = GameObject.Instantiate(wallTorchPrefab, wallObj.transform.position + new Vector3(0, wallHeight/10, wallDepth/2), Quaternion.identity);
                         wallTorch.transform.rotation = Quaternion.AngleAxis(90, Vector3.up);
@@ -81,10 +81,10 @@ public class LabyrinthCreator
                 wallObj.transform.localScale = new Vector3(wallDepth, wallHeight, cellWidth + wallDepth);
                 wallObj.transform.localPosition = new Vector3(cellWidth * (wall.x + 1), wallHeight / 2, cellWidth * (wall.y + 0.5f));
                 wallObj.GetComponent<Renderer>().material = brickMaterial;
-
+        
                 // Add torch to wall
-                int randomInt = Random.Range(1,3);
-                if (randomInt%2==0){     // reduce number of torches spawned
+                int randomInt = Random.Range(1,5);
+                if (randomInt%4==0){     // reduce number of torches spawned
                     if (i%2==0){    // alternate between sides of walls
                         GameObject wallTorch = GameObject.Instantiate(wallTorchPrefab, wallObj.transform.position + new Vector3(wallDepth/2, wallHeight/10, 0), Quaternion.identity);
                         wallTorch.transform.rotation = Quaternion.AngleAxis(180, Vector3.up);
