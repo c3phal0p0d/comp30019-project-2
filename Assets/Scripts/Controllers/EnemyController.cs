@@ -11,12 +11,14 @@ public class EnemyController : MonoBehaviour
     private Transform target;
     private Vector3 lastKnownPosition;
     private NavMeshAgent agent;
+    private Animator animator;
 
     void Start()
     {
         target = PlayerManager.instance.PlayerObject.transform;
         agent = GetComponent<NavMeshAgent>();
         lastKnownPosition = transform.position;
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -25,6 +27,7 @@ public class EnemyController : MonoBehaviour
         {
             lastKnownPosition = target.position;
             agent.SetDestination(target.position);
+            animator.SetBool("Move", true);
         }
 
         if (Vector3.Distance(transform.position, lastKnownPosition) <= agent.stoppingDistance)

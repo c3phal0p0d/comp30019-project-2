@@ -12,22 +12,24 @@ public class EnemyAnimationController : MonoBehaviour
     }
 
     void Update()
-    {
+    {   
+        // Move
+        if (Input.GetKey(KeyCode.W)){
+            animator.SetBool("Move", true);
+        }
+
         // Attack
         if (Input.GetKey(KeyCode.A)){
-            animator.SetBool("Move", false);
             animator.SetTrigger("Attack");
         }
         
         // Hit
         else if (Input.GetKey(KeyCode.S)){
-            animator.SetBool("Move", false);
             animator.SetTrigger("Hit");
         }
 
         // Death
         else if (Input.GetKey(KeyCode.D)){
-            animator.SetBool("Move", false);
             animator.SetTrigger("Die");
         }
     }
