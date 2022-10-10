@@ -14,6 +14,8 @@ public class LabyrinthCreator
     private Material brickMaterial;
     private GameObject wallTorchPrefab;
 
+    private float timer;
+
     private System.Random random;
 
     public LabyrinthCreator(int numSections, int mazeWidth, int mazeHeight, float cellWidth, float wallHeight, float wallDepth, GameObject origin, Material brickMaterial, GameObject wallTorchPrefab, System.Random random)
@@ -33,7 +35,8 @@ public class LabyrinthCreator
     }
     
     private void CreateMaze(Maze maze, GameObject mazeOrigin, Material brickMaterial, GameObject wallTorchPrefab)
-    {
+    {   
+        
         GameObject floor = GameObject.CreatePrimitive(PrimitiveType.Cube);
         floor.name = "Floor";
         floor.transform.SetParent(mazeOrigin.transform);
@@ -41,7 +44,7 @@ public class LabyrinthCreator
         floor.transform.localPosition = new Vector3(maze.Width * cellWidth / 2, 0, maze.Height * cellWidth / 2 );
         floor.GetComponent<Renderer>().material = brickMaterial;
         floor.GetComponent<Renderer>().material.SetTextureScale("_MainTex", new Vector2(12, 12));
-
+        
         GameObject startPos = new GameObject();
         startPos.name = "StartPos";
         startPos.transform.SetParent(mazeOrigin.transform);
@@ -53,37 +56,158 @@ public class LabyrinthCreator
         {
             if (wall.isHorizontal)
             {
-                GameObject wallObj = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                wallObj.name = "InnerWall" + i;
-                wallObj.transform.SetParent(mazeOrigin.transform);
-                wallObj.transform.localScale= new Vector3(cellWidth + wallDepth, wallHeight, wallDepth);
-                wallObj.transform.localPosition = new Vector3(cellWidth * (wall.x + 0.5f), wallHeight / 2, cellWidth * (wall.y + 1));
-                wallObj.GetComponent<Renderer>().material = brickMaterial;
-                
-                // Add torch to wall
-                int randomInt = Random.Range(1,5);
-                if (randomInt%4==0){    // reduce number of torches spawned
-                    if (i%2==0){    // alternate between sides of walls
-                        GameObject wallTorch = GameObject.Instantiate(wallTorchPrefab, wallObj.transform.position + new Vector3(0, wallHeight/10, wallDepth/2), Quaternion.identity);
-                        wallTorch.transform.rotation = Quaternion.AngleAxis(90, Vector3.up);
+                GameObject wallObj = CreateInnerWall(i, new Vector3(cellWidth * (wall.x + 0.5f), wallHeight / 2, cellWidth * (wall.y + 1)), 
+                    new Vector3(cellWidth + wallDepth, wallHeight, wallDepth), mazeOrigin, true);
+
+                Physics.SyncTransforms();
+
+
+                // Check for overlaps between parts of the wall with neighbouring walls
+                bool overlapLeft = CheckOverlap(wallObj, wallObj.transform.position - new Vector3((cellWidth + wallDepth)/3, 0, 0), new Vector3(wallObj.transform.localScale.x/12, wallObj.transform.localScale.y/8, wallObj.transform.localScale.z/4));
+                bool overlapRight = CheckOverlap(wallObj, wallObj.transform.position + new Vector3((cellWidth + wallDepth)/3, 0, 0), new Vector3(wallObj.transform.localScale.x/12, wallObj.transform.localScale.y/8, wallObj.transform.localScale.z/4));
+                bool overlapMiddle = CheckOverlap(wallObj, wallObj.transform.position, new Vector3(wallObj.transform.localScale.x/12, wallObj.transform.localScale.y/8, wallObj.transform.localScale.z/4));
+
+                if (overlapLeft&&!overlapRight&&!overlapMiddle){     // Only left third of wall overlaps
+                    // Remove current wall
+                    GameObject.Destroy(wallObj);
+
+                    // Recreate wall without left third
+                    GameObject newWallObj = CreateInnerWall(i, new Vector3(cellWidth * (wall.x + 0.5f) + (cellWidth + wallDepth)/6, wallHeight / 2, cellWidth * (wall.y + 1)), 
+                        new Vector3((cellWidth + wallDepth)*2/3, wallHeight, wallDepth), mazeOrigin, true);
+                }
+
+                else if (!overlapLeft&&overlapRight&&!overlapMiddle){     // Only right third of wall overlaps
+                    // Remove current wall
+                    GameObject.Destroy(wallObj);
+
+                    // Recreate wall without right third
+                    GameObject newWallObj = CreateInnerWall(i, new Vector3(cellWidth * (wall.x + 0.5f) - (cellWidth + wallDepth)/6, wallHeight / 2, cellWidth * (wall.y + 1)), 
+                        new Vector3((cellWidth + wallDepth)*2/3, wallHeight, wallDepth), mazeOrigin, true);
+                }
+
+                else if (overlapLeft&&overlapRight&&!overlapMiddle){     // Left and right thirds of wall overlap
+                    // Remove current wall
+                    GameObject.Destroy(wallObj);
+
+                    // Recreate middle third of wall
+                    GameObject newWallObj = CreateInnerWall(i, new Vector3(cellWidth * (wall.x + 0.5f), wallHeight / 2, cellWidth * (wall.y + 1)), 
+                        new Vector3((cellWidth + wallDepth)*1/3, wallHeight, wallDepth), mazeOrigin, true);
+                }
+
+                else if (overlapMiddle){     // Middle third of wall overlaps
+                    // Remove current wall
+                    GameObject.Destroy(wallObj);
+
+                    if (!overlapLeft){    // Recreate left third of wall if it does not overlap
+                        GameObject newWallObj = CreateInnerWall(i, new Vector3(cellWidth * (wall.x + 0.5f) - (cellWidth + wallDepth)/3, wallHeight / 2, cellWidth * (wall.y + 1)), 
+                            new Vector3((cellWidth + wallDepth)*1/3, wallHeight, wallDepth), mazeOrigin, true);
                     }
-                    else {
-                        GameObject wallTorch = GameObject.Instantiate(wallTorchPrefab, wallObj.transform.position + new Vector3(0, wallHeight/10, -wallDepth/2), Quaternion.identity);
-                        wallTorch.transform.rotation = Quaternion.AngleAxis(-90, Vector3.up);
+
+                    if (!overlapRight){    // Recreate right third of wall if it does not overlap
+                        GameObject newWallObj2 = CreateInnerWall(i, new Vector3(cellWidth * (wall.x + 0.5f) + (cellWidth + wallDepth)/3, wallHeight / 2, cellWidth * (wall.y + 1)), 
+                            new Vector3((cellWidth + wallDepth)*1/3, wallHeight, wallDepth), mazeOrigin, true);
                     }
                 }
+
             }
             else
             {
-                GameObject wallObj = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                wallObj.name = "InnerWall" + i;
-                wallObj.transform.SetParent(mazeOrigin.transform);
-                wallObj.transform.localScale = new Vector3(wallDepth, wallHeight, cellWidth + wallDepth);
-                wallObj.transform.localPosition = new Vector3(cellWidth * (wall.x + 1), wallHeight / 2, cellWidth * (wall.y + 0.5f));
-                wallObj.GetComponent<Renderer>().material = brickMaterial;
+                GameObject wallObj = CreateInnerWall(i, new Vector3(cellWidth * (wall.x + 1), wallHeight / 2, cellWidth * (wall.y + 0.5f)), 
+                    new Vector3(wallDepth, wallHeight, cellWidth + wallDepth), mazeOrigin);
+
+                Physics.SyncTransforms();
+
+                // Check for overlaps between parts of the wall with neighbouring walls
+                bool overlapLeft = CheckOverlap(wallObj, wallObj.transform.position - new Vector3(0, 0, (cellWidth + wallDepth)/3), new Vector3(wallObj.transform.localScale.x/4, wallObj.transform.localScale.y/8, wallObj.transform.localScale.z/12));
+                bool overlapRight = CheckOverlap(wallObj, wallObj.transform.position + new Vector3(0, 0, (cellWidth + wallDepth)/3), new Vector3(wallObj.transform.localScale.x/4, wallObj.transform.localScale.y/8, wallObj.transform.localScale.z/12));
+                bool overlapMiddle = CheckOverlap(wallObj, wallObj.transform.position, new Vector3(wallObj.transform.localScale.x/4, wallObj.transform.localScale.y/8, wallObj.transform.localScale.z/12));
+
+                if (overlapLeft&&!overlapRight&&!overlapMiddle){     // Only left third of wall overlaps
+                    // Remove current wall
+                    GameObject.Destroy(wallObj);
+
+                    // Recreate wall without left third
+                    GameObject newWallObj = CreateInnerWall(i, new Vector3(cellWidth * (wall.x + 1), wallHeight / 2, cellWidth * (wall.y + 0.5f) + (cellWidth + wallDepth)/6), 
+                        new Vector3(wallDepth, wallHeight, (cellWidth + wallDepth)*2/3), mazeOrigin);
+                }
+
+                else if (!overlapLeft&&overlapRight&&!overlapMiddle){     // Only right third of wall overlaps
+                    // Remove current wall
+                    GameObject.Destroy(wallObj);
+
+                    // Recreate wall without right third
+                    GameObject newWallObj = CreateInnerWall(i, new Vector3(cellWidth * (wall.x + 1), wallHeight / 2, cellWidth * (wall.y + 0.5f) - (cellWidth + wallDepth)/6), 
+                        new Vector3(wallDepth, wallHeight, (cellWidth + wallDepth)*2/3), mazeOrigin);
+                }
+
+                else if (overlapLeft&&overlapRight&&!overlapMiddle){     // Left and right thirds of wall overlap
+                    // Remove current wall
+                    GameObject.Destroy(wallObj);
+
+                    // Recreate middle third of wall
+                    GameObject newWallObj = CreateInnerWall(i, new Vector3(cellWidth * (wall.x + 1), wallHeight / 2, cellWidth * (wall.y + 0.5f)), 
+                        new Vector3(wallDepth, wallHeight, (cellWidth + wallDepth)*1/3), mazeOrigin);
+                }
+
+                else if (overlapMiddle){     // Middle third of wall overlaps
+                    // Remove current wall
+                    GameObject.Destroy(wallObj);
+
+                    if (!overlapLeft){    // Recreate left third of wall if it does not overlap
+                        GameObject newWallObj = CreateInnerWall(i, new Vector3(cellWidth * (wall.x + 1), wallHeight / 2, cellWidth * (wall.y + 0.5f) - (cellWidth + wallDepth)/3), 
+                            new Vector3(wallDepth, wallHeight, (cellWidth + wallDepth)*1/3), mazeOrigin);
+                    }
+
+                    if (!overlapRight){    // Recreate right third of wall if it does not overlap
+                        GameObject newWallObj = CreateInnerWall(i, new Vector3(cellWidth * (wall.x + 1), wallHeight / 2, cellWidth * (wall.y + 0.5f) + (cellWidth + wallDepth)/3), 
+                            new Vector3(wallDepth, wallHeight, (cellWidth + wallDepth)*1/3), mazeOrigin);
+                    }
+                }
+                
+            }
+
+            i++;
+        }
+    }
+
+    private GameObject CreateInnerWall(int i, Vector3 wallPosition, Vector3 wallScale, GameObject mazeOrigin, bool isHorizontal = false){
+        GameObject wallObj = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        wallObj.name = "InnerWall" + i;
+        wallObj.transform.SetParent(mazeOrigin.transform);
+        wallObj.transform.localScale = wallScale;
+        wallObj.transform.localPosition = wallPosition;
+        wallObj.GetComponent<Renderer>().material = brickMaterial;
         
-                // Add torch to wall
-                int randomInt = Random.Range(1,5);
+        int torchRotation = 180;
+        Vector3 torchPositionOffset = new Vector3(wallDepth/2, wallHeight/10, 0);
+
+        if (isHorizontal){
+            torchRotation = 90;
+            torchPositionOffset = new Vector3(0, wallHeight/10, wallDepth/2);
+        }
+
+        // Add torch to wall
+        int randomInt = Random.Range(1,4);
+        if (randomInt%3==0){    // reduce number of torches spawned
+            GameObject wallTorchObject = new GameObject();
+            if (i%2==0){    // alternate between sides of walls
+                GameObject wallTorch = GameObject.Instantiate(wallTorchPrefab, wallObj.transform.position + torchPositionOffset, Quaternion.identity);
+                wallTorch.transform.rotation = Quaternion.AngleAxis(torchRotation, Vector3.up);
+                wallTorchObject.transform.SetParent(wallObj.transform);
+                wallTorch.transform.SetParent(wallTorchObject.transform);
+    
+            }
+            else {
+                GameObject wallTorch = GameObject.Instantiate(wallTorchPrefab, wallObj.transform.position + torchPositionOffset, Quaternion.identity);
+                wallTorch.transform.rotation = Quaternion.AngleAxis(-torchRotation, Vector3.up);
+                wallTorchObject.transform.SetParent(wallObj.transform);
+                wallTorch.transform.SetParent(wallTorchObject.transform);
+            }
+        }
+        
+
+        /*
+        // Add torch to wall
                 if (randomInt%4==0){     // reduce number of torches spawned
                     if (i%2==0){    // alternate between sides of walls
                         GameObject wallTorch = GameObject.Instantiate(wallTorchPrefab, wallObj.transform.position + new Vector3(wallDepth/2, wallHeight/10, 0), Quaternion.identity);
@@ -93,10 +217,20 @@ public class LabyrinthCreator
                         GameObject wallTorch = GameObject.Instantiate(wallTorchPrefab, wallObj.transform.position + new Vector3(-wallDepth/2, wallHeight/10, 0), Quaternion.identity);
                     }
                 }
-            }
 
-            i++;
+        */
+        
+        return wallObj;
+    }
+
+    private bool CheckOverlap(GameObject wallObj, Vector3 overlapPosition, Vector3 overlapScale){
+        // Check overlaps with section of wall
+        Collider[] overlappingWalls = Physics.OverlapBox(overlapPosition, overlapScale, Quaternion.identity);
+        
+        if (overlappingWalls.Length > 1){
+            return true;
         }
+        return false;
     }
 
     private void CreateLabyrinth()
