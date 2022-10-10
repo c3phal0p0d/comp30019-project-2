@@ -178,19 +178,21 @@ public class LabyrinthCreator
         wallObj.transform.localPosition = wallPosition;
         wallObj.GetComponent<Renderer>().material = brickMaterial;
         
-        int torchRotation = 180;
-        Vector3 torchPositionOffset = new Vector3(wallDepth/2, wallHeight/10, 0);
-
-        if (isHorizontal){
-            torchRotation = 90;
-            torchPositionOffset = new Vector3(0, wallHeight/10, wallDepth/2);
-        }
+        int torchRotation;
+        Vector3 torchPositionOffset;
 
         // Add torch to wall
         int randomInt = Random.Range(1,4);
         if (randomInt%3==0){    // reduce number of torches spawned
             GameObject wallTorchObject = new GameObject();
             if (i%2==0){    // alternate between sides of walls
+                if (isHorizontal){
+                    torchRotation = 90;
+                    torchPositionOffset = new Vector3(0, wallHeight/10, wallDepth/2);
+                } else {
+                    torchRotation = 180;
+                    torchPositionOffset = new Vector3(wallDepth/2, wallHeight/10, 0);
+                }
                 GameObject wallTorch = GameObject.Instantiate(wallTorchPrefab, wallObj.transform.position + torchPositionOffset, Quaternion.identity);
                 wallTorch.transform.rotation = Quaternion.AngleAxis(torchRotation, Vector3.up);
                 wallTorchObject.transform.SetParent(wallObj.transform);
@@ -198,8 +200,15 @@ public class LabyrinthCreator
     
             }
             else {
+                if (isHorizontal){
+                    torchRotation = -90;
+                    torchPositionOffset = new Vector3(0, wallHeight/10, -wallDepth/2);
+                } else {
+                    torchRotation = 0;
+                    torchPositionOffset = new Vector3(-wallDepth/2, wallHeight/10, 0);
+                }
                 GameObject wallTorch = GameObject.Instantiate(wallTorchPrefab, wallObj.transform.position + torchPositionOffset, Quaternion.identity);
-                wallTorch.transform.rotation = Quaternion.AngleAxis(-torchRotation, Vector3.up);
+                wallTorch.transform.rotation = Quaternion.AngleAxis(torchRotation, Vector3.up);
                 wallTorchObject.transform.SetParent(wallObj.transform);
                 wallTorch.transform.SetParent(wallTorchObject.transform);
             }
