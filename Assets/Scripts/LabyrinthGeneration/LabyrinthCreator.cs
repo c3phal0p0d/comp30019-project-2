@@ -34,7 +34,7 @@ public class LabyrinthCreator
         CreateLabyrinth();
     }
     
-    private void CreateMaze(Maze maze, GameObject mazeOrigin, Material brickMaterial, GameObject wallTorchPrefab)
+    private void CreateMaze(Maze maze, GameObject mazeOrigin)
     {   
         
         GameObject floor = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -43,7 +43,6 @@ public class LabyrinthCreator
         floor.transform.localScale = new Vector3(maze.Width * cellWidth + wallDepth, 0.5f, maze.Height * cellWidth + wallDepth);
         floor.transform.localPosition = new Vector3(maze.Width * cellWidth / 2, 0, maze.Height * cellWidth / 2 );
         floor.GetComponent<Renderer>().material = brickMaterial;
-        floor.GetComponent<Renderer>().material.SetTextureScale("_MainTex", new Vector2(12, 12));
         
         GameObject startPos = new GameObject();
         startPos.name = "StartPos";
@@ -60,7 +59,6 @@ public class LabyrinthCreator
                     new Vector3(cellWidth + wallDepth, wallHeight, wallDepth), mazeOrigin, true);
 
                 Physics.SyncTransforms();
-
 
                 // Check for overlaps between parts of the wall with neighbouring walls
                 bool overlapLeft = CheckOverlap(wallObj, wallObj.transform.position - new Vector3((cellWidth + wallDepth)/3, 0, 0), new Vector3(wallObj.transform.localScale.x/12, wallObj.transform.localScale.y/8, wallObj.transform.localScale.z/4));
@@ -274,7 +272,7 @@ public class LabyrinthCreator
 
             // Generate inner walls
             Maze maze = new Maze(mazeWidth, mazeHeight, new System.Tuple<int, int>(random.Next() % mazeWidth, random.Next() % mazeHeight), random);
-            CreateMaze(maze, mazeOrigin, brickMaterial, wallTorchPrefab);
+            CreateMaze(maze, mazeOrigin);
 
             dxPrev = dx;
             dyPrev = dy;
@@ -301,7 +299,6 @@ public class LabyrinthCreator
         outerWall.name = name;
         outerWall.transform.SetParent(mazeOrigin.transform);
         outerWall.GetComponent<Renderer>().material = brickMaterial;
-        outerWall.GetComponent<Renderer>().material.SetTextureScale("_MainTex", new Vector2(8, 1));
         
         if (isHorizontal)
         {
