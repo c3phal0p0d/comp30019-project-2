@@ -17,6 +17,8 @@ public class WeaponAnimationController : MonoBehaviour
         // Attack
         if (Input.GetKey(KeyCode.Z)){
             animator.SetTrigger("Attack");
+
+            FindObjectOfType<AudioManager>().Play("WeaponAttack");
         }
     }
 }
