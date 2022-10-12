@@ -42,12 +42,6 @@ public class PlayerMovment : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
         bool isMoving = !(x < float.Epsilon && z < float.Epsilon);
-
-        if (isMoving){
-            FindObjectOfType<AudioManager>().Play("PlayerRun");
-        } else if (!isMoving){
-            //FindObjectOfType<AudioManager>().Stop("PlayerRun");
-        }
           
         // Sprinting logic
         if (isMoving && Input.GetKey(KeyCode.LeftShift) && !stamina.IsExhausted)

@@ -7,7 +7,8 @@ public class Health : BarStat
     public override void Increment(float amount)
     {
         base.Increment(amount);
-
-        Debug.Log("Incrementing by " + amount);
+        if (amount<0){
+            FindObjectOfType<AudioManager>().Play("PlayerHit");
+        }
     }
 }

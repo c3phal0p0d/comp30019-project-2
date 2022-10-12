@@ -53,6 +53,7 @@ public class ShootAtPlayer : MonoBehaviour
         yield return new WaitForSeconds(shootDelay);
         
         // Shoot projectile
+        FindObjectOfType<AudioManager>().Play("Fireball");
         GameObject newProjectile = GameObject.Instantiate(projectile);
         newProjectile.transform.position = origin.transform.position;
         newProjectile.transform.localScale = new Vector3(size, size, size);
@@ -63,6 +64,7 @@ public class ShootAtPlayer : MonoBehaviour
             (PlayerManager.instance.gameObject.transform.position - transform.position).normalized * speed,
             lifetime
         );
+        
     }
 
 }
