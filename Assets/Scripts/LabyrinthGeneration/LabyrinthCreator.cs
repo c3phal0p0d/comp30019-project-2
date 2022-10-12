@@ -95,7 +95,7 @@ public class LabyrinthCreator
 
                     //Physics.SyncTransforms();
 
-                    SpawnStatue(wallObj.transform.position, true);
+                    //SpawnStatue(wallObj.transform.position, true);
                 }
 
                 else if (overlapMiddle){     // Middle third of wall overlaps
@@ -108,7 +108,7 @@ public class LabyrinthCreator
                         
                         //Physics.SyncTransforms();
 
-                        SpawnStatue(newWallObj.transform.position, true);
+                        //SpawnStatue(newWallObj.transform.position, true);
                     }
 
                     if (!overlapRight){    // Recreate right third of wall if it does not overlap
@@ -117,7 +117,7 @@ public class LabyrinthCreator
 
                         //Physics.SyncTransforms();
 
-                        SpawnStatue(newWallObj2.transform.position, true);
+                        //SpawnStatue(newWallObj2.transform.position, true);
                     }
                 }
 
@@ -162,7 +162,7 @@ public class LabyrinthCreator
 
                     //Physics.SyncTransforms();
 
-                    SpawnStatue(wallObj.transform.position);
+                    //SpawnStatue(wallObj.transform.position);
                 }
 
                 else if (overlapMiddle){     // Middle third of wall overlaps
@@ -175,7 +175,7 @@ public class LabyrinthCreator
 
                         //Physics.SyncTransforms();
 
-                         SpawnStatue(newWallObj.transform.position);
+                        //SpawnStatue(newWallObj.transform.position);
                     }
 
 
@@ -185,7 +185,7 @@ public class LabyrinthCreator
                         
                         Physics.SyncTransforms();
 
-                        SpawnStatue(newWallObj2.transform.position);
+                        //SpawnStatue(newWallObj2.transform.position);
                     }
                 }
                 
@@ -256,6 +256,7 @@ public class LabyrinthCreator
         return false;
     }
 
+    /*
     private void SpawnStatue(Vector3 wallPosition, bool isHorizontal = false){
         Vector3 statuePositionOffset = new Vector3(0, 0, 0);
         int statueRotation;
@@ -308,6 +309,7 @@ public class LabyrinthCreator
         }
 
     }
+    */
 
     private void CreateLabyrinth()
     {
