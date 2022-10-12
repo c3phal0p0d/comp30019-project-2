@@ -15,7 +15,7 @@ public class WeaponAnimationController : MonoBehaviour
     void Update()
     {
         // Attack
-        if (Input.GetKey(KeyCode.Space)){
+        if (Input.GetKey(KeyCode.Z)){
             animator.SetTrigger("Attack");
         }
     }

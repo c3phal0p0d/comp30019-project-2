@@ -22,10 +22,12 @@ public class LabyrinthCreatorTest : MonoBehaviour
     private Material brickMaterial;
     [SerializeField]
     private GameObject wallTorchPrefab;
+    [SerializeField]
+    private GameObject statuePrefab;
 
     void Start()
     {
         System.Random random = new System.Random();
-        new LabyrinthCreator(numSections, mazeWidth, mazeHeight, cellWidth, wallHeight, wallDepth, origin, brickMaterial, wallTorchPrefab, random);
+        new LabyrinthCreator(numSections, mazeWidth, mazeHeight, cellWidth, wallHeight, wallDepth, origin, brickMaterial, wallTorchPrefab, statuePrefab, random);
     }
 }
