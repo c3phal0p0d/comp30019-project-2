@@ -209,7 +209,7 @@ public class LabyrinthCreator
         // Add torch to wall
         int randomInt = Random.Range(1,10);
         int factor = 1;     // increase this integer to reduce the number of torches spawned
-        if (randomInt%factor==-1){
+        if (randomInt%factor==0){
             GameObject wallTorch;
             if (i%2==0){    // alternate between sides of walls
                 if (isHorizontal){
