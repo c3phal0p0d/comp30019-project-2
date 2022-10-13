@@ -7,21 +7,35 @@ public class Maze
 {
     public struct Wall
     {
-        public readonly int x, y;
-        public readonly bool isHorizontal;
+        public readonly int x, y, length;
+        public readonly bool isHorizontal, hasWallAbove, hasWallBelow;
 
-        public Wall(int x, int y, bool isHorizontal)
+        private Wall(int x, int y, int length, bool isHorizontal, bool hasWallAbove, bool hasWallBelow)
         {
             this.x = x;
             this.y = y;
+            this.length = length;
             this.isHorizontal = isHorizontal;
+            this.hasWallAbove = hasWallAbove;
+            this.hasWallBelow = hasWallBelow;
+        }
+
+        public static Wall HorizontalWall(int x, int y, int length)
+        {
+            return new Wall(x, y, length, true, false, false);
+        }
+
+        public static Wall VerticalWall(int x, int y, int length, bool hasWallAbove, bool hasWallBelow)
+        {
+            return new Wall(x, y, length, false, hasWallAbove, hasWallBelow);
         }
     }
 
     private readonly int width;
     private readonly int height;
     private readonly Tuple<int, int> startPosition;
-    private readonly List<Wall> walls;
+    private readonly List<Wall> horizontalWalls;
+    private readonly List<Wall> verticalWalls;
 
     private System.Random random;
 
@@ -30,7 +44,8 @@ public class Maze
         this.width = width;
         this.height = height;
         this.startPosition = start;
-        walls = new List<Wall>();
+        horizontalWalls = new List<Wall>();
+        verticalWalls = new List<Wall>();
 
         this.random = random;
 
@@ -47,16 +62,71 @@ public class Maze
         path.Push(startPosition);
         RecursiveGenerateGaps(path, traversedSquares, horizontalGaps, verticalGaps);
 
+        int x = 0;
+        int y = 0;
+        int length = 0;
+
+        // Generate horizontal walls, independent of vertical walls
         for (int j = 0; j < height - 1; j++)
+        {
+            x = 0;
+            y = j;
+            length = 0;
             for (int i = 0; i < width; i++)
+            {
                 if (!horizontalGaps[i, j])
-                    walls.Add(new Wall(i, j, true));
+                {
+                    if (length == 0)
+                        x = i;
+                    length++;
+                }
+                else if (length != 0)
+                {
+                    horizontalWalls.Add(Wall.HorizontalWall(x, y, length));
+                    length = 0;
+                }
+            }
+            if (length != 0)
+                horizontalWalls.Add(Wall.HorizontalWall(x, y, length));
+        }
 
+        // Generate vertical walls, splitting with horizontal walls
+        bool hasWallBelow = false;
+        bool hasWallAbove = false;
+        for (int i = 0; i < width - 1; i++)
+        {
+            x = i;
+            y = 0;
+            length = 0;
+            hasWallBelow = false;
+            hasWallAbove = false;
+            for (int j = 0; j < height; j++)
+            {
+                if (!verticalGaps[i, j]) // Wall
+                {
+                    if (length == 0) // Start new wall
+                    {
+                        y = j;
+                        hasWallBelow = (y != 0) && (!horizontalGaps[i, j-1] || !horizontalGaps[i + 1, j-1]);
+                    }
+                    length++;
+                }
+                else if (length != 0) // End because of a gap, not a horizontal wall
+                {
+                    verticalWalls.Add(Wall.VerticalWall(x, y, length, false, hasWallBelow));
+                    length = 0;
+                }
 
-        for (int j = 0; j < height; j++)
-            for (int i = 0; i < width-1; i++)
-                if (!verticalGaps[i, j])
-                    walls.Add(new Wall(i, j, false));
+                hasWallAbove = j != height - 1 && (!horizontalGaps[i, j] || !horizontalGaps[i + 1, j]);
+                if (length != 0 && hasWallAbove)
+                { // Prematurely end wall
+                    verticalWalls.Add(Wall.VerticalWall(x, y, length, hasWallAbove, hasWallBelow));
+                    length = 0;
+                }
+            }
+            if (length != 0)
+                verticalWalls.Add(Wall.VerticalWall(x, y, length, false, hasWallBelow));
+        }
     }
 
     private void RecursiveGenerateGaps(Stack<Tuple<int,int>> path, bool[,] traversedSquares, bool[,] horizontalGaps, bool[,] verticalGaps)
@@ -151,5 +221,6 @@ public class Maze
     public int Height => height;
     public int StartX => startPosition.Item1;
     public int StartY => startPosition.Item2;
-    public List<Wall> Walls => walls;
+    public List<Wall> HorizontalWalls => horizontalWalls;
+    public List<Wall> VerticalWalls => verticalWalls;
 }

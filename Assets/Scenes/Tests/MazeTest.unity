@@ -236,10 +236,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 984925fc17f3c3244b9922d3c72b89a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numSections: 4
-  mazeWidth: 10
-  mazeHeight: 10
-  cellWidth: 1
+  numSections: 10
+  mazeWidth: 12
+  mazeHeight: 12
+  cellWidth: 2
   wallDepth: 0.1
   wallHeight: 1.5
   origin: {fileID: 1412042947}

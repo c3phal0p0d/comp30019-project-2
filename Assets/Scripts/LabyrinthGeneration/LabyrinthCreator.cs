@@ -43,24 +43,35 @@ public class LabyrinthCreator
         startPos.transform.localPosition = new Vector3(cellWidth * (maze.StartX + 0.5f), 0, cellWidth * (maze.StartY + 0.5f));
 
         int i = 0;
-        foreach (Maze.Wall wall in maze.Walls)
+        foreach (Maze.Wall wall in maze.HorizontalWalls)
         {
-            if (wall.isHorizontal)
+            GameObject wallObj = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            wallObj.name = "HorizontalWall" + i;
+            wallObj.transform.SetParent(mazeOrigin.transform);
+            wallObj.transform.localScale = new Vector3(cellWidth * wall.length + wallDepth, wallHeight, wallDepth);
+            wallObj.transform.localPosition = new Vector3(cellWidth * (wall.x + 0.5f * wall.length), wallHeight / 2, cellWidth * (wall.y + 1));
+            i++;
+        }
+
+        i = 0;
+        foreach (Maze.Wall wall in maze.VerticalWalls)
+        {
+            GameObject wallObj = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            wallObj.name = "VerticalWall" + i;
+            wallObj.transform.SetParent(mazeOrigin.transform);
+            float posOffset = 0;
+            float length = cellWidth * wall.length - wallDepth;
+            if (!wall.hasWallBelow)
             {
-                GameObject wallObj = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                wallObj.name = "InnerWall" + i;
-                wallObj.transform.SetParent(mazeOrigin.transform);
-                wallObj.transform.localScale= new Vector3(cellWidth + wallDepth, wallHeight, wallDepth);
-                wallObj.transform.localPosition = new Vector3(cellWidth * (wall.x + 0.5f), wallHeight / 2, cellWidth * (wall.y + 1));
+                length += wallDepth;
+                posOffset -= wallDepth / 2;
             }
-            else
-            {
-                GameObject wallObj = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                wallObj.name = "InnerWall" + i;
-                wallObj.transform.SetParent(mazeOrigin.transform);
-                wallObj.transform.localScale = new Vector3(wallDepth, wallHeight, cellWidth + wallDepth);
-                wallObj.transform.localPosition = new Vector3(cellWidth * (wall.x + 1), wallHeight / 2, cellWidth * (wall.y + 0.5f));
+            if (!wall.hasWallAbove) {
+                length += wallDepth;
+                posOffset += wallDepth / 2;
             }
+            wallObj.transform.localScale = new Vector3(wallDepth, wallHeight, length);
+            wallObj.transform.localPosition = new Vector3(cellWidth * (wall.x + 1), wallHeight / 2, cellWidth * (wall.y + 0.5f * wall.length) + posOffset);
             i++;
         }
     }
