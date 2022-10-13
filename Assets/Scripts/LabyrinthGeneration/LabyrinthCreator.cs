@@ -38,14 +38,23 @@ public class LabyrinthCreator
     
     private void CreateMaze(Maze maze, GameObject mazeOrigin)
     {   
-        
+        // Floor
         GameObject floor = GameObject.CreatePrimitive(PrimitiveType.Cube);
         floor.name = "Floor";
         floor.transform.SetParent(mazeOrigin.transform);
         floor.transform.localScale = new Vector3(maze.Width * cellWidth + wallDepth, 0.5f, maze.Height * cellWidth + wallDepth);
         floor.transform.localPosition = new Vector3(maze.Width * cellWidth / 2, 0, maze.Height * cellWidth / 2 );
         floor.GetComponent<Renderer>().material = brickMaterial;
+
+        // Roof
+        GameObject ceiling = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        ceiling.name = "Ceiling";
+        ceiling.transform.SetParent(mazeOrigin.transform);
+        ceiling.transform.localScale = new Vector3(maze.Width * cellWidth + wallDepth, 0.5f, maze.Height * cellWidth + wallDepth);
+        ceiling.transform.localPosition = new Vector3(maze.Width * cellWidth / 2, wallHeight, maze.Height * cellWidth / 2 );
+        ceiling.GetComponent<Renderer>().material = brickMaterial;
         
+        // Starting position
         GameObject startPos = new GameObject();
         startPos.name = "StartPos";
         startPos.transform.SetParent(mazeOrigin.transform);
@@ -95,7 +104,7 @@ public class LabyrinthCreator
 
                     //Physics.SyncTransforms();
 
-                    SpawnStatue(wallObj.transform.position, true);
+                    //SpawnStatue(wallObj.transform.position, true);
                 }
 
                 else if (overlapMiddle){     // Middle third of wall overlaps
@@ -108,7 +117,7 @@ public class LabyrinthCreator
                         
                         //Physics.SyncTransforms();
 
-                        SpawnStatue(newWallObj.transform.position, true);
+                        //SpawnStatue(newWallObj.transform.position, true);
                     }
 
                     if (!overlapRight){    // Recreate right third of wall if it does not overlap
@@ -117,7 +126,7 @@ public class LabyrinthCreator
 
                         //Physics.SyncTransforms();
 
-                        SpawnStatue(newWallObj2.transform.position, true);
+                        //SpawnStatue(newWallObj2.transform.position, true);
                     }
                 }
 
@@ -162,7 +171,7 @@ public class LabyrinthCreator
 
                     //Physics.SyncTransforms();
 
-                    SpawnStatue(wallObj.transform.position);
+                    //SpawnStatue(wallObj.transform.position);
                 }
 
                 else if (overlapMiddle){     // Middle third of wall overlaps
@@ -175,7 +184,7 @@ public class LabyrinthCreator
 
                         //Physics.SyncTransforms();
 
-                         SpawnStatue(newWallObj.transform.position);
+                         //SpawnStatue(newWallObj.transform.position);
                     }
 
 
@@ -185,7 +194,7 @@ public class LabyrinthCreator
                         
                         Physics.SyncTransforms();
 
-                        SpawnStatue(newWallObj2.transform.position);
+                        //SpawnStatue(newWallObj2.transform.position);
                     }
                 }
                 
@@ -256,6 +265,7 @@ public class LabyrinthCreator
         return false;
     }
 
+    /*
     private void SpawnStatue(Vector3 wallPosition, bool isHorizontal = false){
         Vector3 statuePositionOffset = new Vector3(0, 0, 0);
         int statueRotation;
@@ -308,6 +318,7 @@ public class LabyrinthCreator
         }
 
     }
+    */
 
     private void CreateLabyrinth()
     {
