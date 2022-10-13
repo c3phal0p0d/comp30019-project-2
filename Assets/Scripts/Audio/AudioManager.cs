@@ -19,7 +19,7 @@ public class AudioManager : MonoBehaviour
     }
 
     void Start(){
-        Play("Ambience");
+        Play("BackgroundMusic");
     }
 
     public void Play(string name){
