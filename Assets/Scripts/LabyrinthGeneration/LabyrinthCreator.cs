@@ -211,51 +211,49 @@ public class LabyrinthCreator
         wallObj.transform.localScale = wallScale;
         wallObj.transform.localPosition = wallPosition;
         wallObj.GetComponent<Renderer>().material = brickMaterial;
-        
+
+        // Add torches to wall
         int torchRotation;
         Vector3 torchPositionOffset;
 
-        // Add torch to wall
-        int randomInt = Random.Range(1,10);
-        int factor = 1;     // increase this integer to reduce the number of torches spawned
-        if (randomInt%factor==0){
-            GameObject wallTorch;
-            if (i%2==0){    // alternate between sides of walls
-                if (isHorizontal){
-                    torchRotation = 90;
-                    torchPositionOffset = new Vector3(0, wallHeight/10, wallDepth/2);
-                } else {
-                    torchRotation = 180;
-                    torchPositionOffset = new Vector3(wallDepth/2, wallHeight/10, 0);
-                }
-            }
-            else {
-                if (isHorizontal){
-                    torchRotation = -90;
-                    torchPositionOffset = new Vector3(0, wallHeight/10, -wallDepth/2);
-                } else {
-                    torchRotation = 0;
-                    torchPositionOffset = new Vector3(-wallDepth/2, wallHeight/10, 0);
-                }
-            }
-            wallTorch = GameObject.Instantiate(wallTorchPrefab, wallObj.transform.position + torchPositionOffset, Quaternion.identity);
-
-            if (CheckOverlap(wallTorch.transform.position, wallTorch.transform.localScale/100)){   // Check if wall torch has been spawned in position where it overlaps with a wall
-                GameObject.Destroy(wallTorch);
-            } else {
-                GameObject wallTorchObject = new GameObject();
-                wallTorch.transform.rotation = Quaternion.AngleAxis(torchRotation, Vector3.up);
-                wallTorchObject.transform.SetParent(wallObj.transform);
-                wallTorch.transform.SetParent(wallTorchObject.transform);
-            }
+        // One side of wall
+        if (isHorizontal){
+            torchRotation = 90;
+            torchPositionOffset = new Vector3(0, 0, wallDepth/2);
+        } else {
+            torchRotation = 180;
+            torchPositionOffset = new Vector3(wallDepth/2, 0, 0);
         }
+        SpawnTorch(torchRotation, torchPositionOffset, wallObj);
+
+        // Other side of wall
+        if (isHorizontal){
+            torchRotation = -90;
+            torchPositionOffset = new Vector3(0, 0, -wallDepth/2);
+        } else {
+            torchRotation = 0;
+            torchPositionOffset = new Vector3(-wallDepth/2, 0, 0);
+        }
+        SpawnTorch(torchRotation, torchPositionOffset, wallObj);
         
         return wallObj;
     }
 
-    private bool CheckOverlap(Vector3 overlapPosition, Vector3 overlapRadius){
-        //Physics.SyncTransforms();
+    private void SpawnTorch(int torchRotation, Vector3 torchPositionOffset, GameObject wallObj){
+        GameObject wallTorch = GameObject.Instantiate(wallTorchPrefab, wallObj.transform.position + torchPositionOffset, Quaternion.identity);
 
+        if (CheckOverlap(wallTorch.transform.position, wallTorch.transform.localScale/100)){   // Check if wall torch has been spawned in a position where it overlaps with a wall, and if so destroy it
+            GameObject.Destroy(wallTorch);
+        } else {
+            GameObject wallTorchObject = new GameObject();
+            wallTorch.transform.rotation = Quaternion.AngleAxis(torchRotation, Vector3.up);
+            wallTorchObject.transform.SetParent(wallObj.transform);
+            wallTorch.transform.SetParent(wallTorchObject.transform);
+        }
+
+    }
+
+    private bool CheckOverlap(Vector3 overlapPosition, Vector3 overlapRadius){
         // Check if object overlaps with other objects
         Collider[] overlappingObjects = Physics.OverlapBox(overlapPosition, overlapRadius, Quaternion.identity);
         
