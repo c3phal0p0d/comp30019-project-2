@@ -155,9 +155,9 @@ MonoBehaviour:
   numSections: 2
   mazeWidth: 15
   mazeHeight: 15
-  cellWidth: 2
-  wallDepth: 1
-  wallHeight: 1.5
+  cellWidth: 3
+  wallDepth: 1.5
+  wallHeight: 1.7
   origin: {fileID: 337309270}
   brickMaterial: {fileID: 2100000, guid: 0e2d7eb755c37475cb888968c90af5c7, type: 2}
   wallTorchPrefab: {fileID: 139546498731853840, guid: cb830cd1c76c84be794b539e67e2659f, type: 3}
@@ -389,7 +389,7 @@ Transform:
   m_GameObject: {fileID: 1723729655}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.7, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1970452695}
