@@ -50,7 +50,7 @@ MonoBehaviour:
     name: WeaponAttack
     loop: 0
     source: {fileID: 0}
-  - clip: {fileID: 8300000, guid: cc59c5e14b3564acb97122088c5837d5, type: 3}
+  - clip: {fileID: 8300000, guid: 4b591fec0ef5d4090bf3a555ed41431e, type: 3}
     volume: 0.1
     name: BackgroundMusic
     loop: 1
