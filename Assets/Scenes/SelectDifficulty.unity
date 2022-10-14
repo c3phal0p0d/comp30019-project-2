@@ -432,7 +432,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c0de8d9803048544b5b03780bc329e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 678911484}
+  difficultyCamera: {fileID: 678911484}
 --- !u!1 &179890374
 GameObject:
   m_ObjectHideFlags: 0
@@ -17141,7 +17141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c0de8d9803048544b5b03780bc329e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 678911484}
+  difficultyCamera: {fileID: 678911484}
 --- !u!1 &1166786692 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8008218379833637430, guid: f2d3209fdfbc84270842281990b68bf1, type: 3}
@@ -17159,7 +17159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c0de8d9803048544b5b03780bc329e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 678911484}
+  difficultyCamera: {fileID: 678911484}
 --- !u!1001 &1318376499
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27721,7 +27721,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c0de8d9803048544b5b03780bc329e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 678911484}
+  difficultyCamera: {fileID: 678911484}
 --- !u!1 &1738314329
 GameObject:
   m_ObjectHideFlags: 0
@@ -27829,7 +27829,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c0de8d9803048544b5b03780bc329e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 678911484}
+  difficultyCamera: {fileID: 678911484}
 --- !u!1001 &1746530936
 PrefabInstance:
   m_ObjectHideFlags: 0

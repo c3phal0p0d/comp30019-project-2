@@ -4,21 +4,53 @@ using UnityEngine;
 
 public class turnOnLight : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public GameObject camera;
-    private Light torchLight;
 
-    void Start()
+    private GameObject torchLight;
+    private GameObject flame;
+
+
+
+
+    void Awake()
     {
-        torchLight = GetComponent<Light>();
+
+        flame = transform.GetChild(1).gameObject;
+        torchLight = transform.GetChild(0).gameObject;
+        flame.SetActive(false);
+        torchLight.SetActive(false);
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if ((transform.position - camera.transform.position).magnitude <= 5)
+
+    }
+
+    private void OnTriggerEnter(Collider col)
+    {
+        Debug.Log(col);
+        if (col.tag == "MainCamera")
         {
-            torchLight.enabled = true;
+            flame.SetActive(false);
+            torchLight.SetActive(true);
+
+
+
+        }
+    }
+
+    private void OnTriggerExit(Collider col)
+    {
+        Debug.Log(col);
+        if (col.tag == "MainCamera")
+        {
+            flame.SetActive(false);
+            torchLight.SetActive(true);
+
+
+
         }
     }
 }

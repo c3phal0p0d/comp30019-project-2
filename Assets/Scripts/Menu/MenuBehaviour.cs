@@ -6,9 +6,11 @@ public class MenuBehaviour : MonoBehaviour
 {
     // Start is called before the first frame update
     public string difficultySelectionScene;
+    public GameObject canvas;
+    public Camera mainCamera;
     void Start()
     {
-
+        mainCamera = Camera.main;
     }
 
     // Update is called once per frame
@@ -19,8 +21,15 @@ public class MenuBehaviour : MonoBehaviour
 
     public void newGame()
     {
+        canvas.SetActive(false);
+        MoveCamera.setCameraSpeed(10);
 
-        SceneManager.LoadScene(difficultySelectionScene);
+
+    }
+
+    public float setCameraSpeed()
+    {
+        return 10;
     }
 
     public void options()

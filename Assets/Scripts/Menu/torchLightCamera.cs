@@ -8,6 +8,7 @@ public class torchLightCamera : MonoBehaviour
     public GameObject torch;
     public Light torchLight;
 
+
     void Start()
     {
         torchLight = GetComponent<Light>();
@@ -20,4 +21,5 @@ public class torchLightCamera : MonoBehaviour
             torchLight.enabled = true;
         }
     }
+
 }
