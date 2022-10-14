@@ -171,7 +171,7 @@ Transform:
   - {fileID: 4057458053091239494}
   - {fileID: 6748177097664017960}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!195 &4057458054345064267
 NavMeshAgent:
@@ -221,7 +221,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialHealth: 10
-  damageDelay: 1.1
 --- !u!114 &4057458054345064260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,7 +257,7 @@ MonoBehaviour:
   cooldown: 2.5
   projectile: {fileID: 3168523829568367557, guid: 264b689cfbb6d4da8aab635f3516003a, type: 3}
   origin: {fileID: 4057458053091239495}
-  shootDelay: 1.2
+  shootDelay: 1.1
 --- !u!95 &4057458054345064262
 Animator:
   serializedVersion: 4

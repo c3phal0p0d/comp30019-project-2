@@ -2,18 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyHealth : Health
+public class EnemyHealth : BarStat
 {
     [SerializeField]
     private float initialHealth = 10;
-    [SerializeField]
-    private float damageDelay = 1.1f;
 
     private PlayerStats.Stat maxHealth;
+    private Animator animator;
 
     void Awake()
     {
         SetHealth(initialHealth);
+        animator = GetComponent<Animator>();
     }
 
     public void SetHealth(float health)
@@ -25,19 +25,14 @@ public class EnemyHealth : Health
 
     public override void Increment(float amount)
     {
-        StartCoroutine(TakeDamage(amount));
-    }
-
-    IEnumerator TakeDamage(float amount){
-        // Wait for player attack animation to finish playing before damaging enemy
-        yield return new WaitForSeconds(damageDelay);
-
-        // Enemy takes damage
-        base.Increment(amount);
         if (amount<0){
             FindObjectOfType<AudioManager>().Play("EnemyHit");
+            animator.SetTrigger("Hit");
         }
-        if (IsEmpty)
-            Object.Destroy(gameObject);
+        base.Increment(amount);
+        if (IsEmpty){
+            animator.SetTrigger("Die");
+        }
     }
+
 }

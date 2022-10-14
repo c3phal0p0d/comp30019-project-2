@@ -13,6 +13,8 @@ public class RaycastAttack : MonoBehaviour
     private float attackDistance = 3;
     [SerializeField]
     private GameObject ray;
+    [SerializeField]
+    private float damageDelay = 1.1f;
 
     public void Cast()
     {
@@ -23,7 +25,15 @@ public class RaycastAttack : MonoBehaviour
                 continue;
             if (!hitObject.CompareTag(targetTag))
                 break;
-            hitObject.GetComponentInParent<Health>().Increment(-1); // Needs to change based on weapon
+            StartCoroutine(DealDamage(hitObject));
         }
     }
+
+     IEnumerator DealDamage(GameObject hitObject){
+        // Wait for player attack animation to finish playing before dealing damage to enemy
+        yield return new WaitForSeconds(damageDelay);
+
+        // Deal damage
+        hitObject.GetComponentInParent<BarStat>().Increment(-1); // Needs to change based on weapon
+     }
 }
