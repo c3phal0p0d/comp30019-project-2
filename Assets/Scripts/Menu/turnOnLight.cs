@@ -22,18 +22,13 @@ public class turnOnLight : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     private void OnTriggerEnter(Collider col)
     {
         Debug.Log(col);
         if (col.tag == "MainCamera")
         {
-            flame.SetActive(false);
+            flame.SetActive(true);
             torchLight.SetActive(true);
 
 
@@ -46,7 +41,7 @@ public class turnOnLight : MonoBehaviour
         Debug.Log(col);
         if (col.tag == "MainCamera")
         {
-            flame.SetActive(false);
+            flame.SetActive(true);
             torchLight.SetActive(true);
 
 
