@@ -10,6 +10,8 @@ public class UIBar3D : MonoBehaviour
     private Material underBarMaterial;
     [SerializeField]
     private Material overBarMaterial;
+    [SerializeField]
+    private Material borderMaterial;
 
     private float barWidth;
     private float overBarWidth;

@@ -20,12 +20,16 @@ public class ShootAtPlayer : MonoBehaviour
     private GameObject projectile;
     [SerializeField]
     private GameObject origin;
+    [SerializeField]
+    private float shootDelay;
 
+    private Animator animator;
     private float timer;
     private float lifetime;
 
     private void Start()
     {
+        animator = GetComponent<Animator>();
         lifetime = distance / speed;
     }
 
@@ -36,17 +40,31 @@ public class ShootAtPlayer : MonoBehaviour
 
         if (timer < float.Epsilon && playerDetector.CanDetect())
         {
-            GameObject newProjectile = GameObject.Instantiate(projectile);
-            newProjectile.transform.position = origin.transform.position;
-            newProjectile.transform.localScale = new Vector3(size, size, size);
-            newProjectile.GetComponent<LinearProjectile>().SetParameters(
-                "Enemy",
-                "Player",
-                damage,
-                (PlayerManager.instance.gameObject.transform.position - transform.position).normalized * speed,
-                lifetime
-            );
+            // Play attack animation
+            animator.SetTrigger("Attack");
+            
+            StartCoroutine("ShootProjectile");
             timer = cooldown;
         }
     }
+
+    IEnumerator ShootProjectile(){
+        // Wait for animation to finish before shooting projectile
+        yield return new WaitForSeconds(shootDelay);
+        
+        // Shoot projectile
+        FindObjectOfType<AudioManager>().Play("Fireball");
+        GameObject newProjectile = GameObject.Instantiate(projectile);
+        newProjectile.transform.position = origin.transform.position;
+        newProjectile.transform.localScale = new Vector3(size, size, size);
+        newProjectile.GetComponent<LinearProjectile>().SetParameters(
+            "Enemy",
+            "Player",
+            damage,
+            (PlayerManager.instance.gameObject.transform.position - transform.position).normalized * speed,
+            lifetime
+        );
+        
+    }
+
 }

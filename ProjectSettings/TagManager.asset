@@ -6,6 +6,7 @@ TagManager:
   tags:
   - UIObject
   - Enemy
+  - Torch
   layers:
   - Default
   - TransparentFX
@@ -14,8 +15,8 @@ TagManager:
   - Water
   - UI
   - Enemy
-  - 
-  - 
+  - Torch
+  - Wall
   - 
   - 
   - 
