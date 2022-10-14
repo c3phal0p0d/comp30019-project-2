@@ -248,8 +248,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 6456609882737518732}
-  walkSpeed: 6
-  runSpeed: 10
+  walkSpeedScale: 2.4
+  runSpeedMultiplier: 1.5
   gravity: -9.81
   jumpHeight: 1.8
   groundCheck: {fileID: 6456609882940324980}
@@ -345,7 +345,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selfTag: Player
   targetTag: Enemy
-  attackDistance: 5
+  attackDistance: 3
   ray: {fileID: 6456609881549923254}
   damageDelay: 1.1
 --- !u!114 &6456609882737518735
