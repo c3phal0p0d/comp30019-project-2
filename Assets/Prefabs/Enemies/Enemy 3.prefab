@@ -116,6 +116,7 @@ GameObject:
   - component: {fileID: 7005831427890307642}
   - component: {fileID: 7005831427890307641}
   - component: {fileID: 7005831427890307640}
+  - component: {fileID: 5346657929361120752}
   m_Layer: 0
   m_Name: Enemy 3
   m_TagString: Enemy
@@ -139,7 +140,7 @@ Transform:
   - {fileID: 7005831428473535288}
   - {fileID: 6446702800893260828}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!195 &7005831427890307637
 NavMeshAgent:
@@ -189,6 +190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialHealth: 10
+  damageDelay: 1.1
 --- !u!114 &7005831427890307642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -246,6 +248,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!136 &5346657929361120752
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7005831427890307639}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.77
+  m_Height: 2.99
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.21, z: 0}
 --- !u!1 &7005831428473535289
 GameObject:
   m_ObjectHideFlags: 0
@@ -347,6 +363,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9537986, guid: 7c4b27022b3abf44782275b8502657f4, type: 3}
+    - {fileID: 14307310, guid: 7c4b27022b3abf44782275b8502657f4, type: 3}
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c4b27022b3abf44782275b8502657f4, type: 3}
 --- !u!4 &6446702800893260828 stripped
