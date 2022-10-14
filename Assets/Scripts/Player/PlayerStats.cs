@@ -35,7 +35,6 @@ public class PlayerStats : MonoBehaviour
     {
         MaxHealth,
         MaxStamina,
-        Armor,
         Speed,
         Strength
     }
@@ -46,7 +45,7 @@ public class PlayerStats : MonoBehaviour
     {
         stats = new Stat[Enum.GetNames(typeof(StatType)).Length];
         for (int i = 0; i < stats.Length; i++)
-            stats[i] = new Stat(0, int.MaxValue, 20);
+            stats[i] = new Stat(0, int.MaxValue, 5);
 
         playerHealth.SetStat(GetStat(StatType.MaxHealth));
         playerStamina.SetStat(GetStat(StatType.MaxStamina));

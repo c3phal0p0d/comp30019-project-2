@@ -14,16 +14,17 @@ public class RaycastAttack : MonoBehaviour
     [SerializeField]
     private GameObject ray;
 
-    public void Cast()
+    public void Cast(float damage)
     {
         RaycastHit[] hits = Physics.RaycastAll(ray.transform.position, ray.transform.forward, attackDistance);
-        foreach (RaycastHit hit in hits) {
+        foreach (RaycastHit hit in hits)
+        {
             GameObject hitObject = hit.transform.gameObject;
             if (hitObject.CompareTag(selfTag))
                 continue;
             if (!hitObject.CompareTag(targetTag))
                 break;
-            hitObject.GetComponentInParent<Health>().Increment(-1); // Needs to change based on weapon
+            hitObject.GetComponentInParent<Health>().Increment(-damage);
         }
     }
 }
