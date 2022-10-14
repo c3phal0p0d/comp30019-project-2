@@ -24,13 +24,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5301202638905384139}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -14.495346, y: -2.1434088, z: -43.10128}
   m_LocalScale: {x: 1, y: 1.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5301202638905384141
 MonoBehaviour:
@@ -63,5 +63,10 @@ MonoBehaviour:
   - clip: {fileID: 8300000, guid: b6d54004a0dd34a96b46e07a56b0fd23, type: 3}
     volume: 0.5
     name: PlayerHit
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 780622dcc69e247e1bb4b776e29caebc, type: 3}
+    volume: 0.2
+    name: EnemyHit
     loop: 0
     source: {fileID: 0}
