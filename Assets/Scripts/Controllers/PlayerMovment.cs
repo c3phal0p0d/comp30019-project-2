@@ -8,9 +8,9 @@ public class PlayerMovment : MonoBehaviour
     public CharacterController controller;
 
     [SerializeField]
-    private float walkSpeed = 12;
+    private float walkSpeedScale = 2.4f;
     [SerializeField]
-    private float runSpeed = 18;
+    private float runSpeedMultiplier = 1.5f;
     [SerializeField]
     private float gravity = -9.81f;
     [SerializeField]
@@ -24,15 +24,22 @@ public class PlayerMovment : MonoBehaviour
     [SerializeField]
     private Stamina stamina;
 
+    private PlayerStats.Stat speedStat;
+
     private bool isGrounded;
 
     private Vector3 velocity;
-    
+
+    private void Start()
+    {
+        speedStat = GetComponent<PlayerStats>().GetStat(PlayerStats.StatType.Speed);
+    }
+
     void Update()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
-        float localSpeed = walkSpeed;
+        float localSpeed = walkSpeedScale * speedStat.Value;
 
         if (isGrounded && velocity.y < 0)
         {
@@ -46,7 +53,7 @@ public class PlayerMovment : MonoBehaviour
         // Sprinting logic
         if (isMoving && Input.GetKey(KeyCode.LeftShift) && !stamina.IsExhausted)
         {
-            localSpeed = runSpeed;
+            localSpeed *= runSpeedMultiplier;
             stamina.ConsumeStamina();
         }
 
