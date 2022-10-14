@@ -155,8 +155,8 @@ MonoBehaviour:
   numSections: 1
   mazeWidth: 15
   mazeHeight: 15
-  cellWidth: 3
-  wallDepth: 1.5
+  cellWidth: 3.5
+  wallDepth: 2
   wallHeight: 2
   origin: {fileID: 337309270}
   brickMaterial: {fileID: 2100000, guid: 0e2d7eb755c37475cb888968c90af5c7, type: 2}
