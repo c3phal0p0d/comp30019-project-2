@@ -17,7 +17,6 @@ public class FoodItem : Item
     }
 
     public Inventory gameinventory;
-    public FoodItem thisobject;
 
     void Start()
     {
@@ -29,10 +28,7 @@ public class FoodItem : Item
         //PlayerStats.health += health;
     }
 
-    public void AddtoInventory(Inventory myInventory)
-    {
-        myInventory.AddItem(thisobject);
-    }
+
 
     private void Update()
     {   
@@ -40,12 +36,12 @@ public class FoodItem : Item
         if (Input.GetMouseButtonDown(0))
         {
             Debug.Log("click");
-            thisobject.Eat();
+            this.Eat();
         }
 
         if (addtoinventory == true) //addtoinventory bool found in item class
         {
-            thisobject.AddtoInventory(gameinventory);
+            gameinventory.AddItem(this);
             addtoinventory = false;
         }
 
