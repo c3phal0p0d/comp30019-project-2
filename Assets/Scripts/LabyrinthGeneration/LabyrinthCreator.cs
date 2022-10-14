@@ -70,6 +70,7 @@ public class LabyrinthCreator
             wallObj.transform.localScale = new Vector3(cellWidth * wall.length + wallDepth, wallHeight, wallDepth);
             wallObj.transform.localPosition = new Vector3(cellWidth * (wall.x + 0.5f * wall.length), wallHeight / 2, cellWidth * (wall.y + 1));
             wallObj.GetComponent<Renderer>().material = brickMaterial;
+            wallObj.layer = LayerMask.NameToLayer("Wall");
 
             // Add torches to wall
             int torchRotation;
@@ -108,6 +109,7 @@ public class LabyrinthCreator
             wallObj.transform.localScale = new Vector3(wallDepth, wallHeight, length);
             wallObj.transform.localPosition = new Vector3(cellWidth * (wall.x + 1), wallHeight / 2, cellWidth * (wall.y + 0.5f * wall.length) + posOffset);
             wallObj.GetComponent<Renderer>().material = brickMaterial;
+            wallObj.layer = LayerMask.NameToLayer("Wall");
 
             // Add torches to wall
             int torchRotation;
@@ -137,9 +139,8 @@ public class LabyrinthCreator
 
     private bool CheckOverlap(Vector3 overlapPosition, Vector3 overlapRadius){
         // Check if object overlaps with other objects
-        Collider[] overlappingObjects = Physics.OverlapBox(overlapPosition, overlapRadius, Quaternion.identity);
-        
-        if (overlappingObjects.Length > 2){
+        Collider[] overlappingObjects = Physics.OverlapBox(overlapPosition, overlapRadius, Quaternion.identity, LayerMask.GetMask("Wall"));
+        if (overlappingObjects.Length > 1){
             return true;
         }
         return false;
@@ -225,6 +226,8 @@ public class LabyrinthCreator
             outerWall.transform.localScale = new Vector3(wallDepth, wallHeight, mazeHeight * cellWidth + wallDepth);
             outerWall.transform.localPosition = new Vector3(x * mazeWidth * cellWidth, wallHeight / 2, mazeHeight * cellWidth / 2);
         }
+
+        outerWall.layer = LayerMask.NameToLayer("Wall");
     }
 
     /*
