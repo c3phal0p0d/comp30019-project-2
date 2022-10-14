@@ -39,9 +39,11 @@ public class FoodItem : Item
             this.Eat();
         }
 
-        if (addtoinventory == true) //addtoinventory bool found in item class
+        if (Input.GetMouseButtonDown(1))
         {
             gameinventory.AddItem(this);
+        }
+        
             addtoinventory = false;
         }
 
@@ -49,4 +51,3 @@ public class FoodItem : Item
 
     }
 
-}
