@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.15218937, g: 0.15218937, b: 0.33962262, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: c82a334cf5a5e47978749c210cee72a7, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: b4f152e0498484391a9f0d5a1facf03b, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.13014191, g: 0.094540216, b: 0.12482641, a: 1}
+  m_IndirectSpecularColor: {r: 0.13036436, g: 0.0948469, b: 0.12510028, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -153,15 +153,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numSections: 1
-  mazeWidth: 5
-  mazeHeight: 5
+  mazeWidth: 15
+  mazeHeight: 15
   cellWidth: 3
   wallDepth: 1.5
   wallHeight: 2
   origin: {fileID: 337309270}
   brickMaterial: {fileID: 2100000, guid: 0e2d7eb755c37475cb888968c90af5c7, type: 2}
   wallTorchPrefab: {fileID: 139546498731853840, guid: cb830cd1c76c84be794b539e67e2659f, type: 3}
-  statuePrefab: {fileID: 7519414368282173371, guid: 172ec7c418815414db3eff65d89a658a, type: 3}
 --- !u!4 &337309272
 Transform:
   m_ObjectHideFlags: 0
