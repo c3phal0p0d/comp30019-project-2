@@ -4,37 +4,24 @@ using UnityEngine;
 
 public class LabyrinthCreator
 {
-    private int numSections = 4;
     private int mazeWidth = 10;
     private int mazeHeight = 10;
     private float cellWidth = 1f;
     private float wallDepth = 0.1f;
     private float wallHeight = 1.5f;
-    private GameObject origin;
-    private Material brickMaterial;
-    private GameObject wallTorchPrefab;
 
     private float timer;
 
-    private System.Random random;
-
-    public LabyrinthCreator(int numSections, int mazeWidth, int mazeHeight, float cellWidth, float wallHeight, float wallDepth, GameObject origin, Material brickMaterial, GameObject wallTorchPrefab, System.Random random)
+    public LabyrinthCreator(int mazeWidth, int mazeHeight, float cellWidth, float wallHeight, float wallDepth)
     {
-        this.numSections = numSections;
         this.mazeWidth = mazeWidth;
         this.mazeHeight = mazeHeight;
         this.cellWidth = cellWidth;
         this.wallHeight = wallHeight;
         this.wallDepth = wallDepth;
-        this.origin = origin;
-        this.random = random;
-        this.brickMaterial = brickMaterial;
-        this.wallTorchPrefab = wallTorchPrefab;
-
-        CreateLabyrinth();
     }
     
-    private void CreateMaze(Maze maze, GameObject mazeOrigin)
+    private void CreateMaze(Maze maze, GameObject mazeOrigin, LabyrinthParameters labyrinthParameters, MazeParameters mazeParameters)
     {   
         // Floor
         GameObject floor = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -42,7 +29,7 @@ public class LabyrinthCreator
         floor.transform.SetParent(mazeOrigin.transform);
         floor.transform.localScale = new Vector3(maze.Width * cellWidth + wallDepth, 0.5f, maze.Height * cellWidth + wallDepth);
         floor.transform.localPosition = new Vector3(maze.Width * cellWidth / 2, 0, maze.Height * cellWidth / 2 );
-        floor.GetComponent<Renderer>().material = brickMaterial;
+        floor.GetComponent<Renderer>().material = labyrinthParameters.brickMaterial;
 
         // Roof
         
@@ -51,7 +38,7 @@ public class LabyrinthCreator
         ceiling.transform.SetParent(mazeOrigin.transform);
         ceiling.transform.localScale = new Vector3(maze.Width * cellWidth + wallDepth, 0.5f, maze.Height * cellWidth + wallDepth);
         ceiling.transform.localPosition = new Vector3(maze.Width * cellWidth / 2, wallHeight, maze.Height * cellWidth / 2 );
-        ceiling.GetComponent<Renderer>().material = brickMaterial;
+        ceiling.GetComponent<Renderer>().material = labyrinthParameters.brickMaterial;
         
         
         // Starting position
@@ -69,7 +56,7 @@ public class LabyrinthCreator
             wallObj.transform.SetParent(mazeOrigin.transform);
             wallObj.transform.localScale = new Vector3(cellWidth * wall.length + wallDepth, wallHeight, wallDepth);
             wallObj.transform.localPosition = new Vector3(cellWidth * (wall.x + 0.5f * wall.length), wallHeight / 2, cellWidth * (wall.y + 1));
-            wallObj.GetComponent<Renderer>().material = brickMaterial;
+            wallObj.GetComponent<Renderer>().material = labyrinthParameters.brickMaterial;
             wallObj.layer = LayerMask.NameToLayer("Wall");
 
             // Add torches to wall
@@ -79,12 +66,12 @@ public class LabyrinthCreator
             // One side of wall
             torchRotation = 90;
             torchPositionOffset = new Vector3(0, 0, wallDepth/2);
-            SpawnTorch(torchRotation, torchPositionOffset, wallObj);
+            SpawnTorch(torchRotation, torchPositionOffset, wallObj, labyrinthParameters);
 
             // Opposite side of wall
             torchRotation = -90;
             torchPositionOffset = new Vector3(0, 0, -wallDepth/2);
-            SpawnTorch(torchRotation, torchPositionOffset, wallObj);
+            SpawnTorch(torchRotation, torchPositionOffset, wallObj, labyrinthParameters);
 
             i++;
         }
@@ -108,7 +95,7 @@ public class LabyrinthCreator
             }
             wallObj.transform.localScale = new Vector3(wallDepth, wallHeight, length);
             wallObj.transform.localPosition = new Vector3(cellWidth * (wall.x + 1), wallHeight / 2, cellWidth * (wall.y + 0.5f * wall.length) + posOffset);
-            wallObj.GetComponent<Renderer>().material = brickMaterial;
+            wallObj.GetComponent<Renderer>().material = labyrinthParameters.brickMaterial;
             wallObj.layer = LayerMask.NameToLayer("Wall");
 
             // Add torches to wall
@@ -118,19 +105,19 @@ public class LabyrinthCreator
             // One side of wall
             torchRotation = 180;
             torchPositionOffset = new Vector3(wallDepth/2, 0, 0);
-            SpawnTorch(torchRotation, torchPositionOffset, wallObj);
+            SpawnTorch(torchRotation, torchPositionOffset, wallObj, labyrinthParameters);
 
             // Other side of wall
             torchRotation = 0;
             torchPositionOffset = new Vector3(-wallDepth/2, 0, 0);
-            SpawnTorch(torchRotation, torchPositionOffset, wallObj);
+            SpawnTorch(torchRotation, torchPositionOffset, wallObj, labyrinthParameters);
 
             i++;
         }
     }
 
-    private void SpawnTorch(int torchRotation, Vector3 torchPositionOffset, GameObject wallObj){
-        GameObject wallTorch = GameObject.Instantiate(wallTorchPrefab, wallObj.transform.position + torchPositionOffset, Quaternion.identity);
+    private void SpawnTorch(int torchRotation, Vector3 torchPositionOffset, GameObject wallObj, LabyrinthParameters parameters){
+        GameObject wallTorch = GameObject.Instantiate(parameters.wallTorchPrefab, wallObj.transform.position + torchPositionOffset, Quaternion.identity);
         GameObject wallTorchObject = new GameObject();
         wallTorch.transform.rotation = Quaternion.AngleAxis(torchRotation, Vector3.up);
         wallTorchObject.transform.SetParent(wallObj.transform);
@@ -146,7 +133,7 @@ public class LabyrinthCreator
         return false;
     }
 
-    private void CreateLabyrinth()
+    public void CreateLabyrinth(LabyrinthParameters parameters)
     {
         int x = 0;
         int y = 0;
@@ -155,30 +142,30 @@ public class LabyrinthCreator
         int dx = 0;
         int dy = 0;
         //int holePos;
-        for (int i = 0; i < numSections; i++)
+        for (int i = 0; i < parameters.numSections; i++)
         {
             // Position of the maze
             GameObject mazeOrigin = new GameObject("MazeOrigin" + i);
-            mazeOrigin.transform.SetParent(origin.transform);
+            mazeOrigin.transform.SetParent(parameters.origin.transform);
             mazeOrigin.transform.localPosition = new Vector3(x * (mazeWidth * cellWidth + wallDepth), 0, y * (mazeHeight * cellWidth + wallDepth));
 
-            (dx, dy) = NewDirection(dxPrev, dyPrev);
+            (dx, dy) = NewDirection(dxPrev, dyPrev, parameters.random);
             x += dx;
             y += dy;
 
             // Outer Walls
-            if (dxPrev != 1 && (i == numSections-1 || dx != -1))
-                CreateOuterWall(0, false, mazeOrigin, "OuterWallLeft");
-            if (dxPrev != -1 && (i == numSections - 1 || dx != 1))
-                CreateOuterWall(1, false, mazeOrigin, "OuterWallRight");
-            if (dyPrev != 1 && (i == numSections - 1 || dy != -1))
-                CreateOuterWall(0, true, mazeOrigin, "OuterWallDown");
-            if (dyPrev != -1 && (i == numSections - 1 || dy != 1))
-                CreateOuterWall(1, true, mazeOrigin, "OuterWallUp");
+            if (dxPrev != 1 && (i == parameters.numSections-1 || dx != -1))
+                CreateOuterWall(0, false, mazeOrigin, "OuterWallLeft", parameters);
+            if (dxPrev != -1 && (i == parameters.numSections - 1 || dx != 1))
+                CreateOuterWall(1, false, mazeOrigin, "OuterWallRight", parameters);
+            if (dyPrev != 1 && (i == parameters.numSections - 1 || dy != -1))
+                CreateOuterWall(0, true, mazeOrigin, "OuterWallDown", parameters);
+            if (dyPrev != -1 && (i == parameters.numSections - 1 || dy != 1))
+                CreateOuterWall(1, true, mazeOrigin, "OuterWallUp", parameters);
 
             // Generate inner walls
-            Maze maze = new Maze(mazeWidth, mazeHeight, new System.Tuple<int, int>(random.Next() % mazeWidth, random.Next() % mazeHeight), random);
-            CreateMaze(maze, mazeOrigin);
+            Maze maze = new Maze(mazeWidth, mazeHeight, new System.Tuple<int, int>(parameters.random.Next() % mazeWidth, parameters.random.Next() % mazeHeight), parameters.random);
+            CreateMaze(maze, mazeOrigin, parameters, null);
 
             dxPrev = dx;
             dyPrev = dy;
@@ -195,7 +182,7 @@ public class LabyrinthCreator
         }
     }
 
-    private (int, int) NewDirection(int dxPrev, int dyPrev)
+    private (int, int) NewDirection(int dxPrev, int dyPrev, System.Random random)
     {
         if (dyPrev != 0)
         {
@@ -209,12 +196,12 @@ public class LabyrinthCreator
         }
     }
 
-    private void CreateOuterWall(int x, bool isHorizontal, GameObject mazeOrigin, string name)
+    private void CreateOuterWall(int x, bool isHorizontal, GameObject mazeOrigin, string name, LabyrinthParameters labyrinthParameters)
     {
         GameObject outerWall = GameObject.CreatePrimitive(PrimitiveType.Cube);
         outerWall.name = name;
         outerWall.transform.SetParent(mazeOrigin.transform);
-        outerWall.GetComponent<Renderer>().material = brickMaterial;
+        outerWall.GetComponent<Renderer>().material = labyrinthParameters.brickMaterial;
         
         if (isHorizontal)
         {
