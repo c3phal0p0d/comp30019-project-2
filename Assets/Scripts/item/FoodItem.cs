@@ -17,6 +17,8 @@ public class FoodItem : Item
     }
 
     public Inventory gameinventory;
+    public Health playerhealth;
+    
 
     void Start()
     {
@@ -25,7 +27,7 @@ public class FoodItem : Item
 
     public void Eat()
     {
-        //PlayerStats.health += health;
+        GetComponent<Health>().Increment(health);
     }
 
 
@@ -37,6 +39,8 @@ public class FoodItem : Item
         {
             Debug.Log("click");
             this.Eat();
+            Destroy(this.gameObject);
+
         }
 
         if (Input.GetMouseButtonDown(1))
