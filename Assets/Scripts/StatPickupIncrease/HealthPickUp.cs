@@ -15,14 +15,13 @@ public class HealthPickUp : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
 
-
         PlayerStats playerStat = other.GetComponent<PlayerStats>();
 
         if (playerStat != null)
         {
-
             playerStat.GetStat(stat).increment(1);
             Debug.Log(playerStat.GetStat(stat).Value);
+            FindObjectOfType<AudioManager>().Play("CollectPickup");
             gameObject.SetActive(false);
         }
     }
