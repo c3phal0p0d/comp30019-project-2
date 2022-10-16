@@ -6,6 +6,8 @@ public class EnemyHealth : BarStat
 {
     [SerializeField]
     private float initialHealth = 10;
+    [SerializeField]
+    private int enemyNumber;
 
     private PlayerStats.Stat maxHealth;
     private Animator animator;
@@ -26,7 +28,8 @@ public class EnemyHealth : BarStat
     public override void Increment(float amount)
     {
         if (amount<0){
-            FindObjectOfType<AudioManager>().Play("EnemyHit");
+            string enemyHitAudio = "Enemy" + enemyNumber + "Hit";
+            FindObjectOfType<AudioManager>().Play(enemyHitAudio);
             animator.SetTrigger("Hit");
         }
         base.Increment(amount);

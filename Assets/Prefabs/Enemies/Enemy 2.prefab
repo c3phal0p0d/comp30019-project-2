@@ -171,7 +171,7 @@ Transform:
   - {fileID: 1962108096516282688}
   - {fileID: 4958434639290902326}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!195 &1962108098383283136
 NavMeshAgent:
@@ -221,6 +221,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialHealth: 10
+  enemyNumber: 2
 --- !u!114 &1962108098383283139
 MonoBehaviour:
   m_ObjectHideFlags: 0

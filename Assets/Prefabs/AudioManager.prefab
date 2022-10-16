@@ -65,8 +65,23 @@ MonoBehaviour:
     name: PlayerHit
     loop: 0
     source: {fileID: 0}
-  - clip: {fileID: 8300000, guid: 780622dcc69e247e1bb4b776e29caebc, type: 3}
+  - clip: {fileID: 8300000, guid: 207ddc6afd70a4c2d8451d235ad57ba6, type: 3}
     volume: 0.2
-    name: EnemyHit
+    name: Enemy1Hit
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 91feab38d9a1f4927accf9ca148a71a9, type: 3}
+    volume: 0.2
+    name: Enemy2Hit
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 93e115f30b58240038ecc13e2e18d176, type: 3}
+    volume: 0.2
+    name: Enemy3Hit
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 3e3d96922c94a493e9803e57f7d428a7, type: 3}
+    volume: 0.2
+    name: CollectPickup
     loop: 0
     source: {fileID: 0}
