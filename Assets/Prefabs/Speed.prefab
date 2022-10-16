@@ -34,7 +34,7 @@ Transform:
   m_Children:
   - {fileID: 3600257145858422259}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1849577864497754532
 MonoBehaviour:
@@ -93,7 +93,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stat: 2
-  rotation: {x: 0, y: 0, z: 0}
+  rotation: {x: 0, y: 1, z: 0}
 --- !u!1001 &3926039028034343448
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -146,6 +146,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 9654a4d290aa5fa4492a814ac5c51316, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fe0398bceed436d48aac3d23af530c2a, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 9654a4d290aa5fa4492a814ac5c51316, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: fe0398bceed436d48aac3d23af530c2a, type: 2}
     - target: {fileID: 919132149155446097, guid: 9654a4d290aa5fa4492a814ac5c51316, type: 3}
       propertyPath: m_Name
       value: Blue_Potion_1
