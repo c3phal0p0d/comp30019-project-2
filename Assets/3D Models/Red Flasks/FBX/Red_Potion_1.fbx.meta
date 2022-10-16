@@ -3,7 +3,12 @@ guid: 0bfe0d0391a22de488b4bba6657be8ec
 ModelImporter:
   serializedVersion: 22103
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RHIGH.055
+    second: {fileID: 2100000, guid: 6abf7387535e34435acc3f122d1f0f07, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

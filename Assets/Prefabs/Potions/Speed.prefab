@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 1849577864497754532}
   - component: {fileID: 1713558389}
   - component: {fileID: 1932894332851946193}
-  - component: {fileID: 9139540568529117799}
   m_Layer: 0
   m_Name: Speed
   m_TagString: Untagged
@@ -28,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1849577864497754533}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17.4, y: 0, z: -9.960903}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -80,20 +79,6 @@ CapsuleCollider:
   m_Height: 0.45
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &9139540568529117799
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1849577864497754533}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87e51e9d5d12e1a4588abd729c4379a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stat: 2
-  rotation: {x: 0, y: 1, z: 0}
 --- !u!1001 &3926039028034343448
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -153,7 +138,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 9654a4d290aa5fa4492a814ac5c51316, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 2100000, guid: fe0398bceed436d48aac3d23af530c2a, type: 2}
+      objectReference: {fileID: 2100000, guid: 6abf7387535e34435acc3f122d1f0f07, type: 2}
     - target: {fileID: 919132149155446097, guid: 9654a4d290aa5fa4492a814ac5c51316, type: 3}
       propertyPath: m_Name
       value: Blue_Potion_1

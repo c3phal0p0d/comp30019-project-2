@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class HealthPickUp : MonoBehaviour
 
-
 {
     [SerializeField] private PlayerStats.StatType stat;
     [SerializeField] private Vector3 rotation;

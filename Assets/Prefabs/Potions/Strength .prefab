@@ -27,13 +27,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5096545200384461371}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 18, y: 1, z: 6}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2808180318785434919}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &6127264013698596896
 CapsuleCollider:
@@ -78,7 +78,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stat: 0
-  rotation: {x: 0, y: 1, z: 0}
+  rotation: {x: 0, y: 0, z: 0}
 --- !u!1001 &2410006765313692364
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -105,7 +105,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 728facbdfc3470f49b51c39762113934, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071067
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 728facbdfc3470f49b51c39762113934, type: 3}
       propertyPath: m_LocalRotation.x
@@ -117,11 +117,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 728facbdfc3470f49b51c39762113934, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 728facbdfc3470f49b51c39762113934, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 728facbdfc3470f49b51c39762113934, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -134,7 +134,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 728facbdfc3470f49b51c39762113934, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 0ac0bea0880f0834b92f792c7dfec294, type: 2}
+      objectReference: {fileID: 2100000, guid: 6abf7387535e34435acc3f122d1f0f07, type: 2}
     - target: {fileID: -7511558181221131132, guid: 728facbdfc3470f49b51c39762113934, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
