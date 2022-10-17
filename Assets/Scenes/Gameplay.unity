@@ -326,7 +326,9 @@ MonoBehaviour:
   pickupDensity: 1
   origin: {fileID: 581613229}
   brickMaterial: {fileID: 2100000, guid: 0e2d7eb755c37475cb888968c90af5c7, type: 2}
+  blackMaterial: {fileID: 2100000, guid: 49aba598592887249b8174aadee0e35b, type: 2}
   wallTorchPrefab: {fileID: 139546498731853840, guid: cb830cd1c76c84be794b539e67e2659f, type: 3}
+  levelEndPrefab: {fileID: 6606837702791187695, guid: 72558dff70a381d4f9e277e78e68f2a7, type: 3}
 --- !u!114 &1147782951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -344,6 +346,7 @@ MonoBehaviour:
   cellWidth: 3
   wallDepth: 0.1
   wallHeight: 4
+  tubeHeight: 10
 --- !u!1001 &2062653308
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -13,6 +13,9 @@ public class MainComponent : MonoBehaviour
 
     private int levelNumber;
 
+    private bool doSpawn;
+    private Vector3 spawnPosition;
+
     private void Start()
     {
         instance = this;
@@ -28,14 +31,23 @@ public class MainComponent : MonoBehaviour
 
     public void NextLevel()
     {
+        // Generate new maze
         DeleteLevel();
         LabyrinthCreator lc = new LabyrinthCreator(gameParameters.LevelSizes);
-        Vector3 playerSpawnPosition = lc.CreateLabyrinth(gameParameters.LevelParameters);
-
-        PlayerManager.instance.gameObject.transform.position = playerSpawnPosition;
+        spawnPosition = lc.CreateLabyrinth(gameParameters.LevelParameters);
+        doSpawn = true;
 
         levelNumber++;
         gameParameters.UpdateValues(levelNumber);
+    }
+
+    private void LateUpdate()
+    {
+        if (doSpawn)
+        {
+            PlayerManager.instance.gameObject.transform.position = spawnPosition;
+            doSpawn = false;
+        }
     }
 
     private void DeleteLevel()
