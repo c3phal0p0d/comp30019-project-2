@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5301202638905384141
 MonoBehaviour:
@@ -78,6 +78,11 @@ MonoBehaviour:
   - clip: {fileID: 8300000, guid: 93e115f30b58240038ecc13e2e18d176, type: 3}
     volume: 0.2
     name: Enemy3Hit
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: caa19fb98bc0c49ad8e919b8afff6d0b, type: 3}
+    volume: 0.2
+    name: Enemy4Hit
     loop: 0
     source: {fileID: 0}
   - clip: {fileID: 8300000, guid: 3e3d96922c94a493e9803e57f7d428a7, type: 3}

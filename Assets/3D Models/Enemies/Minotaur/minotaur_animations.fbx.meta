@@ -1,23 +1,23 @@
 fileFormatVersion: 2
-guid: 65000aed22e3f4d69a25349332be80fa
+guid: 570cd915ee0dc4feabc057775edaa987
 ModelImporter:
   serializedVersion: 22103
   internalIDToNameTable:
   - first:
-      74: -3617637635347399753
-    second: Armature.003|Attack
+      74: -8951398590501294284
+    second: Armature.002|Attack
   - first:
-      74: 1818718662966282035
-    second: Armature.003|Death
+      74: 1915468543196669356
+    second: Armature.002|Death
   - first:
-      74: -7857743551705236987
-    second: Armature.003|Hit
+      74: -2620842440979967706
+    second: Armature.002|Hit
   - first:
-      74: 6512981421333049641
-    second: Armature.003|Idle
+      74: -4187070084771750883
+    second: Armature.002|Idle
   - first:
-      74: 3869783202426903800
-    second: Armature.003|Walk
+      74: -2630020535824132839
+    second: Armature.002|Walk
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -48,8 +48,8 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Armature.003|Attack
-      takeName: Armature.003|Attack
+      name: Armature.002|Attack
+      takeName: Armature.002|Attack
       internalID: 0
       firstFrame: 0
       lastFrame: 102
@@ -65,9 +65,9 @@ ModelImporter:
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
+      keepOriginalPositionY: 0
       keepOriginalPositionXZ: 0
-      heightFromFeet: 0
+      heightFromFeet: 1
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
@@ -77,8 +77,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature.003|Death
-      takeName: Armature.003|Death
+      name: Armature.002|Death
+      takeName: Armature.002|Death
       internalID: 0
       firstFrame: 0
       lastFrame: 109
@@ -94,9 +94,9 @@ ModelImporter:
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
+      keepOriginalPositionY: 0
       keepOriginalPositionXZ: 0
-      heightFromFeet: 0
+      heightFromFeet: 1
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
@@ -106,11 +106,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature.003|Hit
-      takeName: Armature.003|Hit
+      name: Armature.002|Hit
+      takeName: Armature.002|Hit
       internalID: 0
-      firstFrame: 0
-      lastFrame: 87
+      firstFrame: 12
+      lastFrame: 71
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -123,9 +123,9 @@ ModelImporter:
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
+      keepOriginalPositionY: 0
       keepOriginalPositionXZ: 0
-      heightFromFeet: 0
+      heightFromFeet: 1
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
@@ -135,8 +135,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature.003|Idle
-      takeName: Armature.003|Idle
+      name: Armature.002|Idle
+      takeName: Armature.002|Idle
       internalID: 0
       firstFrame: 0
       lastFrame: 345
@@ -152,9 +152,9 @@ ModelImporter:
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
+      keepOriginalPositionY: 0
       keepOriginalPositionXZ: 0
-      heightFromFeet: 0
+      heightFromFeet: 1
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
@@ -164,8 +164,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature.003|Walk
-      takeName: Armature.003|Walk
+      name: Armature.002|Walk
+      takeName: Armature.002|Walk
       internalID: 0
       firstFrame: 0
       lastFrame: 34
@@ -175,15 +175,15 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
+      keepOriginalPositionY: 0
       keepOriginalPositionXZ: 0
-      heightFromFeet: 0
+      heightFromFeet: 1
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
@@ -610,18 +610,18 @@ ModelImporter:
         length: 0
         modified: 0
     skeleton:
-    - name: minotaur_with_animations(Clone)
+    - name: minotaur_animations(Clone)
       parentName: 
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
-    - name: Armature.003
-      parentName: minotaur_with_animations(Clone)
+    - name: Armature.002
+      parentName: minotaur_animations(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: 0.000000081460335, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig:Hips
-      parentName: Armature.003
+      parentName: Armature.002
       position: {x: -0.00000029802322, y: 7.1810007, z: 0.5283947}
       rotation: {x: -0.00000006786316, y: 0.0000000021114797, z: -0.0000000022781081, w: 1}
       scale: {x: 1.0000002, y: 1, z: 1.0000002}
@@ -960,8 +960,8 @@ ModelImporter:
       position: {x: -0, y: 1.0081177, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
-    - name: Minotaur_mesh.005
-      parentName: minotaur_with_animations(Clone)
+    - name: Minotaur_mesh.002
+      parentName: minotaur_animations(Clone)
       position: {x: 0.00000009816139, y: 3.0807608e-14, z: -0.00000018909573}
       rotation: {x: -0.7071068, y: -0.000000006015393, z: -0.000000010754861, w: 0.7071067}
       scale: {x: 4.9999995, y: 4.9999995, z: 4.9999995}
