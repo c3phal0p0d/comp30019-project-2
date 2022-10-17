@@ -27,14 +27,18 @@ public class EnemyHealth : BarStat
 
     public override void Increment(float amount)
     {
+        string animationTrigger = "";
         if (amount<0){
             string enemyHitAudio = "Enemy" + enemyNumber + "Hit";
             FindObjectOfType<AudioManager>().Play(enemyHitAudio);
-            animator.SetTrigger("Hit");
+            animationTrigger = "Hit";
         }
         base.Increment(amount);
         if (IsEmpty){
-            animator.SetTrigger("Die");
+            animationTrigger = "Die";
+        }
+        if (animationTrigger!=""){
+            animator.SetTrigger(animationTrigger);
         }
     }
 
