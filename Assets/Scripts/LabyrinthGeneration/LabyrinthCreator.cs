@@ -12,19 +12,20 @@ public class LabyrinthCreator
 
     private float timer;
 
-    public LabyrinthCreator(int mazeWidth, int mazeHeight, float cellWidth, float wallHeight, float wallDepth)
+    public LabyrinthCreator(LabyrinthSize sizes)
     {
-        this.mazeWidth = mazeWidth;
-        this.mazeHeight = mazeHeight;
-        this.cellWidth = cellWidth;
-        this.wallHeight = wallHeight;
-        this.wallDepth = wallDepth;
+        this.mazeWidth = sizes.mazeWidth;
+        this.mazeHeight = sizes.mazeHeight;
+        this.cellWidth = sizes.cellWidth;
+        this.wallHeight = sizes.wallHeight;
+        this.wallDepth = sizes.wallDepth;
     }
     
     private void CreateMaze(Maze maze, GameObject mazeOrigin, LabyrinthParameters labyrinthParameters, MazeParameters mazeParameters)
     {   
         // Floor
         GameObject floor = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        floor.layer = LayerMask.NameToLayer("Ground");
         floor.name = "Floor";
         floor.transform.SetParent(mazeOrigin.transform);
         floor.transform.localScale = new Vector3(maze.Width * cellWidth + wallDepth, 0.5f, maze.Height * cellWidth + wallDepth);

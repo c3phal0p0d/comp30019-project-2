@@ -3,12 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 public class PlayerStats : MonoBehaviour
 {
     [SerializeField]
     private BarStat playerHealth;
     [SerializeField]
     private BarStat playerStamina;
+    [SerializeField]
+    private float[] initialValues = new float[Enum.GetNames(typeof(StatType)).Length];
+    [SerializeField]
+    private float[] maxValues = new float[Enum.GetNames(typeof(StatType)).Length];
 
     public class Stat
     {
@@ -45,7 +53,7 @@ public class PlayerStats : MonoBehaviour
     {
         stats = new Stat[Enum.GetNames(typeof(StatType)).Length];
         for (int i = 0; i < stats.Length; i++)
-            stats[i] = new Stat(0, int.MaxValue, 5);
+            stats[i] = new Stat(0, maxValues[i], initialValues[i]);
 
         playerHealth.SetStat(GetStat(StatType.MaxHealth));
         playerStamina.SetStat(GetStat(StatType.MaxStamina));
@@ -56,3 +64,49 @@ public class PlayerStats : MonoBehaviour
         return stats[(int)statType];
     }
 }
+
+#if UNITY_EDITOR
+[CustomEditor(typeof(PlayerStats))]
+class PlayerStatsEditor : Editor
+{
+    SerializedProperty playerHealthProperty;
+    SerializedProperty playerStaminaProperty;
+    SerializedProperty playerInitialStatsArray;
+    SerializedProperty playerMaxStatsArray;
+
+    private void OnEnable()
+    {
+        playerHealthProperty = serializedObject.FindProperty("playerHealth");
+        playerStaminaProperty = serializedObject.FindProperty("playerStamina");
+        playerInitialStatsArray = serializedObject.FindProperty("initialValues");
+        playerMaxStatsArray = serializedObject.FindProperty("maxValues");
+    }
+
+    public override void OnInspectorGUI()
+    {
+        PlayerStats component = (PlayerStats)target;
+        if (target == null)
+            return;
+
+        serializedObject.Update();
+
+        EditorGUILayout.PropertyField(playerHealthProperty);
+        EditorGUILayout.PropertyField(playerStaminaProperty);
+
+        EditorGUILayout.LabelField("Player Stats (Initial, Max)");
+        string[] statNames = Enum.GetNames(typeof(PlayerStats.StatType));
+        for (int i = 0; i < statNames.Length; i++)
+        {
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.PrefixLabel(statNames[i]);
+            SerializedProperty initialValue = playerInitialStatsArray.GetArrayElementAtIndex(i);
+            SerializedProperty maxValue = playerMaxStatsArray.GetArrayElementAtIndex(i);
+            initialValue.floatValue = Mathf.Clamp(EditorGUILayout.FloatField(initialValue.floatValue), 0, maxValue.floatValue);
+            maxValue.floatValue = Mathf.Max(0, EditorGUILayout.FloatField(maxValue.floatValue));
+            EditorGUILayout.EndHorizontal();
+        }
+
+        serializedObject.ApplyModifiedProperties();
+    }
+}
+#endif

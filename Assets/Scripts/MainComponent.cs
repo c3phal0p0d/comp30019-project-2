@@ -7,29 +7,40 @@ public class MainComponent : MonoBehaviour
     [SerializeField]
     private GameParameters gameParameters;
     [SerializeField]
-    private GameObject player;
-    [SerializeField]
-    private GameObject labyrinthOrigin;
+    private GameObject levelObject;
 
-    private int level;
+    public static MainComponent instance;
+
+    private int levelNumber;
 
     private void Start()
     {
-        level = 0;
-        GenerateLevel();
+        instance = this;
+        ResetGame();
+        NextLevel();
     }
 
-    private void GenerateLevel()
+    public void ResetGame()
     {
-        level++;
-        LabyrinthParameters labyrinthParameters = new LabyrinthParameters();
-        labyrinthParameters.numSections = 3 + level;
-        labyrinthParameters.isFinalLevel = level == gameParameters.numLevels;
-        labyrinthParameters.origin = labyrinthOrigin;
-        labyrinthParameters.random = gameParameters.Random;
-
-        LabyrinthCreator lc = new LabyrinthCreator(5 + level, 5 + level, 2, 4, 0.1f);
-        lc.CreateLabyrinth(labyrinthParameters);
+        levelNumber = 1;
+        gameParameters.ResetParameters();
     }
 
+    public void NextLevel()
+    {
+        DeleteLevel();
+        LabyrinthCreator lc = new LabyrinthCreator(gameParameters.LevelSizes);
+        lc.CreateLabyrinth(gameParameters.LevelParameters);
+
+        levelNumber++;
+        gameParameters.UpdateValues(levelNumber);
+    }
+
+    private void DeleteLevel()
+    {
+        foreach (Transform child in levelObject.transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
+    }
 }
