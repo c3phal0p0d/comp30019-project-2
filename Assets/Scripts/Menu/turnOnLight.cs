@@ -25,7 +25,6 @@ public class turnOnLight : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
-        Debug.Log(col);
         if (col.tag == "MainCamera")
         {
             flame.SetActive(true);

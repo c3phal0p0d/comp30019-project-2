@@ -38,7 +38,7 @@ public class MainComponent : MonoBehaviour
         doSpawn = true;
 
         levelNumber++;
-        gameParameters.UpdateValues(levelNumber);
+        gameParameters.UpdateParameters(levelNumber);
     }
 
     private void LateUpdate()

@@ -44,9 +44,24 @@ public class GameParameters : MonoBehaviour
         }
     }
 
-    public void UpdateValues(int level)
+    public void UpdateParameters(int level)
     {
+        labyrinthParameters = (LabyrinthParameters)labyrinthParameters.Clone();
 
+        labyrinthParameters.numSections++;
+        labyrinthParameters.isFinalLevel = level == numLevels;
+        if (labyrinthParameters.isFinalLevel)
+            labyrinthParameters.numSections = 1;
+        labyrinthParameters.enemyDensity = 1 + level / 2;
+
+        labyrinthSizes = (LabyrinthSize)labyrinthSizes.Clone();
+        if ((level+1) % 2 == 0)
+        {
+            labyrinthSizes.mazeWidth++;
+            labyrinthSizes.mazeHeight++;
+        }
+        labyrinthSizes.wallHeight += 0.1f;
+        labyrinthSizes.tubeHeight += 1f;
     }
 
     public System.Random Random => random;

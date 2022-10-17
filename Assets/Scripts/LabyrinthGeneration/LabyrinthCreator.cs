@@ -239,28 +239,28 @@ public class LabyrinthCreator
         ceiling = GameObject.CreatePrimitive(PrimitiveType.Cube);
         ceiling.name = "Ceiling1";
         ceiling.transform.SetParent(mazeParameters.mazeOrigin.transform);
-        ceiling.transform.localScale = new Vector3(maze.Width * cellWidth + wallDepth, wallDepth, (maze.Height - 2) / 2 * cellWidth + wallDepth);
+        ceiling.transform.localScale = new Vector3(maze.Width * cellWidth + wallDepth, wallDepth, (maze.Height - 2) * cellWidth / 2 + wallDepth);
         ceiling.transform.localPosition = new Vector3(maze.Width * cellWidth / 2, wallHeight, (maze.Height - 2) * cellWidth / 4);
         ceiling.GetComponent<Renderer>().material = labyrinthParameters.brickMaterial;
 
         ceiling = GameObject.CreatePrimitive(PrimitiveType.Cube);
         ceiling.name = "Ceiling2";
         ceiling.transform.SetParent(mazeParameters.mazeOrigin.transform);
-        ceiling.transform.localScale = new Vector3((maze.Width - 2) / 2 * cellWidth + wallDepth, wallDepth, 2 * cellWidth - wallDepth);
+        ceiling.transform.localScale = new Vector3((maze.Width - 2) * cellWidth / 2 + wallDepth, wallDepth, 2 * cellWidth - wallDepth);
         ceiling.transform.localPosition = new Vector3((maze.Width - 2) * cellWidth / 4, wallHeight, maze.Height * cellWidth / 2);
         ceiling.GetComponent<Renderer>().material = labyrinthParameters.brickMaterial;
 
         ceiling = GameObject.CreatePrimitive(PrimitiveType.Cube);
         ceiling.name = "Ceiling3";
         ceiling.transform.SetParent(mazeParameters.mazeOrigin.transform);
-        ceiling.transform.localScale = new Vector3((maze.Width - 2) / 2 * cellWidth + wallDepth, wallDepth, 2 * cellWidth - wallDepth);
+        ceiling.transform.localScale = new Vector3((maze.Width - 2) * cellWidth / 2 + wallDepth, wallDepth, 2 * cellWidth - wallDepth);
         ceiling.transform.localPosition = new Vector3(maze.Width * cellWidth - (maze.Width - 2) * cellWidth / 4, wallHeight, maze.Height * cellWidth / 2);
         ceiling.GetComponent<Renderer>().material = labyrinthParameters.brickMaterial;
 
         ceiling = GameObject.CreatePrimitive(PrimitiveType.Cube);
         ceiling.name = "Ceiling4";
         ceiling.transform.SetParent(mazeParameters.mazeOrigin.transform);
-        ceiling.transform.localScale = new Vector3(maze.Width * cellWidth + wallDepth, wallDepth, (maze.Height - 2) / 2 * cellWidth + wallDepth);
+        ceiling.transform.localScale = new Vector3(maze.Width * cellWidth + wallDepth, wallDepth, (maze.Height - 2) * cellWidth / 2 + wallDepth);
         ceiling.transform.localPosition = new Vector3(maze.Width * cellWidth / 2, wallHeight, maze.Height * cellWidth - (maze.Height - 2) * cellWidth / 4);
         ceiling.GetComponent<Renderer>().material = labyrinthParameters.brickMaterial;
 
@@ -269,7 +269,7 @@ public class LabyrinthCreator
         tubeSide.name = "Chimney1";
         tubeSide.transform.SetParent(mazeParameters.mazeOrigin.transform);
         tubeSide.transform.localScale = new Vector3(2 * cellWidth + wallDepth, tubeHeight, wallDepth);
-        tubeSide.transform.localPosition = new Vector3(maze.Width * cellWidth / 2, wallHeight + (wallDepth + tubeHeight) / 2, (maze.Height - 2) / 2 * cellWidth);
+        tubeSide.transform.localPosition = new Vector3(maze.Width * cellWidth / 2, wallHeight + (wallDepth + tubeHeight) / 2, (maze.Height - 2) * cellWidth / 2);
         tubeSide.GetComponent<Renderer>().material = labyrinthParameters.brickMaterial;
         
         tubeSide = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -290,7 +290,7 @@ public class LabyrinthCreator
         tubeSide.name = "Chimney4";
         tubeSide.transform.SetParent(mazeParameters.mazeOrigin.transform);
         tubeSide.transform.localScale = new Vector3(2 * cellWidth + wallDepth, tubeHeight, wallDepth);
-        tubeSide.transform.localPosition = new Vector3(maze.Width * cellWidth / 2, wallHeight + (wallDepth + tubeHeight) / 2, (maze.Height + 2) / 2 * cellWidth);
+        tubeSide.transform.localPosition = new Vector3(maze.Width * cellWidth / 2, wallHeight + (wallDepth + tubeHeight) / 2, (maze.Height + 2) * cellWidth / 2);
         tubeSide.GetComponent<Renderer>().material = labyrinthParameters.brickMaterial;
 
         tubeSide = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -323,7 +323,7 @@ public class LabyrinthCreator
         floor.layer = LayerMask.NameToLayer("Ground");
         floor.name = "Floor1";
         floor.transform.SetParent(mazeParameters.mazeOrigin.transform);
-        floor.transform.localScale = new Vector3(maze.Width * cellWidth + wallDepth, wallDepth, (maze.Height - 2) / 2 * cellWidth + wallDepth);
+        floor.transform.localScale = new Vector3(maze.Width * cellWidth + wallDepth, wallDepth, (maze.Height - 2) * cellWidth / 2 + wallDepth);
         floor.transform.localPosition = new Vector3(maze.Width * cellWidth / 2, 0, (maze.Height - 2) * cellWidth / 4);
         floor.GetComponent<Renderer>().material = labyrinthParameters.brickMaterial;
 
@@ -331,7 +331,7 @@ public class LabyrinthCreator
         floor.layer = LayerMask.NameToLayer("Ground");
         floor.name = "Floor2";
         floor.transform.SetParent(mazeParameters.mazeOrigin.transform);
-        floor.transform.localScale = new Vector3((maze.Width - 2) / 2 * cellWidth + wallDepth, wallDepth, 2 * cellWidth - wallDepth);
+        floor.transform.localScale = new Vector3((maze.Width - 2) * cellWidth / 2 + wallDepth, wallDepth, 2 * cellWidth - wallDepth);
         floor.transform.localPosition = new Vector3((maze.Width - 2) * cellWidth / 4, 0, maze.Height * cellWidth / 2);
         floor.GetComponent<Renderer>().material = labyrinthParameters.brickMaterial;
 
@@ -339,7 +339,7 @@ public class LabyrinthCreator
         floor.layer = LayerMask.NameToLayer("Ground");
         floor.name = "Floor3";
         floor.transform.SetParent(mazeParameters.mazeOrigin.transform);
-        floor.transform.localScale = new Vector3((maze.Width - 2) / 2 * cellWidth + wallDepth, wallDepth, 2 * cellWidth - wallDepth);
+        floor.transform.localScale = new Vector3((maze.Width - 2) * cellWidth / 2 + wallDepth, wallDepth, 2 * cellWidth - wallDepth);
         floor.transform.localPosition = new Vector3(maze.Width * cellWidth - (maze.Width - 2) * cellWidth / 4, 0, maze.Height * cellWidth / 2);
         floor.GetComponent<Renderer>().material = labyrinthParameters.brickMaterial;
 
@@ -347,7 +347,7 @@ public class LabyrinthCreator
         floor.layer = LayerMask.NameToLayer("Ground");
         floor.name = "Floor4";
         floor.transform.SetParent(mazeParameters.mazeOrigin.transform);
-        floor.transform.localScale = new Vector3(maze.Width * cellWidth + wallDepth, wallDepth, (maze.Height - 2) / 2 * cellWidth + wallDepth);
+        floor.transform.localScale = new Vector3(maze.Width * cellWidth + wallDepth, wallDepth, (maze.Height - 2) * cellWidth / 2 + wallDepth);
         floor.transform.localPosition = new Vector3(maze.Width * cellWidth / 2, 0, maze.Height * cellWidth - (maze.Height - 2) * cellWidth / 4);
         floor.GetComponent<Renderer>().material = labyrinthParameters.brickMaterial;
 
@@ -357,7 +357,7 @@ public class LabyrinthCreator
         tubeSide.name = "Hole1";
         tubeSide.transform.SetParent(mazeParameters.mazeOrigin.transform);
         tubeSide.transform.localScale = new Vector3(2 * cellWidth + wallDepth, tubeHeight, wallDepth);
-        tubeSide.transform.localPosition = new Vector3(maze.Width * cellWidth / 2, - (wallDepth + tubeHeight) / 2, (maze.Height - 2) / 2 * cellWidth);
+        tubeSide.transform.localPosition = new Vector3(maze.Width * cellWidth / 2, - (wallDepth + tubeHeight) / 2, (maze.Height - 2) * cellWidth / 2);
         tubeSide.GetComponent<Renderer>().material = labyrinthParameters.brickMaterial;
 
         tubeSide = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -378,7 +378,7 @@ public class LabyrinthCreator
         tubeSide.name = "Hole4";
         tubeSide.transform.SetParent(mazeParameters.mazeOrigin.transform);
         tubeSide.transform.localScale = new Vector3(2 * cellWidth + wallDepth, tubeHeight, wallDepth);
-        tubeSide.transform.localPosition = new Vector3(maze.Width * cellWidth / 2, - (wallDepth + tubeHeight) / 2, (maze.Height + 2) / 2 * cellWidth);
+        tubeSide.transform.localPosition = new Vector3(maze.Width * cellWidth / 2, - (wallDepth + tubeHeight) / 2, (maze.Height + 2) * cellWidth / 2);
         tubeSide.GetComponent<Renderer>().material = labyrinthParameters.brickMaterial;
 
         tubeSide = GameObject.CreatePrimitive(PrimitiveType.Cube);
