@@ -236,6 +236,10 @@ PrefabInstance:
       propertyPath: walkSpeedScale
       value: 0.6
       objectReference: {fileID: 0}
+    - target: {fileID: 6456609883347996686, guid: 3e8cbafce405748c4a96f8be47906a75, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 511
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e8cbafce405748c4a96f8be47906a75, type: 3}
@@ -271,7 +275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f2b0300f8bd1d14db245ab04f3cd562, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numLevels: 7
+  numLevels: 2
   statIncreases:
   - {fileID: 6947800314760756796, guid: e27a6c6f7f18f47b4aa8be7769c1fdae, type: 3}
   - {fileID: 2523241770001930196, guid: e585706432fb744b2a8af7326155ef24, type: 3}
