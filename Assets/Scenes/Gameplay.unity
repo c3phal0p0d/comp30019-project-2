@@ -271,12 +271,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f2b0300f8bd1d14db245ab04f3cd562, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numLevels: 0
+  numLevels: 7
   statIncreases:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 6947800314760756796, guid: e27a6c6f7f18f47b4aa8be7769c1fdae, type: 3}
+  - {fileID: 2523241770001930196, guid: e585706432fb744b2a8af7326155ef24, type: 3}
+  - {fileID: 1849577864497754533, guid: f7346fc1bc52c4d419beab4b228184f0, type: 3}
+  - {fileID: 5096545200384461371, guid: 3bbe29754dfa6264c89e424a8e324eb7, type: 3}
   initialLabyrinthParameters: {fileID: 1147782950}
   initialLabyrinthSizes: {fileID: 1147782951}
 --- !u!114 &1147782947

@@ -30,7 +30,9 @@ public class MainComponent : MonoBehaviour
     {
         DeleteLevel();
         LabyrinthCreator lc = new LabyrinthCreator(gameParameters.LevelSizes);
-        lc.CreateLabyrinth(gameParameters.LevelParameters);
+        Vector3 playerSpawnPosition = lc.CreateLabyrinth(gameParameters.LevelParameters);
+
+        PlayerManager.instance.gameObject.transform.position = playerSpawnPosition;
 
         levelNumber++;
         gameParameters.UpdateValues(levelNumber);

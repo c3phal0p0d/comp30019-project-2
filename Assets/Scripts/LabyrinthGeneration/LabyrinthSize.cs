@@ -10,6 +10,7 @@ public class LabyrinthSize : MonoBehaviour, ICloneable
     public float cellWidth = 1f;
     public float wallDepth = 0.1f;
     public float wallHeight = 1.5f;
+    public float tubeHeight = 10f;
 
     public object Clone()
     {
