@@ -21,100 +21,85 @@ public class LabyrinthCreator
         this.wallDepth = sizes.wallDepth;
     }
     
-    private void CreateMaze(Maze maze, GameObject mazeOrigin, LabyrinthParameters labyrinthParameters, MazeParameters mazeParameters)
-    {   
-        // Floor
-        GameObject floor = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        floor.layer = LayerMask.NameToLayer("Ground");
-        floor.name = "Floor";
-        floor.transform.SetParent(mazeOrigin.transform);
-        floor.transform.localScale = new Vector3(maze.Width * cellWidth + wallDepth, 0.5f, maze.Height * cellWidth + wallDepth);
-        floor.transform.localPosition = new Vector3(maze.Width * cellWidth / 2, 0, maze.Height * cellWidth / 2 );
-        floor.GetComponent<Renderer>().material = labyrinthParameters.brickMaterial;
+    private void CreateMaze(Maze maze, LabyrinthParameters labyrinthParameters, MazeParameters mazeParameters)
+    {
+        CreateFloor(maze, labyrinthParameters, mazeParameters);
+        CreateCeiling(maze, labyrinthParameters, mazeParameters);
 
-        // Roof
-        
-        GameObject ceiling = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        ceiling.name = "Ceiling";
-        ceiling.transform.SetParent(mazeOrigin.transform);
-        ceiling.transform.localScale = new Vector3(maze.Width * cellWidth + wallDepth, 0.5f, maze.Height * cellWidth + wallDepth);
-        ceiling.transform.localPosition = new Vector3(maze.Width * cellWidth / 2, wallHeight, maze.Height * cellWidth / 2 );
-        ceiling.GetComponent<Renderer>().material = labyrinthParameters.brickMaterial;
-        
-        
-        // Starting position
-        GameObject startPos = new GameObject();
-        startPos.name = "StartPos";
-        startPos.transform.SetParent(mazeOrigin.transform);
-        startPos.transform.localScale = new Vector3(cellWidth, 3 * wallDepth, cellWidth);
-        startPos.transform.localPosition = new Vector3(cellWidth * (maze.StartX + 0.5f), 0, cellWidth * (maze.StartY + 0.5f));
+        // Inner Walls
 
-        int i = 0;
-        foreach (Maze.Wall wall in maze.HorizontalWalls)
+        if (!mazeParameters.isStart && !mazeParameters.IsExit)
         {
-            GameObject wallObj = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            wallObj.name = "HorizontalWall" + i;
-            wallObj.transform.SetParent(mazeOrigin.transform);
-            wallObj.transform.localScale = new Vector3(cellWidth * wall.length + wallDepth, wallHeight, wallDepth);
-            wallObj.transform.localPosition = new Vector3(cellWidth * (wall.x + 0.5f * wall.length), wallHeight / 2, cellWidth * (wall.y + 1));
-            wallObj.GetComponent<Renderer>().material = labyrinthParameters.brickMaterial;
-            wallObj.layer = LayerMask.NameToLayer("Wall");
-
-            // Add torches to wall
-            int torchRotation;
-            Vector3 torchPositionOffset;
-
-            // One side of wall
-            torchRotation = 90;
-            torchPositionOffset = new Vector3(0, 0, wallDepth/2);
-            SpawnTorch(torchRotation, torchPositionOffset, wallObj, labyrinthParameters);
-
-            // Opposite side of wall
-            torchRotation = -90;
-            torchPositionOffset = new Vector3(0, 0, -wallDepth/2);
-            SpawnTorch(torchRotation, torchPositionOffset, wallObj, labyrinthParameters);
-
-            i++;
-        }
-
-        i = 0;
-        foreach (Maze.Wall wall in maze.VerticalWalls)
-        {
-            GameObject wallObj = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            wallObj.name = "VerticalWall" + i;
-            wallObj.transform.SetParent(mazeOrigin.transform);
-            float posOffset = 0;
-            float length = cellWidth * wall.length - wallDepth;
-            if (!wall.hasWallBelow)
+            int i = 0;
+            foreach (Maze.Wall wall in maze.HorizontalWalls)
             {
-                length += wallDepth;
-                posOffset -= wallDepth / 2;
+                GameObject wallObj = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                wallObj.name = "HorizontalWall" + i;
+                wallObj.transform.SetParent(mazeParameters.mazeOrigin.transform);
+                wallObj.transform.localScale = new Vector3(cellWidth * wall.length + wallDepth, wallHeight, wallDepth);
+                wallObj.transform.localPosition = new Vector3(cellWidth * (wall.x + 0.5f * wall.length), wallHeight / 2, cellWidth * (wall.y + 1));
+                wallObj.GetComponent<Renderer>().material = labyrinthParameters.brickMaterial;
+                wallObj.layer = LayerMask.NameToLayer("Wall");
+
+                // Add torches to wall
+                int torchRotation;
+                Vector3 torchPositionOffset;
+
+                // One side of wall
+                torchRotation = 90;
+                torchPositionOffset = new Vector3(0, 0, wallDepth / 2);
+                SpawnTorch(torchRotation, torchPositionOffset, wallObj, labyrinthParameters);
+
+                // Opposite side of wall
+                torchRotation = -90;
+                torchPositionOffset = new Vector3(0, 0, -wallDepth / 2);
+                SpawnTorch(torchRotation, torchPositionOffset, wallObj, labyrinthParameters);
+
+                i++;
             }
-            if (!wall.hasWallAbove) {
-                length += wallDepth;
-                posOffset += wallDepth / 2;
+
+            i = 0;
+            foreach (Maze.Wall wall in maze.VerticalWalls)
+            {
+                GameObject wallObj = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                wallObj.name = "VerticalWall" + i;
+                wallObj.transform.SetParent(mazeParameters.mazeOrigin.transform);
+                float posOffset = 0;
+                float length = cellWidth * wall.length - wallDepth;
+                if (!wall.hasWallBelow)
+                {
+                    length += wallDepth;
+                    posOffset -= wallDepth / 2;
+                }
+                if (!wall.hasWallAbove)
+                {
+                    length += wallDepth;
+                    posOffset += wallDepth / 2;
+                }
+                wallObj.transform.localScale = new Vector3(wallDepth, wallHeight, length);
+                wallObj.transform.localPosition = new Vector3(cellWidth * (wall.x + 1), wallHeight / 2, cellWidth * (wall.y + 0.5f * wall.length) + posOffset);
+                wallObj.GetComponent<Renderer>().material = labyrinthParameters.brickMaterial;
+                wallObj.layer = LayerMask.NameToLayer("Wall");
+
+                // Add torches to wall
+                int torchRotation;
+                Vector3 torchPositionOffset;
+
+                // One side of wall
+                torchRotation = 180;
+                torchPositionOffset = new Vector3(wallDepth / 2, 0, 0);
+                SpawnTorch(torchRotation, torchPositionOffset, wallObj, labyrinthParameters);
+
+                // Other side of wall
+                torchRotation = 0;
+                torchPositionOffset = new Vector3(-wallDepth / 2, 0, 0);
+                SpawnTorch(torchRotation, torchPositionOffset, wallObj, labyrinthParameters);
+
+                i++;
             }
-            wallObj.transform.localScale = new Vector3(wallDepth, wallHeight, length);
-            wallObj.transform.localPosition = new Vector3(cellWidth * (wall.x + 1), wallHeight / 2, cellWidth * (wall.y + 0.5f * wall.length) + posOffset);
-            wallObj.GetComponent<Renderer>().material = labyrinthParameters.brickMaterial;
-            wallObj.layer = LayerMask.NameToLayer("Wall");
-
-            // Add torches to wall
-            int torchRotation;
-            Vector3 torchPositionOffset;
-
-            // One side of wall
-            torchRotation = 180;
-            torchPositionOffset = new Vector3(wallDepth/2, 0, 0);
-            SpawnTorch(torchRotation, torchPositionOffset, wallObj, labyrinthParameters);
-
-            // Other side of wall
-            torchRotation = 0;
-            torchPositionOffset = new Vector3(-wallDepth/2, 0, 0);
-            SpawnTorch(torchRotation, torchPositionOffset, wallObj, labyrinthParameters);
-
-            i++;
         }
+
+        
     }
 
     private void SpawnTorch(int torchRotation, Vector3 torchPositionOffset, GameObject wallObj, LabyrinthParameters parameters){
@@ -166,7 +151,15 @@ public class LabyrinthCreator
 
             // Generate inner walls
             Maze maze = new Maze(mazeWidth, mazeHeight, new System.Tuple<int, int>(parameters.random.Next() % mazeWidth, parameters.random.Next() % mazeHeight), parameters.random);
-            CreateMaze(maze, mazeOrigin, parameters, null);
+
+            MazeParameters mazeParameters = new MazeParameters();
+            mazeParameters.mazeOrigin = mazeOrigin;
+            mazeParameters.isStart = i == 0;
+            mazeParameters.IsExit = i != 0 && i == parameters.numSections - 1;
+            mazeParameters.IsFinalBoss = parameters.isFinalLevel;
+            mazeParameters.numberOfEnemies = parameters.enemyDensity;
+
+            CreateMaze(maze, parameters, mazeParameters);
 
             dxPrev = dx;
             dyPrev = dy;
@@ -203,7 +196,7 @@ public class LabyrinthCreator
         outerWall.name = name;
         outerWall.transform.SetParent(mazeOrigin.transform);
         outerWall.GetComponent<Renderer>().material = labyrinthParameters.brickMaterial;
-        
+
         if (isHorizontal)
         {
             outerWall.transform.localScale = new Vector3(mazeWidth * cellWidth + wallDepth, wallHeight, wallDepth);
@@ -218,41 +211,101 @@ public class LabyrinthCreator
         outerWall.layer = LayerMask.NameToLayer("Wall");
     }
 
-    /*
-    private GameObject CreateInnerWall(int i, Vector3 wallPosition, Vector3 wallScale, GameObject mazeOrigin, bool isHorizontal = false){
-        GameObject wallObj = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        wallObj.name = "InnerWall" + i;
-        wallObj.transform.SetParent(mazeOrigin.transform);
-        wallObj.transform.localScale = wallScale;
-        wallObj.transform.localPosition = wallPosition;
-        wallObj.GetComponent<Renderer>().material = brickMaterial;
+    private void CreateCeiling(Maze maze, LabyrinthParameters labyrinthParameters, MazeParameters mazeParameters)
+    {
+        GameObject ceiling;
 
-        // Add torches to wall
-        int torchRotation;
-        Vector3 torchPositionOffset;
+        // Simple ceiling
+        if (!mazeParameters.isStart)
+        {
+            ceiling = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            ceiling.name = "Ceiling";
+            ceiling.transform.SetParent(mazeParameters.mazeOrigin.transform);
+            ceiling.transform.localScale = new Vector3(maze.Width * cellWidth + wallDepth, wallDepth, maze.Height * cellWidth + wallDepth);
+            ceiling.transform.localPosition = new Vector3(maze.Width * cellWidth / 2, wallHeight, maze.Height * cellWidth / 2);
+            ceiling.GetComponent<Renderer>().material = labyrinthParameters.brickMaterial;
 
-        // One side of wall
-        if (isHorizontal){
-            torchRotation = 90;
-            torchPositionOffset = new Vector3(0, 0, wallDepth/2);
-        } else {
-            torchRotation = 180;
-            torchPositionOffset = new Vector3(wallDepth/2, 0, 0);
+            return;
         }
-        SpawnTorch(torchRotation, torchPositionOffset, wallObj);
 
-        // Other side of wall
-        if (isHorizontal){
-            torchRotation = -90;
-            torchPositionOffset = new Vector3(0, 0, -wallDepth/2);
-        } else {
-            torchRotation = 0;
-            torchPositionOffset = new Vector3(-wallDepth/2, 0, 0);
-        }
-        SpawnTorch(torchRotation, torchPositionOffset, wallObj);
-        
-        return wallObj;
+        // Need ceiling with hole at start
+        ceiling = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        ceiling.name = "Ceiling1";
+        ceiling.transform.SetParent(mazeParameters.mazeOrigin.transform);
+        ceiling.transform.localScale = new Vector3(maze.Width * cellWidth + wallDepth, wallDepth, (maze.Height - 2) / 2 * cellWidth + wallDepth);
+        ceiling.transform.localPosition = new Vector3(maze.Width * cellWidth / 2, wallHeight, (maze.Height - 2) * cellWidth / 4);
+        ceiling.GetComponent<Renderer>().material = labyrinthParameters.brickMaterial;
+
+        ceiling = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        ceiling.name = "Ceiling2";
+        ceiling.transform.SetParent(mazeParameters.mazeOrigin.transform);
+        ceiling.transform.localScale = new Vector3((maze.Width - 2) / 2 * cellWidth + wallDepth, wallDepth, 2 * cellWidth - wallDepth);
+        ceiling.transform.localPosition = new Vector3((maze.Width - 2) * cellWidth / 4, wallHeight, maze.Height * cellWidth / 2);
+        ceiling.GetComponent<Renderer>().material = labyrinthParameters.brickMaterial;
+
+        ceiling = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        ceiling.name = "Ceiling3";
+        ceiling.transform.SetParent(mazeParameters.mazeOrigin.transform);
+        ceiling.transform.localScale = new Vector3((maze.Width - 2) / 2 * cellWidth + wallDepth, wallDepth, 2 * cellWidth - wallDepth);
+        ceiling.transform.localPosition = new Vector3(maze.Width * cellWidth - (maze.Width - 2) * cellWidth / 4, wallHeight, maze.Height * cellWidth / 2);
+        ceiling.GetComponent<Renderer>().material = labyrinthParameters.brickMaterial;
+
+        ceiling = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        ceiling.name = "Ceiling4";
+        ceiling.transform.SetParent(mazeParameters.mazeOrigin.transform);
+        ceiling.transform.localScale = new Vector3(maze.Width * cellWidth + wallDepth, wallDepth, (maze.Height - 2) / 2 * cellWidth + wallDepth);
+        ceiling.transform.localPosition = new Vector3(maze.Width * cellWidth / 2, wallHeight, maze.Height * cellWidth - (maze.Height - 2) * cellWidth / 4);
+        ceiling.GetComponent<Renderer>().material = labyrinthParameters.brickMaterial;
     }
-    */
 
+    private void CreateFloor(Maze maze, LabyrinthParameters labyrinthParameters, MazeParameters mazeParameters)
+    {
+        GameObject floor;
+
+        if (!mazeParameters.IsExit)
+        {
+            floor = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            floor.layer = LayerMask.NameToLayer("Ground");
+            floor.name = "Floor";
+            floor.transform.SetParent(mazeParameters.mazeOrigin.transform);
+            floor.transform.localScale = new Vector3(maze.Width * cellWidth + wallDepth, wallDepth, maze.Height * cellWidth + wallDepth);
+            floor.transform.localPosition = new Vector3(maze.Width * cellWidth / 2, 0, maze.Height * cellWidth / 2);
+            floor.GetComponent<Renderer>().material = labyrinthParameters.brickMaterial;
+
+            return;
+        }
+
+        // Need floor with hole at end of level
+        floor = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        floor.layer = LayerMask.NameToLayer("Ground");
+        floor.name = "Floor1";
+        floor.transform.SetParent(mazeParameters.mazeOrigin.transform);
+        floor.transform.localScale = new Vector3(maze.Width * cellWidth + wallDepth, wallDepth, (maze.Height - 2) / 2 * cellWidth + wallDepth);
+        floor.transform.localPosition = new Vector3(maze.Width * cellWidth / 2, 0, (maze.Height - 2) * cellWidth / 4);
+        floor.GetComponent<Renderer>().material = labyrinthParameters.brickMaterial;
+
+        floor = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        floor.layer = LayerMask.NameToLayer("Ground");
+        floor.name = "Floor2";
+        floor.transform.SetParent(mazeParameters.mazeOrigin.transform);
+        floor.transform.localScale = new Vector3((maze.Width - 2) / 2 * cellWidth + wallDepth, wallDepth, 2 * cellWidth - wallDepth);
+        floor.transform.localPosition = new Vector3((maze.Width - 2) * cellWidth / 4, 0, maze.Height * cellWidth / 2);
+        floor.GetComponent<Renderer>().material = labyrinthParameters.brickMaterial;
+
+        floor = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        floor.layer = LayerMask.NameToLayer("Ground");
+        floor.name = "Floor3";
+        floor.transform.SetParent(mazeParameters.mazeOrigin.transform);
+        floor.transform.localScale = new Vector3((maze.Width - 2) / 2 * cellWidth + wallDepth, wallDepth, 2 * cellWidth - wallDepth);
+        floor.transform.localPosition = new Vector3(maze.Width * cellWidth - (maze.Width - 2) * cellWidth / 4, 0, maze.Height * cellWidth / 2);
+        floor.GetComponent<Renderer>().material = labyrinthParameters.brickMaterial;
+
+        floor = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        floor.layer = LayerMask.NameToLayer("Ground");
+        floor.name = "Floor4";
+        floor.transform.SetParent(mazeParameters.mazeOrigin.transform);
+        floor.transform.localScale = new Vector3(maze.Width * cellWidth + wallDepth, wallDepth, (maze.Height - 2) / 2 * cellWidth + wallDepth);
+        floor.transform.localPosition = new Vector3(maze.Width * cellWidth / 2, 0, maze.Height * cellWidth - (maze.Height - 2) * cellWidth / 4);
+        floor.GetComponent<Renderer>().material = labyrinthParameters.brickMaterial;
+    }
 }

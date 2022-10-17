@@ -277,11 +277,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  statInitialValues:
-  - 20
-  - 10
-  - 5
-  - 5
   initialLabyrinthParameters: {fileID: 1147782950}
   initialLabyrinthSizes: {fileID: 1147782951}
 --- !u!114 &1147782947
@@ -348,7 +343,7 @@ MonoBehaviour:
   mazeHeight: 10
   cellWidth: 3
   wallDepth: 0.1
-  wallHeight: 3
+  wallHeight: 4
 --- !u!1001 &2062653308
 PrefabInstance:
   m_ObjectHideFlags: 0
