@@ -5,17 +5,6 @@ using UnityEngine;
 public class LabyrinthCreatorTest : MonoBehaviour
 {
     [SerializeField]
-    private int mazeWidth = 10;
-    [SerializeField]
-    private int mazeHeight = 10;
-    [SerializeField]
-    private float cellWidth = 1f;
-    [SerializeField]
-    private float wallDepth = 0.1f;
-    [SerializeField]
-    private float wallHeight = 1.5f;
-
-    [SerializeField]
     private int numSections = 4;
     [SerializeField]
     private GameObject origin;
@@ -24,10 +13,13 @@ public class LabyrinthCreatorTest : MonoBehaviour
     [SerializeField]
     private GameObject wallTorchPrefab;
 
+    [SerializeField]
+    private LabyrinthSize sizes;
+
     void Start()
     {
         System.Random random = new System.Random();
-        LabyrinthCreator lc = new LabyrinthCreator(mazeWidth, mazeHeight, cellWidth, wallHeight, wallDepth);
+        LabyrinthCreator lc = new LabyrinthCreator(sizes);
         LabyrinthParameters labyrinthParameters = new LabyrinthParameters();
         labyrinthParameters.numSections = numSections;
         labyrinthParameters.origin = origin;

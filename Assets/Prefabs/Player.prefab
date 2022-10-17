@@ -192,7 +192,7 @@ GameObject:
   - component: {fileID: 6456609882737518729}
   - component: {fileID: 6456609882737518732}
   - component: {fileID: 6456609882737518728}
-  - component: {fileID: 6456609882737518733}
+  - component: {fileID: 3790195572757571476}
   - component: {fileID: 6456609882737518730}
   - component: {fileID: 6456609882737518731}
   - component: {fileID: 6456609882737518734}
@@ -220,7 +220,7 @@ Transform:
   - {fileID: 6456609882940324980}
   - {fileID: 6456609881549923257}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6456609882737518726
 MonoBehaviour:
@@ -248,10 +248,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 6456609882737518732}
-  walkSpeedScale: 2.4
+  walkSpeedScale: 0.6
   runSpeedMultiplier: 1.5
   gravity: -9.81
-  jumpHeight: 1.8
+  jumpHeight: 1
   groundCheck: {fileID: 6456609882940324980}
   groundDistance: 0.4
   groundMask:
@@ -290,7 +290,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mouseSens: 200
   head: {fileID: 6456609881549923257}
---- !u!114 &6456609882737518733
+--- !u!114 &3790195572757571476
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -304,6 +304,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerHealth: {fileID: 6456609882737518730}
   playerStamina: {fileID: 6456609882737518731}
+  initialValues:
+  - 20
+  - 5
+  - 10
+  - 5
+  maxValues:
+  - 40
+  - 20
+  - 20
+  - 20
 --- !u!114 &6456609882737518730
 MonoBehaviour:
   m_ObjectHideFlags: 0

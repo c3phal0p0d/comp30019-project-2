@@ -10,17 +10,27 @@ using UnityEditor;
 [ExecuteInEditMode]
 public class GameParameters : MonoBehaviour
 {
-    [SerializeField]
     private int seed;
     public int numLevels;
     public GameObject[] statIncreases = new GameObject[Enum.GetNames(typeof(PlayerStats.StatType)).Length];
-    public float[] statInitialValues = new float[Enum.GetNames(typeof(PlayerStats.StatType)).Length];
+    public LabyrinthParameters initialLabyrinthParameters;
+    public LabyrinthSize initialLabyrinthSizes;
 
     private System.Random random;
+
+    private LabyrinthParameters labyrinthParameters;
+    private LabyrinthSize labyrinthSizes;
 
     private void Awake()
     {
         random = new System.Random(seed);
+        initialLabyrinthParameters.random = random;
+    }
+
+    public void ResetParameters()
+    {
+        labyrinthParameters = (LabyrinthParameters)initialLabyrinthParameters.Clone();
+        labyrinthSizes = (LabyrinthSize)initialLabyrinthSizes.Clone();
     }
 
     public int RandomSeed
@@ -33,7 +43,15 @@ public class GameParameters : MonoBehaviour
             seed = value;
         }
     }
+
+    public void UpdateValues(int level)
+    {
+
+    }
+
     public System.Random Random => random;
+    public LabyrinthParameters LevelParameters => labyrinthParameters;
+    public LabyrinthSize LevelSizes => labyrinthSizes;
 }
 
 #if UNITY_EDITOR
@@ -66,17 +84,12 @@ class GameParametersEditor : Editor
         GUILayout.Label("Stat increase prefabs");
         for (int i = 0; i < statNames.Length; i++)
         {
-            EditorGUILayout.ObjectField(statNames[i], component.statIncreases[i], typeof(GameObject), false);
+            component.statIncreases[i] = (GameObject)EditorGUILayout.ObjectField(statNames[i], component.statIncreases[i], typeof(GameObject), false);
         }
 
-        GUILayout.Label("Player initial stats:");
-        for (int i = 0; i < statNames.Length; i++)
-        {
-            EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.PrefixLabel(statNames[i]);
-            component.statInitialValues[i] = EditorGUILayout.FloatField(component.statInitialValues[i]);
-            EditorGUILayout.EndHorizontal();
-        }
+        component.initialLabyrinthParameters = (LabyrinthParameters)EditorGUILayout.ObjectField("Initial Labyrinth Parameters", component.initialLabyrinthParameters, typeof(LabyrinthParameters), true);
+        component.initialLabyrinthSizes = (LabyrinthSize)EditorGUILayout.ObjectField("Initial Labyrinth Sizes", component.initialLabyrinthSizes, typeof(LabyrinthSize), true);
     }
+
 }
 #endif
