@@ -271,17 +271,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f2b0300f8bd1d14db245ab04f3cd562, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numLevels: 0
+  numLevels: 7
   statIncreases:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  statInitialValues:
-  - 20
-  - 10
-  - 5
-  - 5
+  - {fileID: 6947800314760756796, guid: e27a6c6f7f18f47b4aa8be7769c1fdae, type: 3}
+  - {fileID: 2523241770001930196, guid: e585706432fb744b2a8af7326155ef24, type: 3}
+  - {fileID: 1849577864497754533, guid: f7346fc1bc52c4d419beab4b228184f0, type: 3}
+  - {fileID: 5096545200384461371, guid: 3bbe29754dfa6264c89e424a8e324eb7, type: 3}
   initialLabyrinthParameters: {fileID: 1147782950}
   initialLabyrinthSizes: {fileID: 1147782951}
 --- !u!114 &1147782947
@@ -331,7 +326,9 @@ MonoBehaviour:
   pickupDensity: 1
   origin: {fileID: 581613229}
   brickMaterial: {fileID: 2100000, guid: 0e2d7eb755c37475cb888968c90af5c7, type: 2}
+  blackMaterial: {fileID: 2100000, guid: 49aba598592887249b8174aadee0e35b, type: 2}
   wallTorchPrefab: {fileID: 139546498731853840, guid: cb830cd1c76c84be794b539e67e2659f, type: 3}
+  levelEndPrefab: {fileID: 6606837702791187695, guid: 72558dff70a381d4f9e277e78e68f2a7, type: 3}
 --- !u!114 &1147782951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -348,7 +345,8 @@ MonoBehaviour:
   mazeHeight: 10
   cellWidth: 3
   wallDepth: 0.1
-  wallHeight: 3
+  wallHeight: 4
+  tubeHeight: 10
 --- !u!1001 &2062653308
 PrefabInstance:
   m_ObjectHideFlags: 0

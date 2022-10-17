@@ -9,6 +9,7 @@ using UnityEditor;
 
 public class MazeParameters
 {
+    public GameObject mazeOrigin;
     public int[] numberOfPickups = new int[Enum.GetNames(typeof(PlayerStats.StatType)).Length];
     public int numberOfEnemies;
     private bool isFinalBoss;

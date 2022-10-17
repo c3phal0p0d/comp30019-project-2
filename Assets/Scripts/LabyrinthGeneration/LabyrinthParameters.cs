@@ -12,7 +12,9 @@ public class LabyrinthParameters : MonoBehaviour, ICloneable
     public GameObject origin;
     public System.Random random;
     public Material brickMaterial;
+    public Material blackMaterial;
     public GameObject wallTorchPrefab;
+    public GameObject levelEndPrefab;
 
     public object Clone()
     {
