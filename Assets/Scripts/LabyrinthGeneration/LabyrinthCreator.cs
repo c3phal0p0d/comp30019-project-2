@@ -414,15 +414,34 @@ public class LabyrinthCreator
             i++;
         }
         if (i == max_tries) ; // frick
+        cellsUsed.Add(newCell);
         return (newCell.Item2, newCell.Item3);
     }
 
     private void FillWithEntities(Maze maze, LabyrinthParameters labyrinthParameters, MazeParameters mazeParameters, int section)
     {
         for (int i = 0; i < mazeParameters.numberOfEnemies; i++)
+            RandomCellPrefab(PrefabRepository.instance.Enemies, labyrinthParameters, mazeParameters, section, Vector3.zero);
+
+        for (int i = 0; i < labyrinthParameters.pickupDensity; i++)
+            RandomCellPrefab(PrefabRepository.instance.StatIncreases, labyrinthParameters, mazeParameters, section, 0.5f * Vector3.up);
+    }
+
+    private GameObject RandomPrefab(GameObject[] prefabs, System.Random random)
+    {
+        return prefabs[random.Next() % prefabs.Length];
+    }
+
+    private void RandomCellPrefab(GameObject[] prefabs, LabyrinthParameters labyrinthParameters, MazeParameters mazeParameters, int section, Vector3 offset)
+    {
+        if (!mazeParameters.isStart && !mazeParameters.IsExit)
         {
             int x, y;
             (x, y) = RandomCell(section, labyrinthParameters.random);
+            GameObject prefab = RandomPrefab(prefabs, labyrinthParameters.random);
+            prefab = GameObject.Instantiate(prefab);
+            prefab.transform.SetParent(mazeParameters.mazeOrigin.transform);
+            prefab.transform.localPosition = new Vector3((x + 0.5f) * cellWidth, 0, (y + 0.5f) * cellWidth) + offset;
         }
     }
 }
