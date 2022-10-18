@@ -26,15 +26,8 @@ public class EnemyController : MonoBehaviour
         if (playerDetector.CanDetect())
         {
             animator.SetBool("Move", true);
-            if (agent.Warp(target.position))
-            {
-                lastKnownPosition = target.position;
-                Debug.Log(lastKnownPosition);
-                agent.SetDestination(target.position);
-            }
-            // lastKnownPosition = target.position;
-            // Debug.Log(lastKnownPosition);
-            // agent.SetDestination(target.position);
+            lastKnownPosition = target.position;
+            agent.SetDestination(target.position);
         }
 
         if (Vector3.Distance(transform.position, lastKnownPosition) <= agent.stoppingDistance)

@@ -18,9 +18,8 @@ public class PlayerDetector : MonoBehaviour
         RaycastHit[] hits = Physics.RaycastAll(origin.position, PlayerManager.instance.gameObject.transform.position - origin.position, sightDistance);
         foreach(RaycastHit hit in hits)
         {
-            if (hit.transform.gameObject.CompareTag(selfTag)){
+            if (hit.transform.gameObject.CompareTag(selfTag))
                 continue;
-            }
             if (hit.transform.gameObject.CompareTag(targetTag)){
                 return true;
             }
