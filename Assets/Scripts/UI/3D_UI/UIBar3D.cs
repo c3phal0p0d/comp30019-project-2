@@ -41,6 +41,7 @@ public class UIBar3D : MonoBehaviour
         back.transform.SetParent(origin.transform);
         back.transform.localScale = new Vector3(barWidth + 1, 2, 0.5f);
         back.transform.localPosition = new Vector3((barWidth+1)/2, -1, 0.25f);
+        back.GetComponent<Renderer>().material = borderMaterial;
 
         left = GameObject.CreatePrimitive(PrimitiveType.Cube);
         left.name = "Left";
@@ -48,6 +49,7 @@ public class UIBar3D : MonoBehaviour
         left.transform.SetParent(origin.transform);
         left.transform.localScale = new Vector3(0.5f, 2, 0.5f);
         left.transform.localPosition = new Vector3(0.25f, -1, -0.25f);
+        left.GetComponent<Renderer>().material = borderMaterial;
 
         right = GameObject.CreatePrimitive(PrimitiveType.Cube);
         right.name = "Right";
@@ -55,6 +57,7 @@ public class UIBar3D : MonoBehaviour
         right.transform.SetParent(origin.transform);
         right.transform.localScale = new Vector3(0.5f, 2, 0.5f);
         right.transform.localPosition = new Vector3(barWidth + 0.75f, -1, -0.25f);
+        right.GetComponent<Renderer>().material = borderMaterial;
 
         up = GameObject.CreatePrimitive(PrimitiveType.Cube);
         up.name = "Up";
@@ -62,6 +65,7 @@ public class UIBar3D : MonoBehaviour
         up.transform.SetParent(origin.transform);
         up.transform.localScale = new Vector3(barWidth + 1, 0.5f, 0.5f);
         up.transform.localPosition = new Vector3((barWidth + 1) / 2, -0.25f, -0.25f);
+        up.GetComponent<Renderer>().material = borderMaterial;
 
         down = GameObject.CreatePrimitive(PrimitiveType.Cube);
         down.name = "Down";
@@ -69,6 +73,7 @@ public class UIBar3D : MonoBehaviour
         down.transform.SetParent(origin.transform);
         down.transform.localScale = new Vector3(barWidth + 1, 0.5f, 0.5f);
         down.transform.localPosition = new Vector3((barWidth + 1) / 2, -1.75f, -0.25f);
+        down.GetComponent<Renderer>().material = borderMaterial;
 
         underBarWrapper = new GameObject("UnderBarWrapper");
         underBarWrapper.layer = ui_camera_layer;

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44193244, g: 0.4837286, b: 0.53221977, a: 1}
+  m_IndirectSpecularColor: {r: 0.4419319, g: 0.48372805, b: 0.5322187, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -324,7 +324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 654da310439d81142af8f2b7f2061321, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numSections: 2
+  numSections: 5
   isFinalLevel: 0
   enemyDensity: 1
   pickupDensity: 1
@@ -345,11 +345,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42d61c67c4c07b341b1c72b1a6df5008, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazeWidth: 5
-  mazeHeight: 5
+  mazeWidth: 10
+  mazeHeight: 10
   cellWidth: 3
-  wallDepth: 0.1
-  wallHeight: 4
+  wallDepth: 1
+  wallHeight: 3
   tubeHeight: 10
 --- !u!1001 &2062653308
 PrefabInstance:
@@ -359,10 +359,6 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5273432237248303515, guid: 5f9f8c067783e19468cd27e3d3cf09bf, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.778
-      objectReference: {fileID: 0}
     - target: {fileID: 5273432237248303516, guid: 5f9f8c067783e19468cd27e3d3cf09bf, type: 3}
       propertyPath: stamina
       value: 

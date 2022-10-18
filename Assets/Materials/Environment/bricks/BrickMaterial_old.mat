@@ -8,14 +8,14 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: BrickMaterial_old
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 4800000, guid: 38ff8e2af7dfe4c0baadecfcd3397557, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords:
+  m_ValidKeywords: []
+  m_InvalidKeywords:
   - _METALLICGLOSSMAP
   - _NORMALMAP
   - _PARALLAXMAP
-  m_InvalidKeywords: []
   m_LightmapFlags: 6
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -81,6 +81,7 @@ Material:
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _RMS: 0.6027336
+    - _Scale: 0.1
     - _ShadeRange: 0.02
     - _ShadingStrength: 0.14925373
     - _Shininess: 0.75308096

@@ -87,6 +87,11 @@ MonoBehaviour:
     source: {fileID: 0}
   - clip: {fileID: 8300000, guid: 3e3d96922c94a493e9803e57f7d428a7, type: 3}
     volume: 0.2
-    name: CollectPickup
+    name: CollectStatPickup
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 2962c0a76041241959b1c53777014198, type: 3}
+    volume: 0.2
+    name: CollectFoodPickup
     loop: 0
     source: {fileID: 0}
