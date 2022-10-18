@@ -20,11 +20,11 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.2264151, g: 0.06646255, b: 0, a: 1}
+  m_AmbientSkyColor: {r: 0.21698111, g: 0.08662207, b: 0.0010234982, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 3
+  m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: 0.5
@@ -322,7 +322,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numSections: 5
   isFinalLevel: 0
-  enemyDensity: 0
+  enemyDensity: 10
   pickupDensity: 1
   origin: {fileID: 581613229}
   brickMaterial: {fileID: 2100000, guid: 0e2d7eb755c37475cb888968c90af5c7, type: 2}
@@ -363,7 +363,7 @@ MonoBehaviour:
   - {fileID: 6947800314760756796, guid: e27a6c6f7f18f47b4aa8be7769c1fdae, type: 3}
   - {fileID: 2523241770001930196, guid: e585706432fb744b2a8af7326155ef24, type: 3}
   - {fileID: 1849577864497754533, guid: f7346fc1bc52c4d419beab4b228184f0, type: 3}
-  - {fileID: 5096545200384461371, guid: 3bbe29754dfa6264c89e424a8e324eb7, type: 3}
+  - {fileID: 2523241770001930196, guid: dad7201c1c8c9ea4e8376a2c070a4458, type: 3}
   enemies:
   - {fileID: 4057458054345064265, guid: 1f953d39803424d3eaea7254aa5c3178, type: 3}
   - {fileID: 1962108098383283150, guid: b9bee54883eef438ba8c0eefe0377208, type: 3}
