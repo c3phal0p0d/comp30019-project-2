@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using System;
+using UnityEditor;
 
 public class LabyrinthCreator
 {
@@ -15,6 +17,8 @@ public class LabyrinthCreator
     private HashSet<Tuple<int, int, int>> cellsUsed;
     private readonly int max_tries;
 
+    private List<NavMeshBuildSource> navMeshBuildSources;
+
     public LabyrinthCreator(LabyrinthSize sizes)
     {
         this.mazeWidth = sizes.mazeWidth;
@@ -27,6 +31,7 @@ public class LabyrinthCreator
         max_tries = 10 * this.mazeWidth * mazeHeight;
 
         cellsUsed = new HashSet<Tuple<int, int, int>>();
+        navMeshBuildSources = new List<NavMeshBuildSource>();
     }
     
     private void CreateMaze(Maze maze, LabyrinthParameters labyrinthParameters, MazeParameters mazeParameters)
@@ -48,6 +53,7 @@ public class LabyrinthCreator
                 wallObj.transform.localPosition = new Vector3(cellWidth * (wall.x + 0.5f * wall.length), wallHeight / 2, cellWidth * (wall.y + 1));
                 wallObj.GetComponent<Renderer>().material = labyrinthParameters.brickMaterial;
                 wallObj.layer = LayerMask.NameToLayer("Wall");
+
 
                 // Add torches to wall
                 int torchRotation;
@@ -190,6 +196,8 @@ public class LabyrinthCreator
             }
         }
 
+        NavMeshBuilder.BuildNavMeshData(new NavMeshBuildSettings(), navMeshBuildSources, new Bounds(new Vector3(0, 0, 0), new Vector3(100, 1, 100)), Vector3.zero, Quaternion.identity);
+
         return mazeOrigin1.transform.position + new Vector3(mazeWidth * cellWidth / 2, tubeHeight, mazeHeight * cellWidth / 2);
     }
 
@@ -226,6 +234,7 @@ public class LabyrinthCreator
         }
 
         outerWall.layer = LayerMask.NameToLayer("Wall");
+        AddToNavMesh(outerWall, false);
     }
 
     private void CreateCeiling(Maze maze, LabyrinthParameters labyrinthParameters, MazeParameters mazeParameters)
@@ -324,6 +333,7 @@ public class LabyrinthCreator
             floor.transform.localScale = new Vector3(maze.Width * cellWidth + wallDepth, wallDepth, maze.Height * cellWidth + wallDepth);
             floor.transform.localPosition = new Vector3(maze.Width * cellWidth / 2, 0, maze.Height * cellWidth / 2);
             floor.GetComponent<Renderer>().material = labyrinthParameters.brickMaterial;
+            AddToNavMesh(floor, true);
 
             return;
         }
@@ -441,7 +451,14 @@ public class LabyrinthCreator
             GameObject prefab = RandomPrefab(prefabs, labyrinthParameters.random);
             prefab = GameObject.Instantiate(prefab);
             prefab.transform.SetParent(mazeParameters.mazeOrigin.transform);
-            prefab.transform.localPosition = new Vector3((x + 0.5f) * cellWidth, 0, (y + 0.5f) * cellWidth) + offset;
+            prefab.transform.localPosition = new Vector3((x + 0.5f) * cellWidth, wallDepth / 2, (y + 0.5f) * cellWidth) + offset;
         }
+    }
+
+    private void AddToNavMesh(GameObject obj, bool walkable)
+    {
+        int area = (walkable) ? GameObjectUtility.GetNavMeshAreaFromName("Walkable") : GameObjectUtility.GetNavMeshAreaFromName("Not Walkable");
+        GameObjectUtility.SetStaticEditorFlags(obj, StaticEditorFlags.NavigationStatic);
+        GameObjectUtility.SetNavMeshArea(obj, area);
     }
 }

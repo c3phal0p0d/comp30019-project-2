@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class MainComponent : MonoBehaviour
 {
     [SerializeField]
@@ -36,6 +35,8 @@ public class MainComponent : MonoBehaviour
         LabyrinthCreator lc = new LabyrinthCreator(gameParameters.LevelSizes);
         spawnPosition = lc.CreateLabyrinth(gameParameters.LevelParameters);
         doSpawn = true;
+
+        
 
         levelNumber++;
         gameParameters.UpdateParameters(levelNumber);
