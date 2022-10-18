@@ -218,11 +218,38 @@ public class LabyrinthCreator
         {
             outerWall.transform.localScale = new Vector3(mazeWidth * cellWidth + wallDepth, wallHeight, wallDepth);
             outerWall.transform.localPosition = new Vector3(mazeWidth * cellWidth / 2, wallHeight / 2, x * mazeHeight * cellWidth);
+            // Add torches to wall
+            int torchRotation;
+            Vector3 torchPositionOffset;
+
+            // One side of wall
+            torchRotation = 90;
+            torchPositionOffset = new Vector3(0, 0, wallDepth / 2);
+            SpawnTorch(torchRotation, torchPositionOffset, outerWall, labyrinthParameters);
+
+            // Opposite side of wall
+            torchRotation = -90;
+            torchPositionOffset = new Vector3(0, 0, -wallDepth / 2);
+            SpawnTorch(torchRotation, torchPositionOffset, outerWall, labyrinthParameters);
         }
         else
         {
             outerWall.transform.localScale = new Vector3(wallDepth, wallHeight, mazeHeight * cellWidth + wallDepth);
             outerWall.transform.localPosition = new Vector3(x * mazeWidth * cellWidth, wallHeight / 2, mazeHeight * cellWidth / 2);
+
+            // Add torches to wall
+            int torchRotation;
+            Vector3 torchPositionOffset;
+
+            // One side of wall
+            torchRotation = 180;
+            torchPositionOffset = new Vector3(wallDepth / 2, 0, 0);
+            SpawnTorch(torchRotation, torchPositionOffset, outerWall, labyrinthParameters);
+
+            // Other side of wall
+            torchRotation = 0;
+            torchPositionOffset = new Vector3(-wallDepth / 2, 0, 0);
+            SpawnTorch(torchRotation, torchPositionOffset, outerWall, labyrinthParameters);
         }
 
         outerWall.layer = LayerMask.NameToLayer("Wall");
