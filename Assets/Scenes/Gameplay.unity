@@ -20,7 +20,7 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.122641504, g: 0.036361434, b: 0, a: 1}
+  m_AmbientSkyColor: {r: 0.5754717, g: 0.20422564, b: 0, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
@@ -256,6 +256,7 @@ GameObject:
   - component: {fileID: 1147782946}
   - component: {fileID: 1147782950}
   - component: {fileID: 1147782951}
+  - component: {fileID: 1147782952}
   m_Layer: 0
   m_Name: MainObject
   m_TagString: Untagged
@@ -275,12 +276,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f2b0300f8bd1d14db245ab04f3cd562, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numLevels: 2
-  statIncreases:
-  - {fileID: 6947800314760756796, guid: e27a6c6f7f18f47b4aa8be7769c1fdae, type: 3}
-  - {fileID: 2523241770001930196, guid: e585706432fb744b2a8af7326155ef24, type: 3}
-  - {fileID: 1849577864497754533, guid: f7346fc1bc52c4d419beab4b228184f0, type: 3}
-  - {fileID: 5096545200384461371, guid: 3bbe29754dfa6264c89e424a8e324eb7, type: 3}
+  numLevels: 9
   initialLabyrinthParameters: {fileID: 1147782950}
   initialLabyrinthSizes: {fileID: 1147782951}
 --- !u!114 &1147782947
@@ -326,7 +322,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numSections: 5
   isFinalLevel: 0
-  enemyDensity: 1
+  enemyDensity: 0
   pickupDensity: 1
   origin: {fileID: 581613229}
   brickMaterial: {fileID: 2100000, guid: 0e2d7eb755c37475cb888968c90af5c7, type: 2}
@@ -351,6 +347,28 @@ MonoBehaviour:
   wallDepth: 1
   wallHeight: 3
   tubeHeight: 10
+--- !u!114 &1147782952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1147782945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0728d4f34d376b049bee47c4cb72cd16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statIncreases:
+  - {fileID: 6947800314760756796, guid: e27a6c6f7f18f47b4aa8be7769c1fdae, type: 3}
+  - {fileID: 2523241770001930196, guid: e585706432fb744b2a8af7326155ef24, type: 3}
+  - {fileID: 1849577864497754533, guid: f7346fc1bc52c4d419beab4b228184f0, type: 3}
+  - {fileID: 5096545200384461371, guid: 3bbe29754dfa6264c89e424a8e324eb7, type: 3}
+  enemies:
+  - {fileID: 4057458054345064265, guid: 1f953d39803424d3eaea7254aa5c3178, type: 3}
+  - {fileID: 1962108098383283150, guid: b9bee54883eef438ba8c0eefe0377208, type: 3}
+  - {fileID: 7005831427890307639, guid: 5b34c035a3b3a4404a71c7e6fe313032, type: 3}
+  finalBoss: {fileID: 6437181706992655025, guid: a169068f39e5a47519ec11a46671b25c, type: 3}
 --- !u!1001 &2062653308
 PrefabInstance:
   m_ObjectHideFlags: 0
