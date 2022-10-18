@@ -140,7 +140,7 @@ Transform:
   - {fileID: 7005831428473535288}
   - {fileID: 6446702800893260828}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!195 &7005831427890307637
 NavMeshAgent:
@@ -221,10 +221,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerDetector: {fileID: 7005831427890307642}
   damage: 1
-  distance: 15
-  speed: 12
+  distance: 20
+  speed: 20
   size: 0.4
-  cooldown: 5
+  cooldown: 2.5
   projectile: {fileID: 3168523829568367557, guid: 264b689cfbb6d4da8aab635f3516003a, type: 3}
   origin: {fileID: 7005831428473535289}
   shootDelay: 1.05
