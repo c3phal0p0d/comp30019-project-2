@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4419319, g: 0.48372805, b: 0.5322187, a: 1}
+  m_IndirectSpecularColor: {r: 0.44193244, g: 0.4837286, b: 0.53221977, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -257,6 +257,7 @@ GameObject:
   - component: {fileID: 1147782950}
   - component: {fileID: 1147782951}
   - component: {fileID: 1147782952}
+  - component: {fileID: 1147782953}
   m_Layer: 0
   m_Name: MainObject
   m_TagString: Untagged
@@ -327,6 +328,7 @@ MonoBehaviour:
   origin: {fileID: 581613229}
   brickMaterial: {fileID: 2100000, guid: 0e2d7eb755c37475cb888968c90af5c7, type: 2}
   blackMaterial: {fileID: 2100000, guid: 49aba598592887249b8174aadee0e35b, type: 2}
+  wallObject: {fileID: 5722773736405991263, guid: 6472207b138fabf4ba403d91b8d904cd, type: 3}
   wallTorchPrefab: {fileID: 139546498731853840, guid: cb830cd1c76c84be794b539e67e2659f, type: 3}
   levelEndPrefab: {fileID: 6606837702791187695, guid: 72558dff70a381d4f9e277e78e68f2a7, type: 3}
 --- !u!114 &1147782951
@@ -369,6 +371,35 @@ MonoBehaviour:
   - {fileID: 1962108098383283150, guid: b9bee54883eef438ba8c0eefe0377208, type: 3}
   - {fileID: 7005831427890307639, guid: 5b34c035a3b3a4404a71c7e6fe313032, type: 3}
   finalBoss: {fileID: 6437181706992655025, guid: a169068f39e5a47519ec11a46671b25c, type: 3}
+--- !u!114 &1147782953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1147782945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 8
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.16666667
+  m_BuildHeightMesh: 0
+  m_NavMeshData: {fileID: 23800000, guid: ad41bdc8d9ce11d428a269e73cd639b1, type: 2}
 --- !u!1001 &2062653308
 PrefabInstance:
   m_ObjectHideFlags: 0

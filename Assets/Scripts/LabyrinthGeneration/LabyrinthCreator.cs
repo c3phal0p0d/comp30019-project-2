@@ -17,7 +17,8 @@ public class LabyrinthCreator
     private HashSet<Tuple<int, int, int>> cellsUsed;
     private readonly int max_tries;
 
-    private List<NavMeshBuildSource> navMeshBuildSources;
+    private List<Tuple<int, int>> sectionLocations;
+    private List<Tuple<Maze,MazeParameters>> mazeAndParametersList;
 
     public LabyrinthCreator(LabyrinthSize sizes)
     {
@@ -31,7 +32,8 @@ public class LabyrinthCreator
         max_tries = 10 * this.mazeWidth * mazeHeight;
 
         cellsUsed = new HashSet<Tuple<int, int, int>>();
-        navMeshBuildSources = new List<NavMeshBuildSource>();
+        sectionLocations = new List<Tuple<int, int>>();
+        mazeAndParametersList = new List<Tuple<Maze, MazeParameters>>();
     }
     
     private void CreateMaze(Maze maze, LabyrinthParameters labyrinthParameters, MazeParameters mazeParameters)
@@ -46,14 +48,12 @@ public class LabyrinthCreator
             int i = 0;
             foreach (Maze.Wall wall in maze.HorizontalWalls)
             {
-                GameObject wallObj = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                GameObject wallObj = GameObject.Instantiate(labyrinthParameters.wallObject);
                 wallObj.name = "HorizontalWall" + i;
                 wallObj.transform.SetParent(mazeParameters.mazeOrigin.transform);
                 wallObj.transform.localScale = new Vector3(cellWidth * wall.length + wallDepth, wallHeight, wallDepth);
                 wallObj.transform.localPosition = new Vector3(cellWidth * (wall.x + 0.5f * wall.length), wallHeight / 2, cellWidth * (wall.y + 1));
-                wallObj.GetComponent<Renderer>().material = labyrinthParameters.brickMaterial;
-                wallObj.layer = LayerMask.NameToLayer("Wall");
-
+                wallObj.layer = LayerMask.NameToLayer("Ground");
 
                 // Add torches to wall
                 int torchRotation;
@@ -75,7 +75,7 @@ public class LabyrinthCreator
             i = 0;
             foreach (Maze.Wall wall in maze.VerticalWalls)
             {
-                GameObject wallObj = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                GameObject wallObj = GameObject.Instantiate(labyrinthParameters.wallObject);
                 wallObj.name = "VerticalWall" + i;
                 wallObj.transform.SetParent(mazeParameters.mazeOrigin.transform);
                 float posOffset = 0;
@@ -92,8 +92,7 @@ public class LabyrinthCreator
                 }
                 wallObj.transform.localScale = new Vector3(wallDepth, wallHeight, length);
                 wallObj.transform.localPosition = new Vector3(cellWidth * (wall.x + 1), wallHeight / 2, cellWidth * (wall.y + 0.5f * wall.length) + posOffset);
-                wallObj.GetComponent<Renderer>().material = labyrinthParameters.brickMaterial;
-                wallObj.layer = LayerMask.NameToLayer("Wall");
+                wallObj.layer = LayerMask.NameToLayer("Ground");
 
                 // Add torches to wall
                 int torchRotation;
@@ -158,6 +157,8 @@ public class LabyrinthCreator
             x += dx;
             y += dy;
 
+            sectionLocations.Add(new Tuple<int, int>(x, y));
+
             // Outer Walls
             if (dxPrev != 1 && (i == parameters.numSections-1 || dx != -1))
                 CreateOuterWall(0, false, mazeOrigin, "OuterWallLeft", parameters);
@@ -178,12 +179,19 @@ public class LabyrinthCreator
             mazeParameters.IsFinalBoss = parameters.isFinalLevel;
             mazeParameters.numberOfEnemies = parameters.enemyDensity;
 
-            CreateMaze(maze, parameters, mazeParameters);
+            mazeAndParametersList.Add(new Tuple<Maze,MazeParameters>(maze, mazeParameters));
 
-            FillWithEntities(maze, parameters, mazeParameters, i);
+            CreateMaze(maze, parameters, mazeParameters);
 
             dxPrev = dx;
             dyPrev = dy;
+        }
+
+        MainComponent.instance.gameObject.GetComponent<NavMeshSurface>().BuildNavMesh();
+
+        for (int i = 0; i < parameters.numSections; i++)
+        {
+            FillWithEntities(mazeAndParametersList[i].Item1, parameters, mazeAndParametersList[i].Item2, i);
         }
 
         Physics.SyncTransforms();
@@ -195,8 +203,6 @@ public class LabyrinthCreator
                 GameObject.Destroy(wallTorch);
             }
         }
-
-        NavMeshBuilder.BuildNavMeshData(new NavMeshBuildSettings(), navMeshBuildSources, new Bounds(new Vector3(0, 0, 0), new Vector3(100, 1, 100)), Vector3.zero, Quaternion.identity);
 
         return mazeOrigin1.transform.position + new Vector3(mazeWidth * cellWidth / 2, tubeHeight, mazeHeight * cellWidth / 2);
     }
@@ -217,10 +223,9 @@ public class LabyrinthCreator
 
     private void CreateOuterWall(int x, bool isHorizontal, GameObject mazeOrigin, string name, LabyrinthParameters labyrinthParameters)
     {
-        GameObject outerWall = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        GameObject outerWall = GameObject.Instantiate(labyrinthParameters.wallObject);
         outerWall.name = name;
         outerWall.transform.SetParent(mazeOrigin.transform);
-        outerWall.GetComponent<Renderer>().material = labyrinthParameters.brickMaterial;
 
         if (isHorizontal)
         {
@@ -260,7 +265,7 @@ public class LabyrinthCreator
             SpawnTorch(torchRotation, torchPositionOffset, outerWall, labyrinthParameters);
         }
 
-        outerWall.layer = LayerMask.NameToLayer("Wall");
+        outerWall.layer = LayerMask.NameToLayer("Ground");
         AddToNavMesh(outerWall, false);
     }
 
@@ -457,7 +462,7 @@ public class LabyrinthCreator
 
     private void FillWithEntities(Maze maze, LabyrinthParameters labyrinthParameters, MazeParameters mazeParameters, int section)
     {
-        for (int i = 0; i < mazeParameters.numberOfEnemies; i++)
+        for (int i = 0; i < labyrinthParameters.enemyDensity; i++)
             RandomCellPrefab(PrefabRepository.instance.Enemies, labyrinthParameters, mazeParameters, section, Vector3.zero);
 
         for (int i = 0; i < labyrinthParameters.pickupDensity; i++)
