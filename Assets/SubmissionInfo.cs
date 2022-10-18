@@ -42,7 +42,7 @@ Traverse the labyrinth as Theseus, collect items and fight monsters, and delve d
     // By the gameplay video milestone deadline this should be a direct link
     // to a YouTube video upload containing your video. Ensure "Made for kids"
     // is turned off in the video settings. 
-    public static readonly string GameplayVideo = "https://www.youtube.com/watch?v=4yFqRpABTTw";
+    public static readonly string GameplayVideo = "https://www.youtube.com/watch?v=yF3VpZbEH1k";
     
     // No more info to fill out!
     // Please don't modify anything below here.
