@@ -26,8 +26,15 @@ public class EnemyController : MonoBehaviour
         if (playerDetector.CanDetect())
         {
             animator.SetBool("Move", true);
-            lastKnownPosition = target.position;
-            agent.SetDestination(target.position);
+            if (agent.Warp(target.position))
+            {
+                lastKnownPosition = target.position;
+                Debug.Log(lastKnownPosition);
+                agent.SetDestination(target.position);
+            }
+            // lastKnownPosition = target.position;
+            // Debug.Log(lastKnownPosition);
+            // agent.SetDestination(target.position);
         }
 
         if (Vector3.Distance(transform.position, lastKnownPosition) <= agent.stoppingDistance)
@@ -39,7 +46,7 @@ public class EnemyController : MonoBehaviour
     void FaceTarget()
     {
         // direction to target 
-        Vector3 direction = -(target.position - transform.position).normalized;
+        Vector3 direction = (target.position - transform.position).normalized;
         //rotation where we point to that target
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
 
