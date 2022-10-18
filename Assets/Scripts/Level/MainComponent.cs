@@ -60,4 +60,6 @@ public class MainComponent : MonoBehaviour
             GameObject.Destroy(child.gameObject);
         }
     }
+
+    public GameParameters Parameters => gameParameters;
 }

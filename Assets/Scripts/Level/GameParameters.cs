@@ -12,7 +12,6 @@ public class GameParameters : MonoBehaviour
 {
     private int seed;
     public int numLevels;
-    public GameObject[] statIncreases = new GameObject[Enum.GetNames(typeof(PlayerStats.StatType)).Length];
     public LabyrinthParameters initialLabyrinthParameters;
     public LabyrinthSize initialLabyrinthSizes;
 
@@ -93,14 +92,6 @@ class GameParametersEditor : Editor
         EditorGUILayout.PrefixLabel("Num Levels");
         component.numLevels = EditorGUILayout.IntField(component.numLevels);
         EditorGUILayout.EndHorizontal();
-
-        string[] statNames = Enum.GetNames(typeof(PlayerStats.StatType));
-
-        GUILayout.Label("Stat increase prefabs");
-        for (int i = 0; i < statNames.Length; i++)
-        {
-            component.statIncreases[i] = (GameObject)EditorGUILayout.ObjectField(statNames[i], component.statIncreases[i], typeof(GameObject), false);
-        }
 
         component.initialLabyrinthParameters = (LabyrinthParameters)EditorGUILayout.ObjectField("Initial Labyrinth Parameters", component.initialLabyrinthParameters, typeof(LabyrinthParameters), true);
         component.initialLabyrinthSizes = (LabyrinthSize)EditorGUILayout.ObjectField("Initial Labyrinth Sizes", component.initialLabyrinthSizes, typeof(LabyrinthSize), true);

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class LabyrinthCreator
 {
@@ -11,6 +12,9 @@ public class LabyrinthCreator
     private float wallHeight = 1.5f;
     private float tubeHeight = 10f;
 
+    private HashSet<Tuple<int, int, int>> cellsUsed;
+    private readonly int max_tries;
+
     public LabyrinthCreator(LabyrinthSize sizes)
     {
         this.mazeWidth = sizes.mazeWidth;
@@ -19,6 +23,10 @@ public class LabyrinthCreator
         this.wallHeight = sizes.wallHeight;
         this.wallDepth = sizes.wallDepth;
         this.tubeHeight = sizes.tubeHeight;
+
+        max_tries = 10 * this.mazeWidth * mazeHeight;
+
+        cellsUsed = new HashSet<Tuple<int, int, int>>();
     }
     
     private void CreateMaze(Maze maze, LabyrinthParameters labyrinthParameters, MazeParameters mazeParameters)
@@ -165,6 +173,8 @@ public class LabyrinthCreator
             mazeParameters.numberOfEnemies = parameters.enemyDensity;
 
             CreateMaze(maze, parameters, mazeParameters);
+
+            FillWithEntities(maze, parameters, mazeParameters, i);
 
             dxPrev = dx;
             dyPrev = dy;
@@ -392,5 +402,27 @@ public class LabyrinthCreator
         levelEnd.transform.SetParent(mazeParameters.mazeOrigin.transform);
         levelEnd.transform.localScale = new Vector3(2 * cellWidth, 1, 2 * cellWidth);
         levelEnd.transform.localPosition = new Vector3(mazeWidth * cellWidth / 2, -tubeHeight / 2, mazeHeight * cellWidth / 2);
+    }
+
+    private (int, int) RandomCell(int section, System.Random random)
+    {
+        Tuple<int, int, int> newCell = new Tuple<int, int, int>(section, random.Next() % mazeWidth, random.Next() % mazeHeight);
+        int i = 0;
+        while (cellsUsed.Contains(newCell) && i < max_tries)
+        {
+            newCell = new Tuple<int, int, int>(section, random.Next() % mazeWidth, random.Next() % mazeHeight);
+            i++;
+        }
+        if (i == max_tries) ; // frick
+        return (newCell.Item2, newCell.Item3);
+    }
+
+    private void FillWithEntities(Maze maze, LabyrinthParameters labyrinthParameters, MazeParameters mazeParameters, int section)
+    {
+        for (int i = 0; i < mazeParameters.numberOfEnemies; i++)
+        {
+            int x, y;
+            (x, y) = RandomCell(section, labyrinthParameters.random);
+        }
     }
 }

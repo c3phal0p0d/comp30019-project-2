@@ -20,7 +20,7 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.122641504, g: 0.036361434, b: 0, a: 1}
+  m_AmbientSkyColor: {r: 0.5754717, g: 0.20422564, b: 0, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
@@ -256,6 +256,7 @@ GameObject:
   - component: {fileID: 1147782946}
   - component: {fileID: 1147782950}
   - component: {fileID: 1147782951}
+  - component: {fileID: 1147782952}
   m_Layer: 0
   m_Name: MainObject
   m_TagString: Untagged
@@ -275,12 +276,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f2b0300f8bd1d14db245ab04f3cd562, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numLevels: 2
-  statIncreases:
-  - {fileID: 6947800314760756796, guid: e27a6c6f7f18f47b4aa8be7769c1fdae, type: 3}
-  - {fileID: 2523241770001930196, guid: e585706432fb744b2a8af7326155ef24, type: 3}
-  - {fileID: 1849577864497754533, guid: f7346fc1bc52c4d419beab4b228184f0, type: 3}
-  - {fileID: 5096545200384461371, guid: 3bbe29754dfa6264c89e424a8e324eb7, type: 3}
+  numLevels: 9
   initialLabyrinthParameters: {fileID: 1147782950}
   initialLabyrinthSizes: {fileID: 1147782951}
 --- !u!114 &1147782947
@@ -351,6 +347,28 @@ MonoBehaviour:
   wallDepth: 0.1
   wallHeight: 4
   tubeHeight: 10
+--- !u!114 &1147782952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1147782945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0728d4f34d376b049bee47c4cb72cd16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statIncreases:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  enemies:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  finalBoss: {fileID: 0}
 --- !u!1001 &2062653308
 PrefabInstance:
   m_ObjectHideFlags: 0
