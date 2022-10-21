@@ -359,9 +359,9 @@ MonoBehaviour:
   - {fileID: 1849577864497754533, guid: f7346fc1bc52c4d419beab4b228184f0, type: 3}
   - {fileID: 2523241770001930196, guid: dad7201c1c8c9ea4e8376a2c070a4458, type: 3}
   enemies:
+  - {fileID: 4057458054345064265, guid: 1f953d39803424d3eaea7254aa5c3178, type: 3}
   - {fileID: 1962108098383283150, guid: b9bee54883eef438ba8c0eefe0377208, type: 3}
-  - {fileID: 1962108098383283150, guid: b9bee54883eef438ba8c0eefe0377208, type: 3}
-  - {fileID: 1962108098383283150, guid: b9bee54883eef438ba8c0eefe0377208, type: 3}
+  - {fileID: 7005831427890307639, guid: 5b34c035a3b3a4404a71c7e6fe313032, type: 3}
   finalBoss: {fileID: 6437181706992655025, guid: a169068f39e5a47519ec11a46671b25c, type: 3}
 --- !u!114 &1147782953
 MonoBehaviour:

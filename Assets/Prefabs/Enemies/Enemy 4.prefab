@@ -207,7 +207,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selfTag: Enemy
   targetTag: Player
-  sightDistance: 5
+  sightDistance: 10
   origin: {fileID: 6437181707836015550}
 --- !u!114 &6437181706992655039
 MonoBehaviour:
