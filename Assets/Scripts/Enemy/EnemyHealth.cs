@@ -53,8 +53,6 @@ public class EnemyHealth : BarStat
         if (animationTrigger!=""){
             animator.SetTrigger(animationTrigger);
         }
-
-        agent.isStopped = false;
     }
 
 }

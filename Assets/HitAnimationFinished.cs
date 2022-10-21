@@ -7,6 +7,7 @@ public class HitAnimationFinished : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         animator.GetComponent<EnemyHealth>().isHit = false;
+        animator.GetComponent<UnityEngine.AI.NavMeshAgent>().isStopped = false;
     }
 
 }
