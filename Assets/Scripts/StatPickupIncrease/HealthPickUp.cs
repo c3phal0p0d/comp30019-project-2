@@ -20,7 +20,6 @@ public class HealthPickUp : MonoBehaviour
         if (playerStat != null)
         {
             playerStat.GetStat(stat).increment(1);
-            Debug.Log(playerStat.GetStat(stat).Value);
             FindObjectOfType<AudioManager>().Play("CollectStatPickup");
             gameObject.SetActive(false);
         }

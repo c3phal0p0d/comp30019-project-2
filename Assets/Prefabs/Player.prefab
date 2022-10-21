@@ -193,7 +193,7 @@ GameObject:
   - component: {fileID: 6456609882737518732}
   - component: {fileID: 6456609882737518728}
   - component: {fileID: 3790195572757571476}
-  - component: {fileID: 6456609882737518730}
+  - component: {fileID: 8319287314956452010}
   - component: {fileID: 6456609882737518731}
   - component: {fileID: 6456609882737518734}
   - component: {fileID: 6456609882737518735}
@@ -302,7 +302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b689ef687bf8f404bbaad48ce506b2c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHealth: {fileID: 6456609882737518730}
+  playerHealth: {fileID: 8319287314956452010}
   playerStamina: {fileID: 6456609882737518731}
   initialValues:
   - 20
@@ -314,7 +314,7 @@ MonoBehaviour:
   - 20
   - 20
   - 20
---- !u!114 &6456609882737518730
+--- !u!114 &8319287314956452010
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -323,9 +323,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6456609882737518724}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ae1901b0f166874886a16d2f0bd401d, type: 3}
+  m_Script: {fileID: 11500000, guid: 910fe1adbb74a3544a767cae394b4429, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathObject: {fileID: 0}
 --- !u!114 &6456609882737518731
 MonoBehaviour:
   m_ObjectHideFlags: 0
