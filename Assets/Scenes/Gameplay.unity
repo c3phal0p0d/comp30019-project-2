@@ -232,14 +232,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6456609882737518729, guid: 3e8cbafce405748c4a96f8be47906a75, type: 3}
-      propertyPath: walkSpeedScale
-      value: 0.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6456609883347996686, guid: 3e8cbafce405748c4a96f8be47906a75, type: 3}
-      propertyPath: m_CullingMask.m_Bits
-      value: 511
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e8cbafce405748c4a96f8be47906a75, type: 3}
@@ -323,7 +315,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numSections: 5
   isFinalLevel: 0
-  enemyDensity: 10
+  enemyDensity: 1
   pickupDensity: 5
   origin: {fileID: 581613229}
   brickMaterial: {fileID: 2100000, guid: 0e2d7eb755c37475cb888968c90af5c7, type: 2}
@@ -367,9 +359,9 @@ MonoBehaviour:
   - {fileID: 1849577864497754533, guid: f7346fc1bc52c4d419beab4b228184f0, type: 3}
   - {fileID: 2523241770001930196, guid: dad7201c1c8c9ea4e8376a2c070a4458, type: 3}
   enemies:
-  - {fileID: 4057458054345064265, guid: 1f953d39803424d3eaea7254aa5c3178, type: 3}
   - {fileID: 1962108098383283150, guid: b9bee54883eef438ba8c0eefe0377208, type: 3}
-  - {fileID: 7005831427890307639, guid: 5b34c035a3b3a4404a71c7e6fe313032, type: 3}
+  - {fileID: 1962108098383283150, guid: b9bee54883eef438ba8c0eefe0377208, type: 3}
+  - {fileID: 1962108098383283150, guid: b9bee54883eef438ba8c0eefe0377208, type: 3}
   finalBoss: {fileID: 6437181706992655025, guid: a169068f39e5a47519ec11a46671b25c, type: 3}
 --- !u!114 &1147782953
 MonoBehaviour:

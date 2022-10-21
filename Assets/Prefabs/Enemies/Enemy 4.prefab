@@ -140,7 +140,7 @@ Transform:
   - {fileID: 6437181706384760637}
   - {fileID: 6437181707836015550}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!195 &6437181706992655027
 NavMeshAgent:
@@ -260,8 +260,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 1.22
-  m_Height: 4.12
+  m_Radius: 1.68
+  m_Height: 4.36
   m_Direction: 1
   m_Center: {x: 0, y: 1.44, z: 0}
 --- !u!1 &6437181707836015551

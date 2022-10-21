@@ -140,7 +140,7 @@ Transform:
   - {fileID: 7005831428473535288}
   - {fileID: 6446702800893260828}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!195 &7005831427890307637
 NavMeshAgent:
@@ -260,7 +260,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.77
+  m_Radius: 1.16
   m_Height: 2.99
   m_Direction: 1
   m_Center: {x: 0, y: 1.21, z: 0}
@@ -312,18 +312,6 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 465662, guid: 7c4b27022b3abf44782275b8502657f4, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 465662, guid: 7c4b27022b3abf44782275b8502657f4, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 465662, guid: 7c4b27022b3abf44782275b8502657f4, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 465662, guid: 7c4b27022b3abf44782275b8502657f4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -363,9 +351,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 9537986, guid: 7c4b27022b3abf44782275b8502657f4, type: 3}
-    - {fileID: 14307310, guid: 7c4b27022b3abf44782275b8502657f4, type: 3}
+    m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c4b27022b3abf44782275b8502657f4, type: 3}
 --- !u!4 &6446702800893260828 stripped
