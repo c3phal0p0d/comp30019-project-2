@@ -27,7 +27,12 @@ public class EnemyController : MonoBehaviour
         {
             animator.SetBool("Move", true);
             lastKnownPosition = target.position;
-            agent.SetDestination(target.position);
+            if (Vector3.Distance(target.position, transform.position) > 1.15f)
+            {
+
+                agent.SetDestination(target.position);
+            }
+
         }
 
         if (Vector3.Distance(transform.position, lastKnownPosition) <= agent.stoppingDistance)

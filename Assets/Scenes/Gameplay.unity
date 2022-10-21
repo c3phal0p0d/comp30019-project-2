@@ -330,6 +330,10 @@ PrefabInstance:
       propertyPath: origin
       value: 
       objectReference: {fileID: 581613229}
+    - target: {fileID: 7101157739206010136, guid: 382dd6da2692f3043a4a20374d096499, type: 3}
+      propertyPath: enemyDensity
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7101157739206010138, guid: 382dd6da2692f3043a4a20374d096499, type: 3}
       propertyPath: m_RootOrder
       value: 0
