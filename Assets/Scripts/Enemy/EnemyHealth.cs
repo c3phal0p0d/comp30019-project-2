@@ -14,11 +14,13 @@ public class EnemyHealth : BarStat
 
     private PlayerStats.Stat maxHealth;
     private Animator animator;
+    private UnityEngine.AI.NavMeshAgent agent;
 
     void Awake()
     {
         SetHealth(initialHealth);
         animator = GetComponent<Animator>();
+        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
     }
 
     public void SetHealth(float health)
@@ -29,9 +31,12 @@ public class EnemyHealth : BarStat
     }
 
     public override void Increment(float amount)
-    {
+    {   
         string animationTrigger = "";
         if (amount<0){
+            // Pause enemy forward movement while animation is playing 
+            agent.isStopped = true;
+
             isHit = true;
             string enemyHitAudio = "Enemy" + enemyNumber + "Hit";
             FindObjectOfType<AudioManager>().Play(enemyHitAudio);
@@ -39,12 +44,17 @@ public class EnemyHealth : BarStat
         }
         base.Increment(amount);
         if (IsEmpty){
+            // Pause enemy forward movement while animation is playing 
+            agent.isStopped = true;
+
             isDead = true;
             animationTrigger = "Die";
         }
         if (animationTrigger!=""){
             animator.SetTrigger(animationTrigger);
         }
+
+        agent.isStopped = false;
     }
 
 }

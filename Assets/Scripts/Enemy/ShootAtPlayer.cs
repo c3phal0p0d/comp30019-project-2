@@ -44,8 +44,8 @@ public class ShootAtPlayer : MonoBehaviour
 
         if (timer < float.Epsilon && playerDetector.CanDetect())
         {
-            // Pause enemy forward movement
-            //agent.enabled = false;
+            // Pause enemy forward movement while animation is playing 
+            agent.isStopped = true;
 
             // Play attack animation
             animator.SetTrigger("Attack");
@@ -76,7 +76,7 @@ public class ShootAtPlayer : MonoBehaviour
         }
 
         // Start enemy forward movement again
-        //agent.enabled = true;
+        agent.isStopped = false;
         
     }
 

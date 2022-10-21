@@ -315,7 +315,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numSections: 5
   isFinalLevel: 0
-  enemyDensity: 1
+  enemyDensity: 5
   pickupDensity: 5
   origin: {fileID: 581613229}
   brickMaterial: {fileID: 2100000, guid: 0e2d7eb755c37475cb888968c90af5c7, type: 2}
