@@ -140,7 +140,7 @@ Transform:
   - {fileID: 7005831428473535288}
   - {fileID: 6446702800893260828}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!195 &7005831427890307637
 NavMeshAgent:
@@ -152,7 +152,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 2
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -191,6 +191,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialHealth: 10
   enemyNumber: 3
+  isHit: 0
+  isDead: 0
 --- !u!114 &7005831427890307642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,7 +207,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selfTag: Enemy
   targetTag: Player
-  sightDistance: 10
+  sightDistance: 5
   origin: {fileID: 7005831428473535288}
 --- !u!114 &7005831427890307641
 MonoBehaviour:
@@ -224,7 +226,7 @@ MonoBehaviour:
   distance: 20
   speed: 20
   size: 0.4
-  cooldown: 2.5
+  cooldown: 5
   projectile: {fileID: 3168523829568367557, guid: 264b689cfbb6d4da8aab635f3516003a, type: 3}
   origin: {fileID: 7005831428473535289}
   shootDelay: 1.05

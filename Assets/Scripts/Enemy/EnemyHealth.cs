@@ -9,6 +9,9 @@ public class EnemyHealth : BarStat
     [SerializeField]
     private int enemyNumber;
 
+    public bool isHit = false;
+    public bool isDead = false;
+
     private PlayerStats.Stat maxHealth;
     private Animator animator;
 
@@ -29,12 +32,14 @@ public class EnemyHealth : BarStat
     {
         string animationTrigger = "";
         if (amount<0){
+            isHit = true;
             string enemyHitAudio = "Enemy" + enemyNumber + "Hit";
             FindObjectOfType<AudioManager>().Play(enemyHitAudio);
             animationTrigger = "Hit";
         }
         base.Increment(amount);
         if (IsEmpty){
+            isDead = true;
             animationTrigger = "Die";
         }
         if (animationTrigger!=""){

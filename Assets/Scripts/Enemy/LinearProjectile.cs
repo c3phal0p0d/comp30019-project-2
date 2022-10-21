@@ -34,6 +34,6 @@ public class LinearProjectile : MonoBehaviour
             return;
         if (obj.CompareTag(targetTag))
             collider.gameObject.GetComponentInParent<Health>().Increment(-damage);
-        Object.Destroy(gameObject);
+        //Object.Destroy(gameObject);
     }
 }
