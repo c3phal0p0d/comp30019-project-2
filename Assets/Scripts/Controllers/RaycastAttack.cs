@@ -21,13 +21,9 @@ public class RaycastAttack : MonoBehaviour
         foreach (RaycastHit hit in hits)
         {
             GameObject hitObject = hit.transform.gameObject;
-            if (hitObject.CompareTag(selfTag)){
-                continue;
+            if (hitObject.CompareTag(targetTag)){
+                StartCoroutine(DealDamage(hitObject));
             }
-            if (!hitObject.CompareTag(targetTag)){
-                break;
-            }
-            StartCoroutine(DealDamage(hitObject));
         }
     }
 
