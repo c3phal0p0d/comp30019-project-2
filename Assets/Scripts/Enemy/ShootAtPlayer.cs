@@ -24,12 +24,16 @@ public class ShootAtPlayer : MonoBehaviour
     private float shootDelay;
 
     private Animator animator;
+    private UnityEngine.AI.NavMeshAgent agent;
+    private EnemyHealth enemyHealth;
     private float timer;
     private float lifetime;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
+        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        enemyHealth = GetComponent<EnemyHealth>();
         lifetime = distance / speed;
     }
 
@@ -40,10 +44,14 @@ public class ShootAtPlayer : MonoBehaviour
 
         if (timer < float.Epsilon && playerDetector.CanDetect())
         {
+            // Pause enemy forward movement while animation is playing 
+            agent.isStopped = true;
+
             // Play attack animation
             animator.SetTrigger("Attack");
             
             StartCoroutine("ShootProjectile");
+
             timer = cooldown;
         }
     }
@@ -51,19 +59,24 @@ public class ShootAtPlayer : MonoBehaviour
     IEnumerator ShootProjectile(){
         // Wait for animation to finish before shooting projectile
         yield return new WaitForSeconds(shootDelay);
-        
-        // Shoot projectile
-        FindObjectOfType<AudioManager>().Play("Fireball");
-        GameObject newProjectile = GameObject.Instantiate(projectile);
-        newProjectile.transform.position = origin.transform.position;
-        newProjectile.transform.localScale = new Vector3(size, size, size);
-        newProjectile.GetComponent<LinearProjectile>().SetParameters(
-            "Enemy",
-            "Player",
-            damage,
-            (PlayerManager.instance.gameObject.transform.position - transform.position).normalized * speed,
-            lifetime
-        );
+
+        if (!(enemyHealth.isHit || enemyHealth.isDead)){
+            // Shoot projectile
+            FindObjectOfType<AudioManager>().Play("Fireball");
+            GameObject newProjectile = GameObject.Instantiate(projectile);
+            newProjectile.transform.position = origin.transform.position;
+            newProjectile.transform.localScale = new Vector3(size, size, size);
+            newProjectile.GetComponent<LinearProjectile>().SetParameters(
+                "Enemy",
+                "Player",
+                damage,
+                (PlayerManager.instance.gameObject.transform.position - transform.position).normalized * speed,
+                lifetime
+            );
+        }
+
+        // Start enemy forward movement again
+        agent.isStopped = false;
         
     }
 

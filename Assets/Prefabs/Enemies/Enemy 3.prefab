@@ -152,7 +152,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 2
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -191,6 +191,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialHealth: 10
   enemyNumber: 3
+  isHit: 0
+  isDead: 0
 --- !u!114 &7005831427890307642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,7 +226,7 @@ MonoBehaviour:
   distance: 20
   speed: 20
   size: 0.4
-  cooldown: 2.5
+  cooldown: 5
   projectile: {fileID: 3168523829568367557, guid: 264b689cfbb6d4da8aab635f3516003a, type: 3}
   origin: {fileID: 7005831428473535289}
   shootDelay: 1.05
@@ -310,18 +312,6 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 465662, guid: 7c4b27022b3abf44782275b8502657f4, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 465662, guid: 7c4b27022b3abf44782275b8502657f4, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 465662, guid: 7c4b27022b3abf44782275b8502657f4, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 465662, guid: 7c4b27022b3abf44782275b8502657f4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -361,9 +351,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 9537986, guid: 7c4b27022b3abf44782275b8502657f4, type: 3}
-    - {fileID: 14307310, guid: 7c4b27022b3abf44782275b8502657f4, type: 3}
+    m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c4b27022b3abf44782275b8502657f4, type: 3}
 --- !u!4 &6446702800893260828 stripped

@@ -8,15 +8,20 @@ public class PlayerAttack : MonoBehaviour
     private RaycastAttack caster;
 
     private PlayerStats.Stat strengthStat;
+    private Animator swordAnimator;
 
     private void Start()
     {
         strengthStat = GetComponent<PlayerStats>().GetStat(PlayerStats.StatType.Strength);
+        swordAnimator = GameObject.FindWithTag("Weapon").GetComponent<Animator>();
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyDown(KeyCode.Z)){
             caster.Cast(strengthStat.Value);
+            swordAnimator.SetTrigger("Attack");
+            FindObjectOfType<AudioManager>().Play("WeaponAttack");
+        }
     }
 }
