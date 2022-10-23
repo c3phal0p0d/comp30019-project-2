@@ -10,7 +10,7 @@ public class MoveCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (transform.position.x >= 5)
+        if (transform.position.x >= 10)
         {
             var xPos = transform.position.x;
             var newX = xPos - (cameraSpeed * Time.deltaTime);
