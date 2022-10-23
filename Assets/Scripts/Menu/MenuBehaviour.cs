@@ -19,13 +19,21 @@ public class MenuBehaviour : MonoBehaviour
 
     }
 
+    public void PlayButtonHoverSound(){
+        FindObjectOfType<AudioManager>().Play("ButtonHover");
+    }
+
+    public void PlayButtonClickSound(){
+        FindObjectOfType<AudioManager>().Play("ButtonClick");
+    }
+
     public void newGame()
     {
         canvas.SetActive(false);
         MoveCamera.setCameraSpeed(10);
 
-
     }
+    
 
     public float setCameraSpeed()
     {

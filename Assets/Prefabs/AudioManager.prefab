@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5301202638905384141
 MonoBehaviour:
@@ -44,9 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c49936493ac84acf9fcf331a3bfe0ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGame: 0
   sounds:
   - clip: {fileID: 8300000, guid: 7fc38df48c9cd44cead612b3a0065f1d, type: 3}
-    volume: 0.5
+    volume: 0.2
     name: WeaponAttack
     loop: 0
     source: {fileID: 0}
@@ -61,12 +62,47 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - clip: {fileID: 8300000, guid: b6d54004a0dd34a96b46e07a56b0fd23, type: 3}
-    volume: 0.5
+    volume: 0.3
     name: PlayerHit
     loop: 0
     source: {fileID: 0}
-  - clip: {fileID: 8300000, guid: 780622dcc69e247e1bb4b776e29caebc, type: 3}
+  - clip: {fileID: 8300000, guid: 207ddc6afd70a4c2d8451d235ad57ba6, type: 3}
     volume: 0.2
-    name: EnemyHit
+    name: Enemy1Hit
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 91feab38d9a1f4927accf9ca148a71a9, type: 3}
+    volume: 0.2
+    name: Enemy2Hit
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 93e115f30b58240038ecc13e2e18d176, type: 3}
+    volume: 0.2
+    name: Enemy3Hit
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: caa19fb98bc0c49ad8e919b8afff6d0b, type: 3}
+    volume: 0.2
+    name: Enemy4Hit
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 6c53b44dd2d6140be86903b91c8ec2e1, type: 3}
+    volume: 0.2
+    name: CollectStatPickup
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 53a12e471a7c5482a9ebcee3be9649c8, type: 3}
+    volume: 0.2
+    name: CollectFoodPickup
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: ba4b48826475e4481a991070a94aeee0, type: 3}
+    volume: 0.1
+    name: ButtonClick
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: c5aef506494d840d6822d9c3de015f27, type: 3}
+    volume: 0.2
+    name: ButtonHover
     loop: 0
     source: {fileID: 0}

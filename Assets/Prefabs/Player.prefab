@@ -171,7 +171,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6456609882605954498}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 2
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -192,8 +192,8 @@ GameObject:
   - component: {fileID: 6456609882737518729}
   - component: {fileID: 6456609882737518732}
   - component: {fileID: 6456609882737518728}
-  - component: {fileID: 6456609882737518733}
-  - component: {fileID: 6456609882737518730}
+  - component: {fileID: 3790195572757571476}
+  - component: {fileID: 8319287314956452010}
   - component: {fileID: 6456609882737518731}
   - component: {fileID: 6456609882737518734}
   - component: {fileID: 6456609882737518735}
@@ -248,10 +248,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 6456609882737518732}
-  walkSpeedScale: 2.4
+  walkSpeedScale: 0.6
   runSpeedMultiplier: 1.5
   gravity: -9.81
-  jumpHeight: 1.8
+  jumpHeight: 1
   groundCheck: {fileID: 6456609882940324980}
   groundDistance: 0.4
   groundMask:
@@ -290,7 +290,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mouseSens: 200
   head: {fileID: 6456609881549923257}
---- !u!114 &6456609882737518733
+--- !u!114 &3790195572757571476
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -302,9 +302,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b689ef687bf8f404bbaad48ce506b2c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHealth: {fileID: 6456609882737518730}
+  playerHealth: {fileID: 8319287314956452010}
   playerStamina: {fileID: 6456609882737518731}
---- !u!114 &6456609882737518730
+  initialValues:
+  - 20
+  - 5
+  - 10
+  - 5
+  maxValues:
+  - 40
+  - 20
+  - 20
+  - 20
+--- !u!114 &8319287314956452010
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -313,9 +323,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6456609882737518724}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ae1901b0f166874886a16d2f0bd401d, type: 3}
+  m_Script: {fileID: 11500000, guid: 910fe1adbb74a3544a767cae394b4429, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathObject: {fileID: 0}
 --- !u!114 &6456609882737518731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -345,7 +356,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selfTag: Player
   targetTag: Enemy
-  attackDistance: 3
+  attackDistance: 10
   ray: {fileID: 6456609881549923254}
   damageDelay: 1.1
 --- !u!114 &6456609882737518735
@@ -490,7 +501,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 2147483647
+    m_Bits: 511
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -630,7 +641,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sword 2
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 6532368130487702776, guid: 505bdf3aaf21e4ba5a5f1e4f1a1d3838, type: 3}
+      propertyPath: m_TagString
+      value: Weapon
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 2110420607051001256, guid: 505bdf3aaf21e4ba5a5f1e4f1a1d3838, type: 3}
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 505bdf3aaf21e4ba5a5f1e4f1a1d3838, type: 3}
 --- !u!4 &609691164620326084 stripped

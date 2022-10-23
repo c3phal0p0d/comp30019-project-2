@@ -58,7 +58,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1962108097602675381}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.31, z: 0.48}
+  m_LocalPosition: {x: 0, y: 3.21, z: 0.48}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -162,17 +162,17 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1962108098383283150}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 10, y: 0, z: 61.55}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1962108097602675380}
   - {fileID: 1962108096516282688}
   - {fileID: 4958434639290902326}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!195 &1962108098383283136
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -183,7 +183,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 2
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -221,6 +221,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialHealth: 10
+  enemyNumber: 2
+  isHit: 0
+  isDead: 0
 --- !u!114 &1962108098383283139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -251,10 +254,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerDetector: {fileID: 1962108098383283139}
   damage: 1
-  distance: 15
-  speed: 12
+  distance: 20
+  speed: 20
   size: 0.4
-  cooldown: 2.5
+  cooldown: 5
   projectile: {fileID: 3168523829568367557, guid: 264b689cfbb6d4da8aab635f3516003a, type: 3}
   origin: {fileID: 1962108096516282689}
   shootDelay: 1.1
@@ -286,9 +289,9 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1962108098383283150}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.94
+  m_Radius: 1
   m_Height: 2.89
   m_Direction: 1
   m_Center: {x: 0, y: 1.22, z: 0}
@@ -303,18 +306,6 @@ PrefabInstance:
     - target: {fileID: 6914477762587497714, guid: 9ff8044119c194b058e43684e83fa060, type: 3}
       propertyPath: m_RootOrder
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6914477762587497714, guid: 9ff8044119c194b058e43684e83fa060, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6914477762587497714, guid: 9ff8044119c194b058e43684e83fa060, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6914477762587497714, guid: 9ff8044119c194b058e43684e83fa060, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 6914477762587497714, guid: 9ff8044119c194b058e43684e83fa060, type: 3}
       propertyPath: m_LocalPosition.x

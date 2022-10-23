@@ -30,10 +30,15 @@ public class LinearProjectile : MonoBehaviour
     private void OnTriggerEnter(Collider collider)
     {
         GameObject obj = collider.gameObject;
-        if (obj.CompareTag(selfTag))
+        if (obj.CompareTag(selfTag)){
             return;
-        if (obj.CompareTag(targetTag))
+        }
+        if (obj.CompareTag(targetTag)){
             collider.gameObject.GetComponentInParent<Health>().Increment(-damage);
-        Object.Destroy(gameObject);
+            Object.Destroy(gameObject);
+        }
+        if (obj.CompareTag("Wall")){
+            Object.Destroy(gameObject);
+        }
     }
 }

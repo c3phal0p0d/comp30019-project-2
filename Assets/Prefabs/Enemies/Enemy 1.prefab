@@ -162,17 +162,17 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4057458054345064265}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 10, y: 0, z: 57}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4057458053737134789}
   - {fileID: 4057458053091239494}
   - {fileID: 6748177097664017960}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!195 &4057458054345064267
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -183,7 +183,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 2
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -221,6 +221,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialHealth: 10
+  enemyNumber: 1
+  isHit: 0
+  isDead: 0
 --- !u!114 &4057458054345064260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -251,10 +254,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerDetector: {fileID: 4057458054345064260}
   damage: 1
-  distance: 15
-  speed: 12
+  distance: 20
+  speed: 20
   size: 0.4
-  cooldown: 2.5
+  cooldown: 5
   projectile: {fileID: 3168523829568367557, guid: 264b689cfbb6d4da8aab635f3516003a, type: 3}
   origin: {fileID: 4057458053091239495}
   shootDelay: 1.1
@@ -286,9 +289,9 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4057458054345064265}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 1.45
+  m_Radius: 1
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 1.04, z: 0.24}
@@ -303,10 +306,6 @@ PrefabInstance:
     - target: {fileID: 7343308081664147277, guid: d28d94bda63b845fd9ed2295b0cd6594, type: 3}
       propertyPath: m_Name
       value: Crab Monster
-      objectReference: {fileID: 0}
-    - target: {fileID: 7343308081664147277, guid: d28d94bda63b845fd9ed2295b0cd6594, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7343308081664566061, guid: d28d94bda63b845fd9ed2295b0cd6594, type: 3}
       propertyPath: m_RootOrder

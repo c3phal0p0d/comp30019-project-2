@@ -7,12 +7,14 @@ using UnityEngine;
 using UnityEditor;
 #endif
 
-public class MazeParameters : MonoBehaviour
+public class MazeParameters
 {
+    public GameObject mazeOrigin;
     public int[] numberOfPickups = new int[Enum.GetNames(typeof(PlayerStats.StatType)).Length];
     public int numberOfEnemies;
     private bool isFinalBoss;
     private bool isExit;
+    public bool isStart;
 
     public bool IsFinalBoss
     {
@@ -37,7 +39,7 @@ public class MazeParameters : MonoBehaviour
     }
 }
 
-#if UNITY_EDITOR
+/*#if UNITY_EDITOR
 [CustomEditor(typeof(MazeParameters))]
 class MazeParametersEditor : Editor
 {
@@ -45,6 +47,11 @@ class MazeParametersEditor : Editor
     {
         MazeParameters component = (MazeParameters)target;
         if (component == null) return;
+
+        EditorGUILayout.BeginHorizontal();
+        EditorGUILayout.PrefixLabel("Is Start");
+        component.isStart = EditorGUILayout.Toggle(component.isStart);
+        EditorGUILayout.EndHorizontal();
 
         EditorGUILayout.BeginHorizontal();
         EditorGUILayout.PrefixLabel("Num Enemies");
@@ -72,4 +79,4 @@ class MazeParametersEditor : Editor
         EditorGUILayout.EndHorizontal();
     }
 }
-#endif
+#endif*/

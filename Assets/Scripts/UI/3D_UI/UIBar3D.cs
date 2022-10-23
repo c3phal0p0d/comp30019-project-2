@@ -11,7 +11,11 @@ public class UIBar3D : MonoBehaviour
     [SerializeField]
     private Material overBarMaterial;
     [SerializeField]
-    private Material borderMaterial;
+    private Material horizontalBorderMaterial;
+    [SerializeField]
+    private Material verticalBorderMaterial;
+    [SerializeField]
+    private Material backMaterial;
 
     private float barWidth;
     private float overBarWidth;
@@ -39,8 +43,9 @@ public class UIBar3D : MonoBehaviour
         back.name = "Back";
         back.layer = ui_camera_layer;
         back.transform.SetParent(origin.transform);
-        back.transform.localScale = new Vector3(barWidth + 1, 2, 0.5f);
+        back.transform.localScale = new Vector3(barWidth + 1, 2, 0.01f);
         back.transform.localPosition = new Vector3((barWidth+1)/2, -1, 0.25f);
+        back.GetComponent<Renderer>().material = backMaterial;
 
         left = GameObject.CreatePrimitive(PrimitiveType.Cube);
         left.name = "Left";
@@ -48,6 +53,7 @@ public class UIBar3D : MonoBehaviour
         left.transform.SetParent(origin.transform);
         left.transform.localScale = new Vector3(0.5f, 2, 0.5f);
         left.transform.localPosition = new Vector3(0.25f, -1, -0.25f);
+        left.GetComponent<Renderer>().material = verticalBorderMaterial;
 
         right = GameObject.CreatePrimitive(PrimitiveType.Cube);
         right.name = "Right";
@@ -55,6 +61,7 @@ public class UIBar3D : MonoBehaviour
         right.transform.SetParent(origin.transform);
         right.transform.localScale = new Vector3(0.5f, 2, 0.5f);
         right.transform.localPosition = new Vector3(barWidth + 0.75f, -1, -0.25f);
+        right.GetComponent<Renderer>().material = verticalBorderMaterial;
 
         up = GameObject.CreatePrimitive(PrimitiveType.Cube);
         up.name = "Up";
@@ -62,6 +69,7 @@ public class UIBar3D : MonoBehaviour
         up.transform.SetParent(origin.transform);
         up.transform.localScale = new Vector3(barWidth + 1, 0.5f, 0.5f);
         up.transform.localPosition = new Vector3((barWidth + 1) / 2, -0.25f, -0.25f);
+        up.GetComponent<Renderer>().material = horizontalBorderMaterial;
 
         down = GameObject.CreatePrimitive(PrimitiveType.Cube);
         down.name = "Down";
@@ -69,6 +77,7 @@ public class UIBar3D : MonoBehaviour
         down.transform.SetParent(origin.transform);
         down.transform.localScale = new Vector3(barWidth + 1, 0.5f, 0.5f);
         down.transform.localPosition = new Vector3((barWidth + 1) / 2, -1.75f, -0.25f);
+        down.GetComponent<Renderer>().material = horizontalBorderMaterial;
 
         underBarWrapper = new GameObject("UnderBarWrapper");
         underBarWrapper.layer = ui_camera_layer;
@@ -131,7 +140,7 @@ public class UIBar3D : MonoBehaviour
 
     private void resetBarLength()
     {
-        back.transform.localScale = new Vector3(barWidth + 1, 2, 0.5f);
+        back.transform.localScale = new Vector3(barWidth + 1, 2, 0.01f);
         back.transform.localPosition = new Vector3((barWidth + 1) / 2, -1, 0.25f);
 
         right.transform.localPosition = new Vector3(barWidth + 0.75f, -1, -0.25f);

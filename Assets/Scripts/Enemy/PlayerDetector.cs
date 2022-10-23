@@ -20,7 +20,9 @@ public class PlayerDetector : MonoBehaviour
         {
             if (hit.transform.gameObject.CompareTag(selfTag))
                 continue;
-            return hit.transform.gameObject.CompareTag(targetTag);
+            if (hit.transform.gameObject.CompareTag(targetTag)){
+                return true;
+            }
         }
         return false;
     }
