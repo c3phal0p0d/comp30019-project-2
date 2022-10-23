@@ -95,3 +95,13 @@ MonoBehaviour:
     name: CollectFoodPickup
     loop: 0
     source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: ba4b48826475e4481a991070a94aeee0, type: 3}
+    volume: 0.1
+    name: ButtonClick
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: c5aef506494d840d6822d9c3de015f27, type: 3}
+    volume: 0.2
+    name: ButtonHover
+    loop: 0
+    source: {fileID: 0}
