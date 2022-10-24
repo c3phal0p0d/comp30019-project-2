@@ -53,6 +53,7 @@ public class LabyrinthCreator
                 wallObj.transform.SetParent(mazeParameters.mazeOrigin.transform);
                 wallObj.transform.localScale = new Vector3(cellWidth * wall.length + wallDepth, wallHeight, wallDepth);
                 wallObj.transform.localPosition = new Vector3(cellWidth * (wall.x + 0.5f * wall.length), wallHeight / 2, cellWidth * (wall.y + 1));
+                wallObj.GetComponent<Renderer>().material = labyrinthParameters.brickMaterial;
                 wallObj.layer = LayerMask.NameToLayer("Ground");
                 wallObj.tag = "Wall";
 
@@ -93,6 +94,7 @@ public class LabyrinthCreator
                 }
                 wallObj.transform.localScale = new Vector3(wallDepth, wallHeight, length);
                 wallObj.transform.localPosition = new Vector3(cellWidth * (wall.x + 1), wallHeight / 2, cellWidth * (wall.y + 0.5f * wall.length) + posOffset);
+                wallObj.GetComponent<Renderer>().material = labyrinthParameters.brickMaterial;
                 wallObj.layer = LayerMask.NameToLayer("Ground");
                 wallObj.tag = "Wall";
 
@@ -267,6 +269,7 @@ public class LabyrinthCreator
             SpawnTorch(torchRotation, torchPositionOffset, outerWall, labyrinthParameters);
         }
 
+        outerWall.GetComponent<Renderer>().material = labyrinthParameters.brickMaterial;
         outerWall.layer = LayerMask.NameToLayer("Ground");
         outerWall.tag = "Wall";
         AddToNavMesh(outerWall, false);

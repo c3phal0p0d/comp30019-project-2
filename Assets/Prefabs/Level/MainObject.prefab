@@ -83,7 +83,7 @@ MonoBehaviour:
   enemyDensity: 2
   pickupDensity: 5
   origin: {fileID: 0}
-  brickMaterial: {fileID: 2100000, guid: 0e2d7eb755c37475cb888968c90af5c7, type: 2}
+  brickMaterial: {fileID: 2100000, guid: 77febcaa355d74e3d8eb4ec6a0c08d3b, type: 2}
   blackMaterial: {fileID: 2100000, guid: 49aba598592887249b8174aadee0e35b, type: 2}
   wallObject: {fileID: 5722773736405991263, guid: 6472207b138fabf4ba403d91b8d904cd, type: 3}
   wallTorchPrefab: {fileID: 139546498731853840, guid: cb830cd1c76c84be794b539e67e2659f, type: 3}

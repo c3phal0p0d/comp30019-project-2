@@ -21,16 +21,20 @@ Shader "Unlit/WorldSpaceTexture"
         Tags { "RenderType"="Opaque" }
         LOD 100
 
+        // pass for ambient light and first light source
         Pass
         {
-            Tags {"LightMode"="ForwardBase"}    // pass for ambient light and first light source
+            Tags {"LightMode"="ForwardBase"}
 
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
+            #pragma multi_compile_fwdbase nolightmap nodirlightmap nodynlightmap novertexlight
 
             #include "UnityStandardBRDF.cginc"
 			#include "UnityStandardUtils.cginc"
+            #include "AutoLight.cginc"
+            #include "Lighting.cginc"
 
             struct appdata
             {
@@ -47,6 +51,7 @@ Shader "Unlit/WorldSpaceTexture"
                 half3 tspace0 : TEXCOORD2;
                 half3 tspace1 : TEXCOORD3;
                 half3 tspace2 : TEXCOORD4;
+                SHADOW_COORDS(5)
             };
 
             sampler2D _MainTex;
@@ -79,6 +84,8 @@ Shader "Unlit/WorldSpaceTexture"
                 o.tspace1 = half3(worldTangent.y, worldBitangent.y, worldNormal.y);
                 o.tspace2 = half3(worldTangent.z, worldBitangent.z, worldNormal.z);
 
+                TRANSFER_SHADOW(o)
+
                 return o;
             }
 
@@ -86,8 +93,7 @@ Shader "Unlit/WorldSpaceTexture"
             {
                 float2 uv;
                 float3 normal = i.worldNormal;
-                //half3 worldViewDir = normalize(UnityWorldSpaceViewDir(i.worldPos));
-    
+
                 // Determine which side of the wall the texture is on
                 if (abs(normal.x)>0.5) {
                     // side of wall
@@ -100,12 +106,11 @@ Shader "Unlit/WorldSpaceTexture"
                     uv = i.worldPos.xz;
                 }
 
-                /* LIGHTING */
 
+                /* LIGHTING */
                 // Normal map
-                // sample the normal map, and decode from the Unity encoding
                 half3 tnormal = UnpackNormal(tex2D(_BumpMap, uv * _Scale));
-                // transform normal from tangent to world space
+                // Transform normal from tangent to world space
                 half3 worldNormal;
                 worldNormal.x = dot(i.tspace0, tnormal);
                 worldNormal.y = dot(i.tspace1, tnormal);
@@ -120,17 +125,21 @@ Shader "Unlit/WorldSpaceTexture"
 	            float attenuation = 1 / (1 + dot(lightVector, lightVector));
 
                 float3 albedo = tex2D(_MainTex, uv * _Scale).rgb;
+                fixed occlusion = tex2D(_OcclusionMap, uv * _Scale).r;
                 float oneMinusReflectivity;
                 float3 specularTint;
 				albedo = DiffuseAndSpecularFromMetallic(albedo, _Metallic, specularTint, oneMinusReflectivity);
-
+    
                 float3 lightColor = _LightColor0.rgb * attenuation;
                 float3 specular = specularTint.rgb * lightColor * pow(DotClamped(halfVector, worldNormal), _Smoothness * 100);
                 float3 diffuse = lightColor * DotClamped(lightDir, worldNormal);
-                diffuse += 1.5*max(0, ShadeSH9(float4(worldNormal, 1)));
-                diffuse *= albedo;
+                diffuse += max(0, ShadeSH9(float4(worldNormal, 1)));
+                diffuse *= 1.2*albedo;
+                diffuse *= occlusion;
 
-                float4 color = float4(diffuse + specular, 1); 
+                fixed shadow = SHADOW_ATTENUATION(i);
+
+                float4 color = float4((diffuse + specular)*shadow, 1); 
 
                 return color;
             }
@@ -138,17 +147,21 @@ Shader "Unlit/WorldSpaceTexture"
             ENDCG
         }
 
+        // pass for additional light sources
         Pass 
         {	
-            Tags { "LightMode" = "ForwardAdd" }     // pass for additional light sources
+            Tags { "LightMode" = "ForwardAdd" }
             Blend One One
  
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
+            #pragma multi_compile_fwdbase nolightmap nodirlightmap nodynlightmap novertexlight
 
             #include "UnityStandardBRDF.cginc"
 			#include "UnityStandardUtils.cginc"
+            #include "AutoLight.cginc"
+            #include "Lighting.cginc"
 
             struct appdata
             {
@@ -165,6 +178,7 @@ Shader "Unlit/WorldSpaceTexture"
                 half3 tspace0 : TEXCOORD2;
                 half3 tspace1 : TEXCOORD3;
                 half3 tspace2 : TEXCOORD4;
+                SHADOW_COORDS(5)
             };
 
             sampler2D _MainTex;
@@ -197,6 +211,8 @@ Shader "Unlit/WorldSpaceTexture"
                 o.tspace1 = half3(worldTangent.y, worldBitangent.y, worldNormal.y);
                 o.tspace2 = half3(worldTangent.z, worldBitangent.z, worldNormal.z);
 
+                TRANSFER_SHADOW(o)
+
                 return o;
             }
 
@@ -204,7 +220,6 @@ Shader "Unlit/WorldSpaceTexture"
             {
                 float2 uv;
                 float3 normal = i.worldNormal;
-                //half3 worldViewDir = normalize(UnityWorldSpaceViewDir(i.worldPos));
     
                 // Determine which side of the wall the texture is on
                 if (abs(normal.x)>0.5) {
@@ -219,9 +234,7 @@ Shader "Unlit/WorldSpaceTexture"
                 }
 
                 /* LIGHTING */
-
                 // Normal map
-                // sample the normal map, and decode from the Unity encoding
                 half3 tnormal = UnpackNormal(tex2D(_BumpMap, uv * _Scale));
                 // transform normal from tangent to world space
                 half3 worldNormal;
@@ -238,6 +251,7 @@ Shader "Unlit/WorldSpaceTexture"
 	            float attenuation = 1 / (1 + dot(lightVector, lightVector));
 
                 float3 albedo = tex2D(_MainTex, uv * _Scale).rgb;
+                fixed occlusion = tex2D(_OcclusionMap, uv * _Scale).r;
                 float oneMinusReflectivity;
                 float3 specularTint;
 				albedo = DiffuseAndSpecularFromMetallic(albedo, _Metallic, specularTint, oneMinusReflectivity);
@@ -245,14 +259,48 @@ Shader "Unlit/WorldSpaceTexture"
                 float3 lightColor = _LightColor0.rgb * attenuation;
                 float3 specular = specularTint.rgb * lightColor * pow(DotClamped(halfVector, worldNormal), _Smoothness * 100);
                 float3 diffuse = lightColor * DotClamped(lightDir, worldNormal);
-                diffuse += 1.5*max(0, ShadeSH9(float4(worldNormal, 1)));
+                diffuse += 1.2*max(0, ShadeSH9(float4(worldNormal, 1)));
                 diffuse *= albedo;
+                diffuse *= occlusion;
 
-                float4 color = float4(diffuse + specular, 1); 
+                fixed shadow = SHADOW_ATTENUATION(i);
+
+                float4 color = float4((diffuse + specular)*shadow, 1); 
 
                 return color;
             }
 
+            ENDCG
+        }
+
+        // pass for shadow casting
+        Pass
+        {
+            Tags {"LightMode"="ShadowCaster"}
+
+            CGPROGRAM
+
+            #pragma vertex vert
+            #pragma fragment frag
+            #pragma multi_compile_shadowcaster
+
+            #include "UnityCG.cginc"
+
+            struct v2f { 
+                V2F_SHADOW_CASTER;
+            };
+
+            v2f vert(appdata_base v)
+            {
+                v2f o;
+                TRANSFER_SHADOW_CASTER_NORMALOFFSET(o)
+                return o;
+            }
+
+            float4 frag(v2f i) : SV_Target
+            {
+                SHADOW_CASTER_FRAGMENT(i)
+            }
             ENDCG
         }
     }

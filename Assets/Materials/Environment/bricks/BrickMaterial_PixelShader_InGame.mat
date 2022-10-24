@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BrickMaterial_PixelShader
+  m_Name: BrickMaterial_PixelShader_InGame
   m_Shader: {fileID: 4800000, guid: afbf925db50774c7199f535c20bc0f31, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -85,7 +85,7 @@ Material:
     - _GlossMapScale: 0.161
     - _Glossiness: 0.185
     - _GlossyReflections: 1
-    - _Metallic: 0.292
+    - _Metallic: 0.16
     - _MetallicGlossMap: 0
     - _Mode: 0
     - _OcclusionStrength: 0.793
@@ -95,6 +95,7 @@ Material:
     - _ShadeRange: 0.02
     - _ShadingStrength: 0.14925373
     - _Shininess: 92.84
+    - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
