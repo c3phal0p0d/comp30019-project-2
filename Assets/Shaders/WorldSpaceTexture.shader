@@ -1,7 +1,7 @@
 // World space texture conversion code inspired by https://www.blog.radiator.debacle.us/2012/01/joys-of-using-world-space-procedural.html
 // Texture mapping & lighting code inspired by https://docs.unity3d.com/Manual/SL-VertexFragmentShaderExamples.html and https://en.wikibooks.org/wiki/Cg_Programming/Unity/Smooth_Specular_Highlights
 
-Shader "Unlit/WorldSpaceTextureShader"
+Shader "Unlit/WorldSpaceTexture"
 {
     Properties
     {
@@ -85,8 +85,8 @@ Shader "Unlit/WorldSpaceTextureShader"
                 half3 worldViewDir = normalize(UnityWorldSpaceViewDir(i.worldPos));
                 float3 lightDirection;
                 float attenuation;
-        
-                // Determine which side the texture is on
+    
+                // Determine which side of the wall the texture is on
                 if (abs(normal.x)>0.5) {
                     // side of wall
                     uv = i.worldPos.yz;
@@ -106,6 +106,12 @@ Shader "Unlit/WorldSpaceTextureShader"
                 worldNormal.z = dot(i.tspace2, tnormal);
                 worldNormal = lerp(worldNormal, float3(1,1,1), -_BumpScale + 1);
 
+                // Base color
+                fixed4 albedo = tex2D(_MainTex, uv * _Scale);
+
+                // Ambient occlusion
+                fixed occlusion = tex2D(_OcclusionMap, uv * _Scale).r;
+
                 // Get direction of point light
                 float3 vertexToLightSource = _WorldSpaceLightPos0.xyz - i.worldPos.xyz;
                 float distance = length(vertexToLightSource);
@@ -115,11 +121,12 @@ Shader "Unlit/WorldSpaceTextureShader"
                 half3 worldReflection = reflect(-worldViewDir, worldNormal);
 
                 // Diffuse lighting
-                fixed4 diff = _LightColor0 * max(0, dot(worldNormal, _WorldSpaceLightPos0.xyz));
+                fixed4 diff = _LightColor0 * saturate(dot(worldNormal, _WorldSpaceLightPos0.xyz));
 
                 // Ambient lighting
                 diff.rgb += ShadeSH9(half4(worldNormal,1));
 
+                // Specular lighting
                 float3 specular;
                 if (dot(worldNormal, lightDirection) < 0.0){
                     // Light source on other side so no specular reflection  
@@ -128,11 +135,8 @@ Shader "Unlit/WorldSpaceTextureShader"
                     specular = attenuation * _LightColor0.rgb * pow(max(0.0, dot(reflect(-lightDirection, worldNormal), worldViewDir)), _Shininess);
                 }
 
-                fixed4 albedo = tex2D(_MainTex, uv * _Scale);
-                fixed occlusion = tex2D(_OcclusionMap, uv * _Scale).r;
-
                 fixed4 color;
-                color.rgb = diff * albedo * occlusion + specular;
+                color.rgb = albedo * diff * occlusion;
                 return color;
             }
 
