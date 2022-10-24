@@ -1,5 +1,5 @@
 // World space texture conversion code inspired by https://www.blog.radiator.debacle.us/2012/01/joys-of-using-world-space-procedural.html
-// Texture mapping & lighting code inspired by https://docs.unity3d.com/Manual/SL-VertexFragmentShaderExamples.html and https://en.wikibooks.org/wiki/Cg_Programming/Unity/Smooth_Specular_Highlights
+// Texture mapping & lighting code inspired by https://docs.unity3d.com/Manual/SL-VertexFragmentShaderExamples.html and series of tutorials at https://catlikecoding.com/unity/tutorials/rendering/ 
 
 Shader "Unlit/WorldSpaceTexture"
 {
@@ -7,6 +7,8 @@ Shader "Unlit/WorldSpaceTexture"
     {
         _Color ("Color", Color) = (1,1,1,1)
         _MainTex ("Albedo", 2D) = "white" {}
+        [Gamma] _Metallic ("Metallic", Range(0, 1)) = 0
+        _Smoothness ("Smoothness", Range(0, 1)) = 0.5
         _BumpMap ("Normal", 2D) = "white" {}
         _BumpScale ("Depth", Range(-1,3)) = 0.0
         _ParallaxMap ("Height", 2D) = "white" {}
@@ -27,8 +29,8 @@ Shader "Unlit/WorldSpaceTexture"
             #pragma vertex vert
             #pragma fragment frag
 
-            #include "UnityCG.cginc"
-            #include "UnityLightingCommon.cginc"
+            #include "UnityStandardBRDF.cginc"
+			#include "UnityStandardUtils.cginc"
 
             struct appdata
             {
@@ -58,6 +60,8 @@ Shader "Unlit/WorldSpaceTexture"
             float _Parallax;
             float _Scale;
             float _Shininess;
+            float _Metallic;
+            float _Smoothness;
 
             v2f vert (appdata v)
             {
@@ -82,9 +86,7 @@ Shader "Unlit/WorldSpaceTexture"
             {
                 float2 uv;
                 float3 normal = i.worldNormal;
-                half3 worldViewDir = normalize(UnityWorldSpaceViewDir(i.worldPos));
-                float3 lightDirection;
-                float attenuation;
+                //half3 worldViewDir = normalize(UnityWorldSpaceViewDir(i.worldPos));
     
                 // Determine which side of the wall the texture is on
                 if (abs(normal.x)>0.5) {
@@ -98,45 +100,38 @@ Shader "Unlit/WorldSpaceTexture"
                     uv = i.worldPos.xz;
                 }
 
-                // Normal mapping
+                /* LIGHTING */
+
+                // Normal map
+                // sample the normal map, and decode from the Unity encoding
                 half3 tnormal = UnpackNormal(tex2D(_BumpMap, uv * _Scale));
+                // transform normal from tangent to world space
                 half3 worldNormal;
                 worldNormal.x = dot(i.tspace0, tnormal);
                 worldNormal.y = dot(i.tspace1, tnormal);
                 worldNormal.z = dot(i.tspace2, tnormal);
                 worldNormal = lerp(worldNormal, float3(1,1,1), -_BumpScale + 1);
 
-                // Base color
-                fixed4 albedo = tex2D(_MainTex, uv * _Scale);
+                float3 lightDir = normalize(_WorldSpaceLightPos0.xyz - i.worldPos);
+                float3 viewDir = normalize(_WorldSpaceCameraPos - i.worldPos);
+                float3 halfVector = normalize(lightDir + viewDir);
 
-                // Ambient occlusion
-                fixed occlusion = tex2D(_OcclusionMap, uv * _Scale).r;
+                float3 lightVector = _WorldSpaceLightPos0.xyz - i.worldPos;
+	            float attenuation = 1 / (1 + dot(lightVector, lightVector));
 
-                // Get direction of point light
-                float3 vertexToLightSource = _WorldSpaceLightPos0.xyz - i.worldPos.xyz;
-                float distance = length(vertexToLightSource);
-                attenuation = 1.0 / distance;
-                lightDirection = normalize(vertexToLightSource);
+                float3 albedo = tex2D(_MainTex, uv * _Scale).rgb;
+                float oneMinusReflectivity;
+                float3 specularTint;
+				albedo = DiffuseAndSpecularFromMetallic(albedo, _Metallic, specularTint, oneMinusReflectivity);
 
-                half3 worldReflection = reflect(-worldViewDir, worldNormal);
+                float3 lightColor = _LightColor0.rgb * attenuation;
+                float3 specular = specularTint.rgb * lightColor * pow(DotClamped(halfVector, worldNormal), _Smoothness * 100);
+                float3 diffuse = lightColor * DotClamped(lightDir, worldNormal);
+                diffuse += 1.5*max(0, ShadeSH9(float4(worldNormal, 1)));
+                diffuse *= albedo;
 
-                // Diffuse lighting
-                fixed4 diff = _LightColor0 * saturate(dot(worldNormal, _WorldSpaceLightPos0.xyz));
+                float4 color = float4(diffuse + specular, 1); 
 
-                // Ambient lighting
-                diff.rgb += ShadeSH9(half4(worldNormal,1));
-
-                // Specular lighting
-                float3 specular;
-                if (dot(worldNormal, lightDirection) < 0.0){
-                    // Light source on other side so no specular reflection  
-                    specular = float3(0.0, 0.0, 0.0); 
-                } else {
-                    specular = attenuation * _LightColor0.rgb * pow(max(0.0, dot(reflect(-lightDirection, worldNormal), worldViewDir)), _Shininess);
-                }
-
-                fixed4 color;
-                color.rgb = albedo * diff * occlusion;
                 return color;
             }
 
@@ -149,11 +144,11 @@ Shader "Unlit/WorldSpaceTexture"
             Blend One One
  
             CGPROGRAM
-            #pragma vertex vert  
-            #pragma fragment frag 
- 
-            #include "UnityCG.cginc"
-            #include "UnityLightingCommon.cginc"
+            #pragma vertex vert
+            #pragma fragment frag
+
+            #include "UnityStandardBRDF.cginc"
+			#include "UnityStandardUtils.cginc"
 
             struct appdata
             {
@@ -183,8 +178,10 @@ Shader "Unlit/WorldSpaceTexture"
             float _Parallax;
             float _Scale;
             float _Shininess;
- 
-            v2f vert(appdata v) 
+            float _Metallic;
+            float _Smoothness;
+
+            v2f vert (appdata v)
             {
                 v2f o;
                 o.pos = UnityObjectToClipPos(v.vertex);
@@ -199,19 +196,17 @@ Shader "Unlit/WorldSpaceTexture"
                 o.tspace0 = half3(worldTangent.x, worldBitangent.x, worldNormal.x);
                 o.tspace1 = half3(worldTangent.y, worldBitangent.y, worldNormal.y);
                 o.tspace2 = half3(worldTangent.z, worldBitangent.z, worldNormal.z);
- 
+
                 return o;
             }
- 
+
             fixed4 frag (v2f i) : SV_Target
             {
                 float2 uv;
                 float3 normal = i.worldNormal;
-                half3 worldViewDir = normalize(UnityWorldSpaceViewDir(i.worldPos));
-                float3 lightDirection;
-                float attenuation;
-        
-                // Determine which side the texture is on
+                //half3 worldViewDir = normalize(UnityWorldSpaceViewDir(i.worldPos));
+    
+                // Determine which side of the wall the texture is on
                 if (abs(normal.x)>0.5) {
                     // side of wall
                     uv = i.worldPos.yz;
@@ -223,40 +218,42 @@ Shader "Unlit/WorldSpaceTexture"
                     uv = i.worldPos.xz;
                 }
 
-                // Get direction of point light
-                float3 vertexToLightSource = _WorldSpaceLightPos0.xyz - i.worldPos.xyz;
-                float distance = length(vertexToLightSource);
-                attenuation = 1.0 / distance;
-                lightDirection = normalize(vertexToLightSource);
+                /* LIGHTING */
 
-                // Normal mapping
+                // Normal map
+                // sample the normal map, and decode from the Unity encoding
                 half3 tnormal = UnpackNormal(tex2D(_BumpMap, uv * _Scale));
+                // transform normal from tangent to world space
                 half3 worldNormal;
                 worldNormal.x = dot(i.tspace0, tnormal);
                 worldNormal.y = dot(i.tspace1, tnormal);
                 worldNormal.z = dot(i.tspace2, tnormal);
                 worldNormal = lerp(worldNormal, float3(1,1,1), -_BumpScale + 1);
-                normalize(worldNormal);
 
-                half3 worldReflection = reflect(-worldViewDir, worldNormal);
+                float3 lightDir = normalize(_WorldSpaceLightPos0.xyz - i.worldPos);
+                float3 viewDir = normalize(_WorldSpaceCameraPos - i.worldPos);
+                float3 halfVector = normalize(lightDir + viewDir);
 
-                // Diffuse lighting
-                fixed4 diff = attenuation *_LightColor0 * max(0, dot(worldNormal, _WorldSpaceLightPos0.xyz));
+                float3 lightVector = _WorldSpaceLightPos0.xyz - i.worldPos;
+	            float attenuation = 1 / (1 + dot(lightVector, lightVector));
 
-                float3 specular;
-                if (dot(worldNormal, lightDirection) < 0.0){
-                    // Light source on other side so no specular reflection  
-                    specular = float3(0.0, 0.0, 0.0); 
-                } else {
-                    specular = attenuation * _LightColor0.rgb * pow(max(0.0, dot(reflect(-lightDirection, worldNormal), worldViewDir)), _Shininess);
-                }
+                float3 albedo = tex2D(_MainTex, uv * _Scale).rgb;
+                float oneMinusReflectivity;
+                float3 specularTint;
+				albedo = DiffuseAndSpecularFromMetallic(albedo, _Metallic, specularTint, oneMinusReflectivity);
 
-                fixed4 color;
-                color.rgb = diff;
+                float3 lightColor = _LightColor0.rgb * attenuation;
+                float3 specular = specularTint.rgb * lightColor * pow(DotClamped(halfVector, worldNormal), _Smoothness * 100);
+                float3 diffuse = lightColor * DotClamped(lightDir, worldNormal);
+                diffuse += 1.5*max(0, ShadeSH9(float4(worldNormal, 1)));
+                diffuse *= albedo;
+
+                float4 color = float4(diffuse + specular, 1); 
+
                 return color;
-         }
- 
-         ENDCG
+            }
+
+            ENDCG
         }
     }
     Fallback "Specular"
