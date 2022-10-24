@@ -1,5 +1,5 @@
-// Implementation inspired by https://www.blog.radiator.debacle.us/2012/01/joys-of-using-world-space-procedural.html, https://docs.unity3d.com/530/Documentation/Manual/SL-VertexFragmentShaderExamples.html
-// and https://en.wikibooks.org/wiki/Cg_Programming/Unity/Smooth_Specular_Highlights
+// World space texture conversion code inspired by https://www.blog.radiator.debacle.us/2012/01/joys-of-using-world-space-procedural.html
+// Texture mapping & lighting code inspired by https://docs.unity3d.com/Manual/SL-VertexFragmentShaderExamples.html and https://en.wikibooks.org/wiki/Cg_Programming/Unity/Smooth_Specular_Highlights
 
 Shader "Unlit/WorldSpaceTextureShader"
 {
