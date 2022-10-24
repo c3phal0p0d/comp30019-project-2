@@ -11,9 +11,9 @@ Shader "Unlit/Dissolve"
         _Smoothness ("Smoothness", Range(0, 1)) = 0.5
         _OcclusionMap("Occlusion", 2D) = "white" {}
         _BumpMap("Normal Map", 2D) = "bump" {}
+        _BumpScale ("Depth", Range(-1,3)) = 0.0
         _NoiseTex("Noise Texture", 2D) = "white" {}
         _DissolveSpeed("Dissolve Speed", float) = 1.0
-        _FadeSpeed("Fade Speed", float) = 1.0
         _DissolveColor1("Dissolve Color 1", Color) = (1, 1, 1, 1)
 		_DissolveColor2("Dissolve Color 2", Color) = (1, 1, 1, 1)
 		_ColorThreshold1("Color Threshold 1", float) = 1.0
@@ -68,9 +68,9 @@ Shader "Unlit/Dissolve"
             float _Smoothness;
             sampler2D _OcclusionMap;
             sampler2D _BumpMap;
+            float _BumpScale;
             sampler2D _NoiseTex;
             float _DissolveSpeed;
-            float _FadeSpeed;
             float4 _DissolveColor1;
 			float4 _DissolveColor2;
             float _ColorThreshold1;
@@ -101,16 +101,14 @@ Shader "Unlit/Dissolve"
             float4 frag (v2f i) : SV_Target
             {
                 /* LIGHTING */
-                i.normal = normalize(i.normal);
-
                 // Normal map
-                // sample the normal map, and decode from the Unity encoding
                 half3 tnormal = UnpackNormal(tex2D(_BumpMap, i.uv));
                 // transform normal from tangent to world space
                 half3 worldNormal;
                 worldNormal.x = dot(i.tspace0, tnormal);
                 worldNormal.y = dot(i.tspace1, tnormal);
                 worldNormal.z = dot(i.tspace2, tnormal);
+                worldNormal = lerp(worldNormal, float3(1,1,1), -_BumpScale + 1);
 
                 float3 lightDir = normalize(_WorldSpaceLightPos0.xyz - i.worldPos);
                 float3 viewDir = normalize(_WorldSpaceCameraPos - i.worldPos);
@@ -132,6 +130,7 @@ Shader "Unlit/Dissolve"
 
                 float4 color = float4(diffuse + specular, 1); 
 
+
                 /* DISSOLVE EFFECT */
                 // sample noise texture
                 float noiseSample = tex2Dlod(_NoiseTex, float4(i.uv.xy, 0, 0));
@@ -147,9 +146,6 @@ Shader "Unlit/Dissolve"
 
                 float threshold = _Time * _DissolveSpeed;
                 clip(noiseSample - threshold);
-
-                // fade
-                color.a -= saturate(_Time * _FadeSpeed);
                  
                 return color;
             }
@@ -199,9 +195,9 @@ Shader "Unlit/Dissolve"
             float _Smoothness;
             sampler2D _OcclusionMap;
             sampler2D _BumpMap;
+            float _BumpScale;
             sampler2D _NoiseTex;
             float _DissolveSpeed;
-            float _FadeSpeed;
             float4 _DissolveColor1;
 			float4 _DissolveColor2;
             float _ColorThreshold1;
@@ -242,6 +238,7 @@ Shader "Unlit/Dissolve"
                 worldNormal.x = dot(i.tspace0, tnormal);
                 worldNormal.y = dot(i.tspace1, tnormal);
                 worldNormal.z = dot(i.tspace2, tnormal);
+                worldNormal = lerp(worldNormal, float3(1,1,1), -_BumpScale + 1);
 
                 float3 lightDir = normalize(_WorldSpaceLightPos0.xyz - i.worldPos);
                 float3 viewDir = normalize(_WorldSpaceCameraPos - i.worldPos);
@@ -263,6 +260,7 @@ Shader "Unlit/Dissolve"
 
                 float4 color = float4(diffuse + specular, 1); 
 
+
                 /* DISSOLVE EFFECT */
                 // sample noise texture
                 float noiseSample = tex2Dlod(_NoiseTex, float4(i.uv.xy, 0, 0));
@@ -278,13 +276,41 @@ Shader "Unlit/Dissolve"
 
                 float threshold = _Time * _DissolveSpeed;
                 clip(noiseSample - threshold);
-
-                // fade
-                color.a -= saturate(_Time * _FadeSpeed);
                 
                 return color;
             }
             ENDCG
 		}
+
+        // pass for shadow casting
+        Pass
+        {
+            Tags {"LightMode"="ShadowCaster"}
+
+            CGPROGRAM
+
+            #pragma vertex vert
+            #pragma fragment frag
+            #pragma multi_compile_shadowcaster
+
+            #include "UnityCG.cginc"
+
+            struct v2f { 
+                V2F_SHADOW_CASTER;
+            };
+
+            v2f vert(appdata_base v)
+            {
+                v2f o;
+                TRANSFER_SHADOW_CASTER_NORMALOFFSET(o)
+                return o;
+            }
+
+            float4 frag(v2f i) : SV_Target
+            {
+                SHADOW_CASTER_FRAGMENT(i)
+            }
+            ENDCG
+        }
     }
 }

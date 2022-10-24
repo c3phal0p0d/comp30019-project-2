@@ -48,9 +48,12 @@ Shader "Unlit/WorldSpaceTexture"
                 float4 pos : SV_POSITION;
                 float4 worldPos : TEXCOORD0;
                 float3 worldNormal : TEXCOORD1;
+
+                // Vectors that will hold a 3x3 rotation matrix that transforms from tangent to world space
                 half3 tspace0 : TEXCOORD2;
                 half3 tspace1 : TEXCOORD3;
                 half3 tspace2 : TEXCOORD4;
+
                 SHADOW_COORDS(5)
             };
 
@@ -175,9 +178,12 @@ Shader "Unlit/WorldSpaceTexture"
                 float4 pos : SV_POSITION;
                 float4 worldPos : TEXCOORD0;
                 float3 worldNormal : TEXCOORD1;
+
+                // Vectors that will hold a 3x3 rotation matrix that transforms from tangent to world space
                 half3 tspace0 : TEXCOORD2;
                 half3 tspace1 : TEXCOORD3;
                 half3 tspace2 : TEXCOORD4;
+                
                 SHADOW_COORDS(5)
             };
 
