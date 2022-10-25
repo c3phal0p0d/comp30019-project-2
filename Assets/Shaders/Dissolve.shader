@@ -19,6 +19,7 @@ Shader "Unlit/Dissolve"
 		_ColorThreshold1("Color Threshold 1", float) = 1.0
 		_ColorThreshold2("Color Threshold 2", float) = 1.0
         _StartTime("Start Time", float) = 1.0
+        _ElapsedTime("Elapsed Time", float) = 0.0
     }
 
     SubShader
@@ -76,6 +77,7 @@ Shader "Unlit/Dissolve"
             float _ColorThreshold1;
 			float _ColorThreshold2;
             float _StartTime;
+            float _ElapsedTime;
 
             v2f vert (appdata v)
             {
@@ -101,6 +103,7 @@ Shader "Unlit/Dissolve"
             float4 frag (v2f i) : SV_Target
             {
                 /* LIGHTING */
+                /*
                 // Normal map
                 half3 tnormal = UnpackNormal(tex2D(_BumpMap, i.uv));
                 // transform normal from tangent to world space
@@ -125,26 +128,29 @@ Shader "Unlit/Dissolve"
                 float3 lightColor = _LightColor0.rgb * attenuation;
                 float3 specular = specularTint.rgb * lightColor * pow(DotClamped(halfVector, worldNormal), _Smoothness * 100);
                 float3 diffuse = lightColor * DotClamped(lightDir, worldNormal);
+                fixed occlusion = tex2D(_OcclusionMap, i.uv).r;
                 diffuse += 1.5*max(0, ShadeSH9(float4(worldNormal, 1)));
                 diffuse *= albedo;
+                diffuse *= occlusion;
 
                 float4 color = float4(diffuse + specular, 1); 
-
+                */
+                float4 color = _DissolveColor2;
 
                 /* DISSOLVE EFFECT */
                 // sample noise texture
                 float noiseSample = tex2Dlod(_NoiseTex, float4(i.uv.xy, 0, 0));
 
                 // dissolve colors
-                float threshold2 = _Time * _ColorThreshold2 - _StartTime;
+                float threshold2 = _ElapsedTime * _ColorThreshold2 - _StartTime;
 				float useDissolve2 = noiseSample - threshold2 < 0;
 				color = (1-useDissolve2)*color + useDissolve2*_DissolveColor2;
 
-                float threshold1 = _Time * _ColorThreshold1 - _StartTime;
+                float threshold1 = _ElapsedTime * _ColorThreshold1 - _StartTime;
 				float useDissolve1 = noiseSample - threshold1 < 0;
 				color = (1-useDissolve1)*color + useDissolve1*_DissolveColor1;
 
-                float threshold = _Time * _DissolveSpeed;
+                float threshold = _ElapsedTime * _DissolveSpeed;
                 clip(noiseSample - threshold);
                  
                 return color;
@@ -203,6 +209,7 @@ Shader "Unlit/Dissolve"
             float _ColorThreshold1;
 			float _ColorThreshold2;
             float _StartTime;
+            float _ElapsedTime;
 
             v2f vert (appdata v)
             {
@@ -228,6 +235,7 @@ Shader "Unlit/Dissolve"
             float4 frag (v2f i) : SV_Target
             {
                 /* LIGHTING */
+                /*
                 i.normal = normalize(i.normal);
 
                 // Normal map
@@ -259,22 +267,23 @@ Shader "Unlit/Dissolve"
                 diffuse *= albedo;
 
                 float4 color = float4(diffuse + specular, 1); 
-
+                */
+                float4 color = _DissolveColor2;
 
                 /* DISSOLVE EFFECT */
                 // sample noise texture
                 float noiseSample = tex2Dlod(_NoiseTex, float4(i.uv.xy, 0, 0));
 
                 // dissolve colors
-                float threshold2 = _Time * _ColorThreshold2 - _StartTime;
+                float threshold2 = _ElapsedTime * _ColorThreshold2 - _StartTime;
 				float useDissolve2 = noiseSample - threshold2 < 0;
 				color = (1-useDissolve2)*color + useDissolve2*_DissolveColor2;
 
-                float threshold1 = _Time * _ColorThreshold1 - _StartTime;
+                float threshold1 = _ElapsedTime * _ColorThreshold1 - _StartTime;
 				float useDissolve1 = noiseSample - threshold1 < 0;
 				color = (1-useDissolve1)*color + useDissolve1*_DissolveColor1;
 
-                float threshold = _Time * _DissolveSpeed;
+                float threshold = _ElapsedTime * _DissolveSpeed;
                 clip(noiseSample - threshold);
                 
                 return color;

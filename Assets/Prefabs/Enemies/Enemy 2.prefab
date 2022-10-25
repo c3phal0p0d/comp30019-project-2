@@ -220,7 +220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98e89026cbadad74ba5e8b81427ab324, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialHealth: 10
+  initialHealth: 2
   enemyNumber: 2
   isHit: 0
   isDead: 0
@@ -303,6 +303,14 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 1962108098383283143}
     m_Modifications:
+    - target: {fileID: 596840329942609535, guid: 9ff8044119c194b058e43684e83fa060, type: 3}
+      propertyPath: dissolveMaterial.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 596840329942609535, guid: 9ff8044119c194b058e43684e83fa060, type: 3}
+      propertyPath: dissolveMaterial.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d929cd11e1ad849559d458a14868bce3, type: 2}
     - target: {fileID: 6914477762587497714, guid: 9ff8044119c194b058e43684e83fa060, type: 3}
       propertyPath: m_RootOrder
       value: 1

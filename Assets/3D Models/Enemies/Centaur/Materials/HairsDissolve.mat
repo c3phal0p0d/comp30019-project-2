@@ -96,13 +96,15 @@ Material:
     m_Ints: []
     m_Floats:
     - _BumpScale: 1
-    - _ColorThreshold1: 40
-    - _ColorThreshold2: 60
+    - _ColorThreshold1: 20
+    - _ColorThreshold2: 0
     - _Cull: 0
+    - _CurrentTime: 49.48
     - _Cutoff: 0.37
     - _DetailNormalMapScale: 1
-    - _DissolveSpeed: 10
+    - _DissolveSpeed: 3
     - _DstBlend: 0
+    - _ElapsedTime: 0
     - _EmissionScaleUI: 0
     - _FadeSpeed: 1
     - _Glossiness: 0.522
