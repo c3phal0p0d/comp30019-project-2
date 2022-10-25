@@ -202,6 +202,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7343308081664565901}
   - component: {fileID: 7343308081650480035}
+  - component: {fileID: 330970863236758919}
   m_Layer: 0
   m_Name: Eyes
   m_TagString: Untagged
@@ -370,6 +371,19 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.000000028172508, y: 0.021894626, z: 0.0066478765}
     m_Extent: {x: 0.00371468, y: 0.0024880152, z: 0.002182112}
   m_DirtyAABB: 0
+--- !u!114 &330970863236758919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7343308081664147117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5f084b6adc12458f8836e7854589cdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dissolveMaterial: {fileID: 2100000, guid: e5515699baa3d454f86c4c35aaf70817, type: 2}
 --- !u!1 &7343308081664147119
 GameObject:
   m_ObjectHideFlags: 0
@@ -3011,6 +3025,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7343308081664566067}
   - component: {fileID: 7343308081650480033}
+  - component: {fileID: 5167097791980930169}
   m_Layer: 0
   m_Name: Rikayon
   m_TagString: Untagged
@@ -3179,6 +3194,19 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.0000002970919, y: 0.016686555, z: 0.005473268}
     m_Extent: {x: 0.019161448, y: 0.016793143, z: 0.01989597}
   m_DirtyAABB: 0
+--- !u!114 &5167097791980930169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7343308081664147283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5f084b6adc12458f8836e7854589cdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dissolveMaterial: {fileID: 2100000, guid: 68f0fe3d91c0d4c2a88fbeb872bb6a90, type: 2}
 --- !u!1 &7343308081664147285
 GameObject:
   m_ObjectHideFlags: 0

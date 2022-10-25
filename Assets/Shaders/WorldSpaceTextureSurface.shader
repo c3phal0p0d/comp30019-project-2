@@ -1,9 +1,9 @@
-Shader "Custom/WorldSpaceTextureShader"
+Shader "Custom/WorldSpaceTextureSurfaceShader"
 {
     Properties
     {
         _Color ("Color", Color) = (1,1,1,1)
-        _MainTex ("Albedo (RGB)", 2D) = "white" {}
+        _MainTex ("Albedo", 2D) = "white" {}
         _BumpMap ("Normal", 2D) = "white" {}
         _BumpScale ("Depth", Range(-1,3)) = 0.0
         _ParallaxMap ("Height", 2D) = "white" {}
@@ -22,7 +22,6 @@ Shader "Custom/WorldSpaceTextureShader"
 
         sampler2D _MainTex;
         sampler2D _BumpMap;
-        sampler2D _MetallicGlossMap;
         sampler2D _ParallaxMap;
         sampler2D _OcclusionMap;
         float _Parallax;
@@ -65,7 +64,6 @@ Shader "Custom/WorldSpaceTextureShader"
             fixed4 c = tex2D(_MainTex, UV * _Scale + offset);
             fixed3 ao = tex2D(_OcclusionMap, UV * _Scale);
             fixed3 n = UnpackNormal(tex2D(_BumpMap, UV * _Scale));
-            fixed3 m = tex2D(_MetallicGlossMap, UV * _Scale);
 
             o.Albedo = c.rgb * ao.rgb * _Color.rgb;
             o.Normal = lerp(n, float3(1,1,1), -_BumpScale + 1);

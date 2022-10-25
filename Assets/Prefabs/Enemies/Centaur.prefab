@@ -1543,6 +1543,7 @@ GameObject:
   m_Component:
   - component: {fileID: 417746}
   - component: {fileID: 13758932}
+  - component: {fileID: 320731293163332255}
   m_Layer: 0
   m_Name: Centaur_Armor
   m_TagString: Untagged
@@ -1712,6 +1713,19 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.029566795, y: 0.5981014, z: -0.08241771}
     m_Extent: {x: 0.40204588, y: 0.4027342, z: 0.45337337}
   m_DirtyAABB: 0
+--- !u!114 &320731293163332255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 135616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5f084b6adc12458f8836e7854589cdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dissolveMaterial: {fileID: 2100000, guid: d929cd11e1ad849559d458a14868bce3, type: 2}
 --- !u!1 &135620
 GameObject:
   m_ObjectHideFlags: 0
