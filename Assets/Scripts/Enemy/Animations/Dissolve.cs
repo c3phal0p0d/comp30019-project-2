@@ -25,7 +25,6 @@ public class Dissolve : StateMachineBehaviour
     {
         // Play dissolve effect during death animation
         meshMaterialAccesors = animator.GetComponentsInChildren<AccessMeshMaterial>();
-        Debug.Log(stateInfo.normalizedTime);
         foreach (AccessMeshMaterial meshMaterialAccesor in meshMaterialAccesors){
             meshMaterialAccesor.UpdateDissolve((stateInfo.normalizedTime%1)*stateInfo.length*dissolveSpeedMultiplier);
         }
