@@ -18,12 +18,12 @@ Shader "Unlit/Dissolve"
 
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
+        Tags { "Queue" = "Transparent" }
         LOD 100
 
         Pass
         {
-            Tags {"LightMode" = "ForwardBase"}
+            Blend SrcAlpha OneMinusSrcAlpha
 
             CGPROGRAM
 
@@ -32,28 +32,19 @@ Shader "Unlit/Dissolve"
             #pragma vertex vert
             #pragma fragment frag
 
-            #include "UnityStandardBRDF.cginc"
-			#include "UnityStandardUtils.cginc"
+            #include "UnityCG.cginc"
 
             struct appdata
             {
                 float4 vertex : POSITION;
                 float2 uv : TEXCOORD0;
-                float4 normal: NORMAL;
-                float4 tangent : TANGENT;
             };
 
             struct v2f
             {
                 float4 vertex : SV_POSITION;
                 float2 uv : TEXCOORD0;
-                float3 normal : TEXCOORD1;
                 float3 worldPos : TEXCOORD2;
-
-                // Vectors that will hold a 3x3 rotation matrix that transforms from tangent to world space
-                half3 tspace0 : TEXCOORD3;
-                half3 tspace1 : TEXCOORD4;
-                half3 tspace2 : TEXCOORD5;
             };
 
             float4 _Color;
@@ -74,17 +65,6 @@ Shader "Unlit/Dissolve"
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
                 o.worldPos = mul(unity_ObjectToWorld, v.vertex);
-                o.normal = UnityObjectToWorldNormal(v.normal);
-                half3 tangent = UnityObjectToWorldDir(v.tangent.xyz);
-
-                // compute bitangent from cross product of normal and tangent
-                half tangentSign = v.tangent.w * unity_WorldTransformParams.w;
-                half3 bitangent = cross(o.normal, tangent) * tangentSign;
-
-                // output the tangent space matrix
-                o.tspace0 = half3(tangent.x, bitangent.x, v.normal.x);
-                o.tspace1 = half3(tangent.y, bitangent.y, v.normal.y);
-                o.tspace2 = half3(tangent.z, bitangent.z, v.normal.z);
 
                 return o;
             }

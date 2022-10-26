@@ -32,6 +32,9 @@ public class EnemyHealth : BarStat
 
     public override void Increment(float amount)
     {   
+        if (isDead){    // Prevent enemy from taking further damage if already dead
+            return;
+        }
         string animationTrigger = "";
         if (amount<0){
             // Pause enemy forward movement while animation is playing 

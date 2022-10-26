@@ -24,6 +24,7 @@ public class RaycastAttack : MonoBehaviour
             if (hitObject.CompareTag(targetTag))
             {
                 StartCoroutine(DealDamage(hitObject));
+                
             }
         }
     }

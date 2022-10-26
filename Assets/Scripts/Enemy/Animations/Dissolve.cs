@@ -13,6 +13,7 @@ public class Dissolve : StateMachineBehaviour
     {
         // Disable empty health bar
         animator.gameObject.transform.GetChild(0).gameObject.SetActive(false);
+        animator.GetComponent<EnemyHealth>().isDead = true;
 
         // Change to dissolve materials
         meshMaterialAccesors = animator.GetComponentsInChildren<AccessMeshMaterial>();
