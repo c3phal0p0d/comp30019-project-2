@@ -11,6 +11,8 @@ public class PlayerDeath : MonoBehaviour
     private float startDistance;
     [SerializeField]
     private float endDistance;
+    [SerializeField]
+    private Canvas deathMessage;
 
     private float timer;
 
@@ -27,6 +29,7 @@ public class PlayerDeath : MonoBehaviour
         if (timer < 0)
         {
             timer = 0;
+            deathMessage.enabled = true;
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
