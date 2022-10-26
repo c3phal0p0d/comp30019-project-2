@@ -18,7 +18,7 @@ public class PlayerAttack : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z)){
+        if (Input.GetMouseButtonDown(0)){
             caster.Cast(strengthStat.Value);
             swordAnimator.SetTrigger("Attack");
             FindObjectOfType<AudioManager>().Play("WeaponAttack");
