@@ -31,7 +31,6 @@ public class EnemyController : MonoBehaviour
             {
 
                 agent.SetDestination(target.position);
-                animator.SetBool("Move", false);
             }
 
         } else {
