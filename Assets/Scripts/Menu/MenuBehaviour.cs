@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
 public class MenuBehaviour : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -29,11 +30,14 @@ public class MenuBehaviour : MonoBehaviour
         FindObjectOfType<AudioManager>().Play("ButtonClick");
     }
 
-    public void NewGame()
+    public void GoToDifficultySelection()
     {
         canvas.SetActive(false);
         MoveCamera.setCameraSpeed(10);
+    }
 
+    public void NewGame(){
+        SceneManager.LoadScene("Scenes/Gameplay");
     }
     
     public float setCameraSpeed()
