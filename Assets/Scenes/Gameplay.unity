@@ -20,13 +20,13 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.21698111, g: 0.08662207, b: 0.0010234982, a: 1}
-  m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
-  m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
+  m_AmbientSkyColor: {r: 0.3490566, g: 0.21364805, b: 0.10702208, a: 1}
+  m_AmbientEquatorColor: {r: 0.627451, g: 0.5077309, b: 0.41960785, a: 1}
+  m_AmbientGroundColor: {r: 0.2830189, g: 0.13776623, b: 0.044054832, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 291cdc50ea7f24116a9fbb083796651e, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44193244, g: 0.4837286, b: 0.53221977, a: 1}
+  m_IndirectSpecularColor: {r: 0.27956098, g: 0.24164248, b: 0.19523162, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -173,6 +173,14 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6456609882170661988, guid: 3e8cbafce405748c4a96f8be47906a75, type: 3}
+      propertyPath: isGame
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6456609882605954505, guid: 3e8cbafce405748c4a96f8be47906a75, type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6456609882737518724, guid: 3e8cbafce405748c4a96f8be47906a75, type: 3}
       propertyPath: m_Name
       value: Player
@@ -220,14 +228,6 @@ PrefabInstance:
     - target: {fileID: 6456609882737518727, guid: 3e8cbafce405748c4a96f8be47906a75, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6456609882737518729, guid: 3e8cbafce405748c4a96f8be47906a75, type: 3}
-      propertyPath: walkSpeedScale
-      value: 0.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6456609883347996686, guid: 3e8cbafce405748c4a96f8be47906a75, type: 3}
-      propertyPath: m_CullingMask.m_Bits
-      value: 511
       objectReference: {fileID: 0}
     - target: {fileID: 8319287314956452010, guid: 3e8cbafce405748c4a96f8be47906a75, type: 3}
       propertyPath: deathObject
@@ -311,10 +311,6 @@ PrefabInstance:
       propertyPath: health
       value: 
       objectReference: {fileID: 1199234225}
-    - target: {fileID: 8642817601435216447, guid: 5f9f8c067783e19468cd27e3d3cf09bf, type: 3}
-      propertyPath: initialTimer
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f9f8c067783e19468cd27e3d3cf09bf, type: 3}
@@ -331,9 +327,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 581613229}
     - target: {fileID: 7101157739206010136, guid: 382dd6da2692f3043a4a20374d096499, type: 3}
-      propertyPath: enemyDensity
-      value: 1
-      objectReference: {fileID: 0}
+      propertyPath: brickMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 77febcaa355d74e3d8eb4ec6a0c08d3b, type: 2}
     - target: {fileID: 7101157739206010138, guid: 382dd6da2692f3043a4a20374d096499, type: 3}
       propertyPath: m_RootOrder
       value: 0

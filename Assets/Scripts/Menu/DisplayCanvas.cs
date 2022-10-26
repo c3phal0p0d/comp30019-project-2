@@ -18,7 +18,7 @@ public class DisplayCanvas : MonoBehaviour
     }
     void Update()
     {
-        if (difficultyCamera.transform.position.x <= 16)
+        if (difficultyCamera.transform.position.x <= 10)
         {
             difficultySelection.enabled = true;
         }

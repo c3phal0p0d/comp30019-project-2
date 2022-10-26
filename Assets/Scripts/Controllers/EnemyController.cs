@@ -31,8 +31,11 @@ public class EnemyController : MonoBehaviour
             {
 
                 agent.SetDestination(target.position);
+                animator.SetBool("Move", false);
             }
 
+        } else {
+            animator.SetBool("Move", false);
         }
 
         if (Vector3.Distance(transform.position, lastKnownPosition) <= agent.stoppingDistance)

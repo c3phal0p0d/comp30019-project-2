@@ -44,9 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c49936493ac84acf9fcf331a3bfe0ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGame: 1
   sounds:
   - clip: {fileID: 8300000, guid: 7fc38df48c9cd44cead612b3a0065f1d, type: 3}
-    volume: 0.5
+    volume: 0.2
     name: WeaponAttack
     loop: 0
     source: {fileID: 0}
@@ -61,7 +62,7 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - clip: {fileID: 8300000, guid: b6d54004a0dd34a96b46e07a56b0fd23, type: 3}
-    volume: 0.5
+    volume: 0.3
     name: PlayerHit
     loop: 0
     source: {fileID: 0}
@@ -85,13 +86,28 @@ MonoBehaviour:
     name: Enemy4Hit
     loop: 0
     source: {fileID: 0}
-  - clip: {fileID: 8300000, guid: 3e3d96922c94a493e9803e57f7d428a7, type: 3}
+  - clip: {fileID: 8300000, guid: 6c53b44dd2d6140be86903b91c8ec2e1, type: 3}
     volume: 0.2
     name: CollectStatPickup
     loop: 0
     source: {fileID: 0}
-  - clip: {fileID: 8300000, guid: 2962c0a76041241959b1c53777014198, type: 3}
+  - clip: {fileID: 8300000, guid: 53a12e471a7c5482a9ebcee3be9649c8, type: 3}
     volume: 0.2
     name: CollectFoodPickup
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: ba4b48826475e4481a991070a94aeee0, type: 3}
+    volume: 0.1
+    name: ButtonClick
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: c5aef506494d840d6822d9c3de015f27, type: 3}
+    volume: 0.3
+    name: ButtonHover
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: aed38722197d84f11a2beab566a7df08, type: 3}
+    volume: 0.2
+    name: Lose
     loop: 0
     source: {fileID: 0}

@@ -171,7 +171,7 @@ Transform:
   - {fileID: 4057458053091239494}
   - {fileID: 6748177097664017960}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!195 &4057458054345064267
 NavMeshAgent:
@@ -183,7 +183,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 2
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -220,8 +220,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98e89026cbadad74ba5e8b81427ab324, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialHealth: 10
+  initialHealth: 2
   enemyNumber: 1
+  isHit: 0
+  isDead: 0
 --- !u!114 &4057458054345064260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,7 +257,7 @@ MonoBehaviour:
   distance: 20
   speed: 20
   size: 0.4
-  cooldown: 2.5
+  cooldown: 5
   projectile: {fileID: 3168523829568367557, guid: 264b689cfbb6d4da8aab635f3516003a, type: 3}
   origin: {fileID: 4057458053091239495}
   shootDelay: 1.1
@@ -301,13 +303,33 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 4057458054345064266}
     m_Modifications:
+    - target: {fileID: 330970863236758919, guid: d28d94bda63b845fd9ed2295b0cd6594, type: 3}
+      propertyPath: dissolveDuration
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 330970863236758919, guid: d28d94bda63b845fd9ed2295b0cd6594, type: 3}
+      propertyPath: dissolveMaterial.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 330970863236758919, guid: d28d94bda63b845fd9ed2295b0cd6594, type: 3}
+      propertyPath: dissolveMaterial.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e5515699baa3d454f86c4c35aaf70817, type: 2}
+    - target: {fileID: 5167097791980930169, guid: d28d94bda63b845fd9ed2295b0cd6594, type: 3}
+      propertyPath: dissolveDuration
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5167097791980930169, guid: d28d94bda63b845fd9ed2295b0cd6594, type: 3}
+      propertyPath: dissolveMaterial.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5167097791980930169, guid: d28d94bda63b845fd9ed2295b0cd6594, type: 3}
+      propertyPath: dissolveMaterial.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 68f0fe3d91c0d4c2a88fbeb872bb6a90, type: 2}
     - target: {fileID: 7343308081664147277, guid: d28d94bda63b845fd9ed2295b0cd6594, type: 3}
       propertyPath: m_Name
       value: Crab Monster
-      objectReference: {fileID: 0}
-    - target: {fileID: 7343308081664147277, guid: d28d94bda63b845fd9ed2295b0cd6594, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7343308081664566061, guid: d28d94bda63b845fd9ed2295b0cd6594, type: 3}
       propertyPath: m_RootOrder

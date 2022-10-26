@@ -5,6 +5,8 @@ using System;
 public class AudioManager : MonoBehaviour
 {
     [SerializeField]
+    private bool isGame;
+    [SerializeField]
     private Sound[] sounds;
 
     void Awake()
@@ -19,7 +21,9 @@ public class AudioManager : MonoBehaviour
     }
 
     void Start(){
-        Play("BackgroundMusic");
+        if (isGame){
+            Play("BackgroundMusic");
+        }
     }
 
     public void Play(string name){

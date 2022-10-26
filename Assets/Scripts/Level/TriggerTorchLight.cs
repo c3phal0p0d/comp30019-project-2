@@ -4,28 +4,28 @@ using UnityEngine;
 
 public class TriggerTorchLight : MonoBehaviour
 {   
-    ParticleSystem flame;
-    Light light;
+    [SerializeField]
+    private GameObject flame;
+    [SerializeField]
+    private GameObject light;
 
     void Awake()
     {
-        flame = GetComponentInChildren(typeof(ParticleSystem)) as ParticleSystem;
-        light = GetComponentInChildren(typeof(Light)) as Light;
-        flame.enableEmission = false;
-        light.enabled = false;
+        flame.SetActive(false);
+        light.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other){
         if (other.tag == "Player") {
-            flame.enableEmission = true;
-            light.enabled = true;
+            flame.SetActive(true);
+            light.SetActive(true);
         }
     }
 
     private void OnTriggerExit(Collider other){
         if (other.tag == "Player") {
-            flame.enableEmission = false;
-            light.enabled = false;
+            flame.SetActive(false);
+            light.SetActive(false);
         }
     }
 
