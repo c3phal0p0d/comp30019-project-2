@@ -8,15 +8,17 @@ public class MenuBehaviour : MonoBehaviour
     public string difficultySelectionScene;
     public GameObject canvas;
     public Camera mainCamera;
+
+    [SerializeField]
+    private Canvas gameplayInstructions;
+    [SerializeField]
+    private Canvas controlsInfo;
+    [SerializeField]
+    private Canvas mainMenu;
+
     void Start()
     {
         mainCamera = Camera.main;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     public void PlayButtonHoverSound(){
@@ -27,25 +29,37 @@ public class MenuBehaviour : MonoBehaviour
         FindObjectOfType<AudioManager>().Play("ButtonClick");
     }
 
-    public void newGame()
+    public void NewGame()
     {
         canvas.SetActive(false);
         MoveCamera.setCameraSpeed(10);
 
     }
     
-
     public float setCameraSpeed()
     {
         return 10;
     }
 
-    public void options()
+    public void DisplayInstructions()
     {
-
+        gameplayInstructions.enabled = true;
+        controlsInfo.enabled = false;
+        mainMenu.enabled = false;
     }
 
-    public void quitGame()
+    public void DisplayControls(){
+        gameplayInstructions.enabled = false;
+        controlsInfo.enabled = true;
+    }
+
+    public void ExitToMenu(){
+        gameplayInstructions.enabled = false;
+        controlsInfo.enabled = false;
+        mainMenu.enabled = true;
+    }
+
+    public void QuitGame()
     {
 
         Application.Quit();

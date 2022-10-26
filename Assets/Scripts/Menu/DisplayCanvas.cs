@@ -10,7 +10,6 @@ public class DisplayCanvas : MonoBehaviour
     private Canvas difficultySelection;
 
 
-
     void Start()
     {
         difficultySelection = GetComponent<Canvas>();
