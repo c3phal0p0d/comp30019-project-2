@@ -350,12 +350,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5301202638905384141, guid: 8f2846fe3d0de48a790d3df25c037cc3, type: 3}
-      propertyPath: sounds.Array.data[1].loop
-      value: 1
+      propertyPath: isGame
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5301202638905384141, guid: 8f2846fe3d0de48a790d3df25c037cc3, type: 3}
-      propertyPath: sounds.Array.data[11].volume
-      value: 0.3
+      propertyPath: sounds.Array.data[13].loop
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
