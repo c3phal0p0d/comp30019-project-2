@@ -21,17 +21,23 @@ public class RaycastAttack : MonoBehaviour
         foreach (RaycastHit hit in hits)
         {
             GameObject hitObject = hit.transform.gameObject;
-            if (hitObject.CompareTag(targetTag)){
+            if (hitObject.CompareTag(targetTag))
+            {
                 StartCoroutine(DealDamage(hitObject));
             }
         }
     }
 
-    IEnumerator DealDamage(GameObject hitObject){
+    IEnumerator DealDamage(GameObject hitObject)
+    {
         // Wait for player attack animation to finish playing before dealing damage to enemy
         yield return new WaitForSeconds(damageDelay);
 
         // Deal damage
-        hitObject.GetComponentInParent<BarStat>().Increment(-1);
+        if (hitObject != null)
+        {
+            hitObject.GetComponentInParent<BarStat>().Increment(-1);
+        }
+
     }
 }
