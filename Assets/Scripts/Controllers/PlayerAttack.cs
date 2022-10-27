@@ -11,7 +11,6 @@ public class PlayerAttack : MonoBehaviour
 
     [SerializeField] private float attackCooldown = 1.5f;
     private float cooldown;
-    private float damageDelay = 1.1f;
 
     private bool canAttack = false;
 
@@ -33,13 +32,12 @@ public class PlayerAttack : MonoBehaviour
             canAttack = true;
         }
 
-        if (canAttack && cooldown < attackCooldown - damageDelay)
+        if (canAttack && cooldown < attackCooldown)
         {
             swordAnimator.SetTrigger("Attack");
             FindObjectOfType<AudioManager>().Play("WeaponAttack");
             caster.Cast(strengthStat.Value);
             canAttack = false;
-
 
         }
     }

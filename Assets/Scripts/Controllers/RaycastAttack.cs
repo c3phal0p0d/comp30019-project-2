@@ -13,6 +13,7 @@ public class RaycastAttack : MonoBehaviour
     [SerializeField]
     private GameObject ray;
     [SerializeField]
+    private float damageDelay = 1.1f;
 
 
     public void Cast(float damage)
@@ -24,23 +25,19 @@ public class RaycastAttack : MonoBehaviour
             GameObject hitObject = hit.transform.gameObject;
             if (hitObject.CompareTag(targetTag))
             {
-                hitObject.GetComponentInParent<BarStat>().Increment(-damage);
+                StartCoroutine(DealDamage(hitObject, damage));
             }
         }
     }
 
-    // IEnumerator DealDamage(GameObject hitObject, float damage)
-    // {
+    IEnumerator DealDamage(GameObject hitObject, float damage)
+    {
+        // Wait for player attack animation to finish playing before dealing damage to enemy
+        yield return new WaitForSeconds(damageDelay);
 
-
-    //     // Wait for player attack animation to finish playing before dealing damage to enemy
-    //     yield return new WaitForSeconds(damageDelay);
-
-    //     // Deal damage
-
-
-
-
-
-    // }
+        // Deal damage
+        if (hitObject!=null){
+            hitObject.GetComponentInParent<BarStat>().Increment(-damage);
+        }
+    }
 }
