@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class RaycastAttack : MonoBehaviour
 {
@@ -14,19 +15,25 @@ public class RaycastAttack : MonoBehaviour
     private GameObject ray;
     [SerializeField]
     private float damageDelay = 1.1f;
+    [SerializeField]
+    private LayerMask layerMask;
 
 
     public void Cast(float damage)
     {
 
-        RaycastHit[] hits = Physics.RaycastAll(ray.transform.position, ray.transform.forward, attackDistance);
-        foreach (RaycastHit hit in hits)
+        RaycastHit[] hits = Physics.RaycastAll(ray.transform.position, ray.transform.forward, attackDistance, layerMask);
+        foreach (RaycastHit hit in SortByDistance(hits))
         {
             GameObject hitObject = hit.transform.gameObject;
+            if (hitObject.CompareTag(selfTag))
+                continue;
             if (hitObject.CompareTag(targetTag))
             {
                 StartCoroutine(DealDamage(hitObject, damage));
             }
+            else
+                break;
         }
     }
 
@@ -39,5 +46,14 @@ public class RaycastAttack : MonoBehaviour
         if (hitObject!=null){
             hitObject.GetComponentInParent<BarStat>().Increment(-damage);
         }
+    }
+
+    private List<RaycastHit> SortByDistance(RaycastHit[] hits)
+    {
+        List<RaycastHit> sortedHits = new List<RaycastHit>(hits.Length);
+        foreach(RaycastHit hit in hits)
+            sortedHits.Add(hit);
+        sortedHits.Sort((hit1, hit2) => (int)Mathf.Sign(hit2.distance - hit1.distance));
+        return sortedHits;
     }
 }
