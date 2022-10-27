@@ -500,7 +500,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: PRESS SPACEBAR TO RESTART
+  m_text: PRESS SPACEBAR TO TRY AGAIN
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d44bb72c6c03a4dc1b4e6442da713fcf, type: 2}
   m_sharedMaterial: {fileID: -1479752315666207127, guid: d44bb72c6c03a4dc1b4e6442da713fcf, type: 2}
@@ -720,6 +720,22 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 749116350, guid: 5f9f8c067783e19468cd27e3d3cf09bf, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 749116350, guid: 5f9f8c067783e19468cd27e3d3cf09bf, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 749116350, guid: 5f9f8c067783e19468cd27e3d3cf09bf, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 749116350, guid: 5f9f8c067783e19468cd27e3d3cf09bf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
     - target: {fileID: 6478169425864814795, guid: 5f9f8c067783e19468cd27e3d3cf09bf, type: 3}
       propertyPath: stamina
       value: 
@@ -799,6 +815,10 @@ PrefabInstance:
       propertyPath: brickMaterial
       value: 
       objectReference: {fileID: 2100000, guid: 77febcaa355d74e3d8eb4ec6a0c08d3b, type: 2}
+    - target: {fileID: 7101157739206010136, guid: 382dd6da2692f3043a4a20374d096499, type: 3}
+      propertyPath: pickupDensity
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 7101157739206010138, guid: 382dd6da2692f3043a4a20374d096499, type: 3}
       propertyPath: m_RootOrder
       value: 0

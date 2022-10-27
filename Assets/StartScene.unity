@@ -4291,7 +4291,7 @@ MonoBehaviour:
   m_text: '<b><size=120%>MOVE:</size></b>   W, A, S, D KEYS
 
     <b><size=120%>JUMP:</size></b>  
-    SPACE BAR
+    SPACEBAR
 
     <b><size=120%>SPRINT:</size></b>   LEFT SHIFT KEY
 
