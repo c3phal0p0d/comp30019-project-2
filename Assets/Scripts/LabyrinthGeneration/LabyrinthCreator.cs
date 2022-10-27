@@ -18,7 +18,7 @@ public class LabyrinthCreator
     private readonly int max_tries;
 
     private List<Tuple<int, int>> sectionLocations;
-    private List<Tuple<Maze,MazeParameters>> mazeAndParametersList;
+    private List<Tuple<Maze, MazeParameters>> mazeAndParametersList;
 
     public LabyrinthCreator(LabyrinthSize sizes)
     {
@@ -35,7 +35,7 @@ public class LabyrinthCreator
         sectionLocations = new List<Tuple<int, int>>();
         mazeAndParametersList = new List<Tuple<Maze, MazeParameters>>();
     }
-    
+
     private void CreateMaze(Maze maze, LabyrinthParameters labyrinthParameters, MazeParameters mazeParameters)
     {
         CreateFloor(maze, labyrinthParameters, mazeParameters);
@@ -116,10 +116,11 @@ public class LabyrinthCreator
             }
         }
 
-        
+
     }
 
-    private void SpawnTorch(int torchRotation, Vector3 torchPositionOffset, GameObject wallObj, LabyrinthParameters parameters){
+    private void SpawnTorch(int torchRotation, Vector3 torchPositionOffset, GameObject wallObj, LabyrinthParameters parameters)
+    {
         GameObject wallTorch = GameObject.Instantiate(parameters.wallTorchPrefab, wallObj.transform.position + torchPositionOffset, Quaternion.identity);
         GameObject wallTorchObject = new GameObject();
         wallTorch.transform.rotation = Quaternion.AngleAxis(torchRotation, Vector3.up);
@@ -127,10 +128,12 @@ public class LabyrinthCreator
         wallTorch.transform.SetParent(wallTorchObject.transform);
     }
 
-    private bool CheckOverlap(Vector3 overlapPosition, Vector3 overlapRadius){
+    private bool CheckOverlap(Vector3 overlapPosition, Vector3 overlapRadius)
+    {
         // Check if object overlaps with other objects
         Collider[] overlappingObjects = Physics.OverlapBox(overlapPosition, overlapRadius, Quaternion.identity, LayerMask.GetMask("Wall"));
-        if (overlappingObjects.Length > 1){
+        if (overlappingObjects.Length > 1)
+        {
             return true;
         }
         return false;
@@ -152,7 +155,8 @@ public class LabyrinthCreator
         {
             // Position of the maze
             GameObject mazeOrigin = new GameObject("MazeOrigin" + i);
-            if (i == 0){
+            if (i == 0)
+            {
                 mazeOrigin1 = mazeOrigin;
             }
             mazeOrigin.transform.SetParent(parameters.origin.transform);
@@ -165,7 +169,7 @@ public class LabyrinthCreator
             sectionLocations.Add(new Tuple<int, int>(x, y));
 
             // Outer Walls
-            if (dxPrev != 1 && (i == parameters.numSections-1 || dx != -1))
+            if (dxPrev != 1 && (i == parameters.numSections - 1 || dx != -1))
                 CreateOuterWall(0, false, mazeOrigin, "OuterWallLeft", parameters);
             if (dxPrev != -1 && (i == parameters.numSections - 1 || dx != 1))
                 CreateOuterWall(1, false, mazeOrigin, "OuterWallRight", parameters);
@@ -184,7 +188,7 @@ public class LabyrinthCreator
             mazeParameters.IsFinalBoss = parameters.isFinalLevel;
             mazeParameters.numberOfEnemies = parameters.enemyDensity;
 
-            mazeAndParametersList.Add(new Tuple<Maze,MazeParameters>(maze, mazeParameters));
+            mazeAndParametersList.Add(new Tuple<Maze, MazeParameters>(maze, mazeParameters));
 
             CreateMaze(maze, parameters, mazeParameters);
 
@@ -203,8 +207,10 @@ public class LabyrinthCreator
 
         // Check that all torches are spawned correctly and do not overlap with walls
         GameObject[] wallTorches = GameObject.FindGameObjectsWithTag("Torch");
-        foreach (GameObject wallTorch in wallTorches){
-            if (CheckOverlap(wallTorch.transform.position, new Vector3(0.0001f, 0.0001f, 0.0001f))){   // Check if wall torch has been spawned in a position where it overlaps with a wall, and if so destroy it
+        foreach (GameObject wallTorch in wallTorches)
+        {
+            if (CheckOverlap(wallTorch.transform.position, new Vector3(0.0001f, 0.0001f, 0.0001f)))
+            {   // Check if wall torch has been spawned in a position where it overlaps with a wall, and if so destroy it
                 GameObject.Destroy(wallTorch);
             }
         }
@@ -217,7 +223,7 @@ public class LabyrinthCreator
         if (dyPrev != 0)
         {
             int x = random.Next() % 2;
-            return (x, (1-x) * dyPrev); // x=0 -> (0,dyPrev)   x=1 -> (1,0)
+            return (x, (1 - x) * dyPrev); // x=0 -> (0,dyPrev)   x=1 -> (1,0)
         }
         else
         {
@@ -329,7 +335,7 @@ public class LabyrinthCreator
         tubeSide.transform.localScale = new Vector3(2 * cellWidth + wallDepth, tubeHeight, wallDepth);
         tubeSide.transform.localPosition = new Vector3(maze.Width * cellWidth / 2, wallHeight + (wallDepth + tubeHeight) / 2, (maze.Height - 2) * cellWidth / 2);
         tubeSide.GetComponent<Renderer>().material = labyrinthParameters.brickMaterial;
-        
+
         tubeSide = GameObject.CreatePrimitive(PrimitiveType.Cube);
         tubeSide.name = "Chimney2";
         tubeSide.transform.SetParent(mazeParameters.mazeOrigin.transform);
@@ -416,35 +422,35 @@ public class LabyrinthCreator
         tubeSide.name = "Hole1";
         tubeSide.transform.SetParent(mazeParameters.mazeOrigin.transform);
         tubeSide.transform.localScale = new Vector3(2 * cellWidth + wallDepth, tubeHeight, wallDepth);
-        tubeSide.transform.localPosition = new Vector3(maze.Width * cellWidth / 2, - (wallDepth + tubeHeight) / 2, (maze.Height - 2) * cellWidth / 2);
+        tubeSide.transform.localPosition = new Vector3(maze.Width * cellWidth / 2, -(wallDepth + tubeHeight) / 2, (maze.Height - 2) * cellWidth / 2);
         tubeSide.GetComponent<Renderer>().material = labyrinthParameters.brickMaterial;
 
         tubeSide = GameObject.CreatePrimitive(PrimitiveType.Cube);
         tubeSide.name = "Hole2";
         tubeSide.transform.SetParent(mazeParameters.mazeOrigin.transform);
         tubeSide.transform.localScale = new Vector3(wallDepth, tubeHeight, 2 * cellWidth);
-        tubeSide.transform.localPosition = new Vector3((maze.Width - 2) * cellWidth / 2, - (wallDepth + tubeHeight) / 2, maze.Height * cellWidth / 2);
+        tubeSide.transform.localPosition = new Vector3((maze.Width - 2) * cellWidth / 2, -(wallDepth + tubeHeight) / 2, maze.Height * cellWidth / 2);
         tubeSide.GetComponent<Renderer>().material = labyrinthParameters.brickMaterial;
 
         tubeSide = GameObject.CreatePrimitive(PrimitiveType.Cube);
         tubeSide.name = "Hole3";
         tubeSide.transform.SetParent(mazeParameters.mazeOrigin.transform);
         tubeSide.transform.localScale = new Vector3(wallDepth, tubeHeight, 2 * cellWidth);
-        tubeSide.transform.localPosition = new Vector3((maze.Width + 2) * cellWidth / 2, - (wallDepth + tubeHeight) / 2, maze.Height * cellWidth / 2);
+        tubeSide.transform.localPosition = new Vector3((maze.Width + 2) * cellWidth / 2, -(wallDepth + tubeHeight) / 2, maze.Height * cellWidth / 2);
         tubeSide.GetComponent<Renderer>().material = labyrinthParameters.brickMaterial;
 
         tubeSide = GameObject.CreatePrimitive(PrimitiveType.Cube);
         tubeSide.name = "Hole4";
         tubeSide.transform.SetParent(mazeParameters.mazeOrigin.transform);
         tubeSide.transform.localScale = new Vector3(2 * cellWidth + wallDepth, tubeHeight, wallDepth);
-        tubeSide.transform.localPosition = new Vector3(maze.Width * cellWidth / 2, - (wallDepth + tubeHeight) / 2, (maze.Height + 2) * cellWidth / 2);
+        tubeSide.transform.localPosition = new Vector3(maze.Width * cellWidth / 2, -(wallDepth + tubeHeight) / 2, (maze.Height + 2) * cellWidth / 2);
         tubeSide.GetComponent<Renderer>().material = labyrinthParameters.brickMaterial;
 
         tubeSide = GameObject.CreatePrimitive(PrimitiveType.Cube);
         tubeSide.name = "Hole5";
         tubeSide.transform.SetParent(mazeParameters.mazeOrigin.transform);
         tubeSide.transform.localScale = new Vector3(2 * cellWidth + wallDepth, wallDepth, 2 * cellWidth + wallDepth);
-        tubeSide.transform.localPosition = new Vector3(maze.Width * cellWidth / 2, - tubeHeight - wallDepth, maze.Height * cellWidth / 2);
+        tubeSide.transform.localPosition = new Vector3(maze.Width * cellWidth / 2, -tubeHeight - wallDepth, maze.Height * cellWidth / 2);
         tubeSide.GetComponent<Renderer>().material = labyrinthParameters.blackMaterial;
 
         GameObject levelEnd = GameObject.Instantiate(labyrinthParameters.levelEndPrefab);
@@ -474,6 +480,8 @@ public class LabyrinthCreator
 
         for (int i = 0; i < labyrinthParameters.pickupDensity; i++)
             RandomCellPrefab(PrefabRepository.instance.StatIncreases, labyrinthParameters, mazeParameters, section, 0.5f * Vector3.up);
+
+
     }
 
     private GameObject RandomPrefab(GameObject[] prefabs, System.Random random)
