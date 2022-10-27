@@ -7,10 +7,11 @@ using UnityEngine;
 using UnityEditor;
 #endif
 
-[ExecuteInEditMode]
+[ExecuteAlways]
 public class GameParameters : MonoBehaviour
 {
-    private int seed;
+    public bool useInitialSeed;
+    public int seed;
     public int numLevels;
     public LabyrinthParameters initialLabyrinthParameters;
     public LabyrinthSize initialLabyrinthSizes;
@@ -22,7 +23,13 @@ public class GameParameters : MonoBehaviour
 
     private void Awake()
     {
-        random = new System.Random(seed);
+        if (useInitialSeed)
+            random = new System.Random(seed);
+        else
+        {
+            seed = new System.Random().Next();
+            random = new System.Random(seed);
+        }
         initialLabyrinthParameters.random = random;
     }
 
@@ -30,17 +37,6 @@ public class GameParameters : MonoBehaviour
     {
         labyrinthParameters = (LabyrinthParameters)initialLabyrinthParameters.Clone();
         labyrinthSizes = (LabyrinthSize)initialLabyrinthSizes.Clone();
-    }
-
-    public int RandomSeed
-    {
-        get => seed;
-        set
-        {
-            if (seed != value)
-                random = new System.Random(seed);
-            seed = value;
-        }
     }
 
     public void UpdateParameters(int level)
@@ -78,14 +74,21 @@ class GameParametersEditor : Editor
         if (component == null)
             return;
 
+        EditorGUI.BeginChangeCheck();
+
+        EditorGUILayout.BeginHorizontal();
+        EditorGUILayout.PrefixLabel("Use Inspector Seed");
+        component.useInitialSeed = EditorGUILayout.Toggle(component.useInitialSeed);
+        EditorGUILayout.EndHorizontal();
+
         if (GUILayout.Button("Randomize Seed"))
         {
-            component.RandomSeed = component.Random.Next();
+            component.seed = new System.Random().Next();
         }
 
         EditorGUILayout.BeginHorizontal();
         EditorGUILayout.PrefixLabel("Seed");
-        component.RandomSeed = EditorGUILayout.IntField(component.RandomSeed);
+        component.seed = EditorGUILayout.IntField(component.seed);
         EditorGUILayout.EndHorizontal();
 
         EditorGUILayout.BeginHorizontal();
@@ -95,6 +98,11 @@ class GameParametersEditor : Editor
 
         component.initialLabyrinthParameters = (LabyrinthParameters)EditorGUILayout.ObjectField("Initial Labyrinth Parameters", component.initialLabyrinthParameters, typeof(LabyrinthParameters), true);
         component.initialLabyrinthSizes = (LabyrinthSize)EditorGUILayout.ObjectField("Initial Labyrinth Sizes", component.initialLabyrinthSizes, typeof(LabyrinthSize), true);
+
+        if (EditorGUI.EndChangeCheck())
+        {
+            EditorUtility.SetDirty(target);
+        }
     }
 
 }
