@@ -14,6 +14,8 @@ public class PrefabRepository : MonoBehaviour
     [SerializeField]
     private GameObject[] statIncreases = new GameObject[Enum.GetNames(typeof(PlayerStats.StatType)).Length];
     [SerializeField]
+    private GameObject healingItem;
+    [SerializeField]
     private GameObject[] enemies;
     [SerializeField]
     private GameObject finalBoss;
@@ -33,12 +35,14 @@ public class PrefabRepository : MonoBehaviour
 class PrefabRepositoryEditor : Editor
 {
     private SerializedProperty statIncreaseArray;
+    private SerializedProperty healingItemObject;
     private SerializedProperty enemyArray;
     private SerializedProperty finalBossObject;
 
     private void OnEnable()
     {
         statIncreaseArray = serializedObject.FindProperty("statIncreases");
+        healingItemObject = serializedObject.FindProperty("healingItem");
         enemyArray = serializedObject.FindProperty("enemies");
         finalBossObject = serializedObject.FindProperty("finalBoss");
     }
@@ -56,6 +60,7 @@ class PrefabRepositoryEditor : Editor
             statIncreaseObject.objectReferenceValue = EditorGUILayout.ObjectField(statNames[i], statIncreaseObject.objectReferenceValue, typeof(GameObject), true);
         }
 
+        EditorGUILayout.PropertyField(healingItemObject);
         EditorGUILayout.PropertyField(enemyArray);
         EditorGUILayout.PropertyField(finalBossObject);
 
