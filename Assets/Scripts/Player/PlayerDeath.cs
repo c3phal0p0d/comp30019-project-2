@@ -14,16 +14,18 @@ public class PlayerDeath : MonoBehaviour
     [SerializeField]
     private Canvas deathMessage;
 
+
+
     private float timer;
 
     private void Start()
     {
         timer = initialTimer;
-        
+
         // Remove objects from scene
         GameObject[] enemiesInScene = GameObject.FindGameObjectsWithTag("Enemy");
         GameObject[] statItemsInScene = GameObject.FindGameObjectsWithTag("StatItem");
- 
+
         foreach (GameObject enemy in enemiesInScene)
         {
             enemy.SetActive(false);
@@ -35,10 +37,12 @@ public class PlayerDeath : MonoBehaviour
         }
 
         // Hide UI bars from view
-        if (GameObject.Find("HealthBar")!=null){
+        if (GameObject.Find("HealthBar") != null)
+        {
             GameObject.Find("HealthBar").SetActive(false);
         }
-        if (GameObject.Find("StaminaBar")!=null){
+        if (GameObject.Find("StaminaBar") != null)
+        {
             GameObject.Find("StaminaBar").SetActive(false);
         }
 
@@ -53,9 +57,10 @@ public class PlayerDeath : MonoBehaviour
         {
             timer = 0;
 
-            
+
 
             deathMessage.enabled = true;
+
 
             if (Input.GetKeyDown(KeyCode.Space))
             {

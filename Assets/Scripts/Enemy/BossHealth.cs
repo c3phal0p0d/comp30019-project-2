@@ -2,33 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyHealth : BarStat
+public class BossHealth : EnemyHealth
 {
-    [SerializeField]
-    protected float initialHealth = 10;
-    [SerializeField]
-    protected int enemyNumber;
 
-    public bool isHit = false;
-    public bool isDead = false;
+    [SerializeField] private Canvas winScreen;
+    [SerializeField] private GameObject pSystem;
 
-    protected PlayerStats.Stat maxHealth;
-    protected Animator animator;
-    protected UnityEngine.AI.NavMeshAgent agent;
 
-    void Awake()
-    {
-        SetHealth(initialHealth);
-        animator = GetComponent<Animator>();
-        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
-    }
-
-    public void SetHealth(float health)
-    {
-        initialHealth = health;
-        maxHealth = new PlayerStats.Stat(0, health, health);
-        SetStat(maxHealth);
-    }
 
     public override void Increment(float amount)
     {
@@ -53,8 +33,11 @@ public class EnemyHealth : BarStat
             // Pause enemy forward movement while animation is playing 
             agent.isStopped = true;
 
+
             isDead = true;
             animationTrigger = "Die";
+            winScreen.enabled = true;
+            pSystem.SetActive(true);
         }
         if (animationTrigger != "")
         {

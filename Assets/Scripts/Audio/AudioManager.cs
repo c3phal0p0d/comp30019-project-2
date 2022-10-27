@@ -11,7 +11,8 @@ public class AudioManager : MonoBehaviour
 
     void Awake()
     {
-        foreach (Sound sound in sounds){
+        foreach (Sound sound in sounds)
+        {
             sound.source = gameObject.AddComponent<AudioSource>();
             sound.source.clip = sound.clip;
 
@@ -20,18 +21,22 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    void Start(){
-        if (isGame){
+    void Start()
+    {
+        if (isGame)
+        {
             Play("BackgroundMusic");
         }
     }
 
-    public void Play(string name){
+    public void Play(string name)
+    {
         Sound sound = Array.Find(sounds, sound => sound.name == name);
         sound.source.Play();
     }
 
-    public void Stop(string name){
+    public void Stop(string name)
+    {
         Sound sound = Array.Find(sounds, sound => sound.name == name);
         sound.source.Stop();
     }
