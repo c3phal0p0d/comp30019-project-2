@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 4057458054345064263}
   - component: {fileID: 4057458054345064262}
   - component: {fileID: 2868634956693813040}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enemy 1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -240,6 +240,9 @@ MonoBehaviour:
   targetTag: Player
   sightDistance: 10
   origin: {fileID: 4057458053091239494}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 776
 --- !u!114 &4057458054345064263
 MonoBehaviour:
   m_ObjectHideFlags: 0

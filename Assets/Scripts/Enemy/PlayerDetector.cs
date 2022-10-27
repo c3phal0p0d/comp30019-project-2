@@ -12,24 +12,20 @@ public class PlayerDetector : MonoBehaviour
     private float sightDistance;
     [SerializeField]
     private Transform origin;
+    [SerializeField]
+    LayerMask layerMask;
 
     public bool CanDetect()
     {
-        RaycastHit[] hits = Physics.RaycastAll(origin.position, PlayerManager.instance.gameObject.transform.position - origin.position, sightDistance);
-        foreach(RaycastHit hit in hits)
-        {
-            if (hit.transform.gameObject.CompareTag(selfTag))
-                continue;
-            if (hit.transform.gameObject.CompareTag(targetTag)){
-                return true;
-            }
+        RaycastHit hit;
+        if (Physics.Raycast(origin.position, PlayerManager.instance.gameObject.transform.position - origin.position, out hit, sightDistance, layerMask)) {
+            return hit.transform.gameObject.CompareTag(targetTag);
         }
         return false;
     }
 
     void OnDrawGizmosSelected()
     {
-
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, sightDistance);
     }

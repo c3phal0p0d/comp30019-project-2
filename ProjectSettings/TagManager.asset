@@ -7,6 +7,9 @@ TagManager:
   - UIObject
   - Enemy
   - Torch
+  - StatItem
+  - Wall
+  - Weapon
   layers:
   - Default
   - TransparentFX
@@ -17,7 +20,7 @@ TagManager:
   - Enemy
   - Torch
   - Wall
-  - 
+  - Player
   - 
   - 
   - 
