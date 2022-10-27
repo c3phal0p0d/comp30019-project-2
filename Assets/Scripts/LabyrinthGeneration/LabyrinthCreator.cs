@@ -152,8 +152,9 @@ public class LabyrinthCreator
         {
             // Position of the maze
             GameObject mazeOrigin = new GameObject("MazeOrigin" + i);
-            if (i == 0)
+            if (i == 0){
                 mazeOrigin1 = mazeOrigin;
+            }
             mazeOrigin.transform.SetParent(parameters.origin.transform);
             mazeOrigin.transform.localPosition = new Vector3(x * (mazeWidth * cellWidth + wallDepth), 0, y * (mazeHeight * cellWidth + wallDepth));
 

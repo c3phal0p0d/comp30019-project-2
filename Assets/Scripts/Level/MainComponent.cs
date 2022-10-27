@@ -41,15 +41,17 @@ public class MainComponent : MonoBehaviour
         gameParameters.UpdateParameters(levelNumber);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         // lmao
         if (doSpawn)
         {
-            if (Vector3.Distance(spawnPosition, PlayerManager.instance.gameObject.transform.position) > 10f)
+            if (Vector3.Distance(spawnPosition, PlayerManager.instance.gameObject.transform.position) > 10f){
                 PlayerManager.instance.gameObject.transform.position = spawnPosition;
-            else
+            }
+            else {
                 doSpawn = false;
+            }
         }
     }
 

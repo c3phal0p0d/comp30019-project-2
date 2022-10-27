@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;`
+using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
@@ -32,8 +32,6 @@ public class PlayerAttack : MonoBehaviour
             cooldown = attackCooldown;
             canAttack = true;
         }
-
-        // Debug.Log(attackDealy);
 
         if (canAttack && cooldown < attackCooldown - damageDelay)
         {
