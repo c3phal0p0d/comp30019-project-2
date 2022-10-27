@@ -23,6 +23,10 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
+        if ((target.position - transform.position).sqrMagnitude < 11 * 11)
+        {
+            FaceTarget();
+        }
         if (playerDetector.CanDetect())
         {
 

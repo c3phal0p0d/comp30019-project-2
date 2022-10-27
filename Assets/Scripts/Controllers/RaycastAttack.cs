@@ -43,7 +43,8 @@ public class RaycastAttack : MonoBehaviour
         yield return new WaitForSeconds(damageDelay);
 
         // Deal damage
-        if (hitObject!=null){
+        if (hitObject != null)
+        {
             hitObject.GetComponentInParent<BarStat>().Increment(-damage);
         }
     }
@@ -51,9 +52,14 @@ public class RaycastAttack : MonoBehaviour
     private List<RaycastHit> SortByDistance(RaycastHit[] hits)
     {
         List<RaycastHit> sortedHits = new List<RaycastHit>(hits.Length);
-        foreach(RaycastHit hit in hits)
+        foreach (RaycastHit hit in hits)
             sortedHits.Add(hit);
-        sortedHits.Sort((hit1, hit2) => (int)Mathf.Sign(hit2.distance - hit1.distance));
+        sortedHits.Sort((hit2, hit1) => (int)Mathf.Sign(hit2.distance - hit1.distance));
+
+        foreach (RaycastHit hit in sortedHits)
+        {
+            Debug.Log(hit.transform.gameObject.tag);
+        }
         return sortedHits;
     }
 }
