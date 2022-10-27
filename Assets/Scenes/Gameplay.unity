@@ -817,7 +817,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 77febcaa355d74e3d8eb4ec6a0c08d3b, type: 2}
     - target: {fileID: 7101157739206010136, guid: 382dd6da2692f3043a4a20374d096499, type: 3}
       propertyPath: pickupDensity
-      value: 50
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7101157739206010138, guid: 382dd6da2692f3043a4a20374d096499, type: 3}
       propertyPath: m_RootOrder

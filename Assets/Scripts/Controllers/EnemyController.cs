@@ -25,10 +25,25 @@ public class EnemyController : MonoBehaviour
     {
         if (playerDetector.CanDetect())
         {
+
             animator.SetBool("Move", true);
-            lastKnownPosition = target.position;
-            agent.SetDestination(target.position);
-        } else {
+            if ((target.position - transform.position).sqrMagnitude <= 1.5f * 1.5f)
+            {
+                lastKnownPosition = transform.position;
+            }
+
+            else
+            {
+                lastKnownPosition = target.position;
+            }
+
+
+            agent.SetDestination(lastKnownPosition);
+
+
+        }
+        else
+        {
             animator.SetBool("Move", false);
         }
 

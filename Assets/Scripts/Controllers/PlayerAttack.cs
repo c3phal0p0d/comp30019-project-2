@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    [SerializeField]
-    private RaycastAttack caster;
+    [SerializeField] private RaycastAttack caster;
 
     private PlayerStats.Stat strengthStat;
     private Animator swordAnimator;
+
+    [SerializeField] private float attackCooldown = 1.5f;
+    private float cooldown;
+    private float damageDelay = 1.1f;
+
+    private bool canAttack = false;
+
 
     private void Start()
     {
@@ -18,10 +24,25 @@ public class PlayerAttack : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0)){
-            caster.Cast(strengthStat.Value);
+        cooldown -= Time.deltaTime;
+        cooldown = (cooldown < 0) ? 0 : cooldown;
+
+        if (cooldown == 0 && Input.GetMouseButtonDown(0))
+        {
+            cooldown = attackCooldown;
+            canAttack = true;
+        }
+
+        // Debug.Log(attackDealy);
+
+        if (canAttack && cooldown < attackCooldown - damageDelay)
+        {
             swordAnimator.SetTrigger("Attack");
             FindObjectOfType<AudioManager>().Play("WeaponAttack");
+            caster.Cast(strengthStat.Value);
+            canAttack = false;
+
+
         }
     }
 }
