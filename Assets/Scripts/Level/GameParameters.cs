@@ -74,7 +74,7 @@ class GameParametersEditor : Editor
         if (component == null)
             return;
 
-        EditorUtility.SetDirty(target);
+        EditorGUI.BeginChangeCheck();
 
         EditorGUILayout.BeginHorizontal();
         EditorGUILayout.PrefixLabel("Use Inspector Seed");
@@ -98,6 +98,11 @@ class GameParametersEditor : Editor
 
         component.initialLabyrinthParameters = (LabyrinthParameters)EditorGUILayout.ObjectField("Initial Labyrinth Parameters", component.initialLabyrinthParameters, typeof(LabyrinthParameters), true);
         component.initialLabyrinthSizes = (LabyrinthSize)EditorGUILayout.ObjectField("Initial Labyrinth Sizes", component.initialLabyrinthSizes, typeof(LabyrinthSize), true);
+
+        if (EditorGUI.EndChangeCheck())
+        {
+            EditorUtility.SetDirty(target);
+        }
     }
 
 }

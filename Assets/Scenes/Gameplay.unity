@@ -6152,8 +6152,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7101157739206010140, guid: 382dd6da2692f3043a4a20374d096499, type: 3}
+      propertyPath: seed
+      value: 237527458
+      objectReference: {fileID: 0}
+    - target: {fileID: 7101157739206010140, guid: 382dd6da2692f3043a4a20374d096499, type: 3}
       propertyPath: numLevels
-      value: 4
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7101157739206010140, guid: 382dd6da2692f3043a4a20374d096499, type: 3}
+      propertyPath: useInitialSeed
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7101157739206010141, guid: 382dd6da2692f3043a4a20374d096499, type: 3}
       propertyPath: levelObject
