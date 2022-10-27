@@ -235,6 +235,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerObject: {fileID: 6456609882737518724}
+  playerCenter: {fileID: 6456609882605954501}
 --- !u!114 &6456609882737518729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -359,6 +360,9 @@ MonoBehaviour:
   attackDistance: 10
   ray: {fileID: 6456609881549923254}
   damageDelay: 1.1
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 328
 --- !u!114 &6456609882737518735
 MonoBehaviour:
   m_ObjectHideFlags: 0

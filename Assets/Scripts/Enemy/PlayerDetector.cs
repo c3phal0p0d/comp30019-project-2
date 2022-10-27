@@ -18,7 +18,7 @@ public class PlayerDetector : MonoBehaviour
     public bool CanDetect()
     {
         RaycastHit hit;
-        if (Physics.Raycast(origin.position, PlayerManager.instance.gameObject.transform.position - origin.position, out hit, sightDistance, layerMask)) {
+        if (Physics.Raycast(origin.position, PlayerManager.instance.PlayerCenter - origin.position, out hit, sightDistance, layerMask)) {
             return hit.transform.gameObject.CompareTag(targetTag);
         }
         return false;
