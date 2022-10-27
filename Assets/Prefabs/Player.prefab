@@ -235,6 +235,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerObject: {fileID: 6456609882737518724}
+  playerCenter: {fileID: 6456609882605954501}
 --- !u!114 &6456609882737518729
 MonoBehaviour:
   m_ObjectHideFlags: 0

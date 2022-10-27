@@ -18,4 +18,8 @@ public class PlayerManager : MonoBehaviour
 
     //game object that references player
     public GameObject PlayerObject;
+    [SerializeField]
+    private Transform playerCenter;
+
+    public Vector3 PlayerCenter => playerCenter.position;
 }
