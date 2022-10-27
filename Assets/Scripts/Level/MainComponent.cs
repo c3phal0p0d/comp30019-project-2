@@ -43,15 +43,10 @@ public class MainComponent : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // lmao
         if (doSpawn)
         {
-            if (Vector3.Distance(spawnPosition, PlayerManager.instance.gameObject.transform.position) > 10f){
-                PlayerManager.instance.gameObject.transform.position = spawnPosition;
-            }
-            else {
-                doSpawn = false;
-            }
+            PlayerManager.instance.gameObject.transform.position = spawnPosition;
+            doSpawn = false;
         }
     }
 
