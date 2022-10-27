@@ -56,10 +56,6 @@ public class RaycastAttack : MonoBehaviour
             sortedHits.Add(hit);
         sortedHits.Sort((hit2, hit1) => (int)Mathf.Sign(hit2.distance - hit1.distance));
 
-        foreach (RaycastHit hit in sortedHits)
-        {
-            Debug.Log(hit.transform.gameObject.tag);
-        }
         return sortedHits;
     }
 }
