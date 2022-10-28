@@ -42,7 +42,8 @@ public class LabyrinthCreator
         CreateCeiling(maze, labyrinthParameters, mazeParameters);
 
         // Inner Walls
-        if (!mazeParameters.isStart && !mazeParameters.IsExit)
+
+        if (!mazeParameters.isStart && !mazeParameters.IsExit && !mazeParameters.IsFinalBoss)
         {
             int i = 0;
             foreach (Maze.Wall wall in maze.HorizontalWalls)
@@ -473,54 +474,60 @@ public class LabyrinthCreator
 
     private void FillWithEntities(Maze maze, LabyrinthParameters labyrinthParameters, MazeParameters mazeParameters, int section)
     {
-        
-        if (mazeParameters.IsFinalBoss){
-            RandomCellPrefab(new GameObject[1], labyrinthParameters, mazeParameters, section, Vector3.zero);
+        if (mazeParameters.IsFinalBoss)
+        {
+            GameObject[] finalBoss = { PrefabRepository.instance.FinalBoss };
+            RandomCellPrefab(finalBoss, labyrinthParameters, mazeParameters, section, Vector3.zero);
         }
-
-        else {
-            
+        else
+        {
             for (int i = 0; i < labyrinthParameters.enemyDensity; i++)
                 RandomCellPrefab(PrefabRepository.instance.Enemies, labyrinthParameters, mazeParameters, section, Vector3.zero);
 
             for (int i = 0; i < labyrinthParameters.pickupDensity; i++)
                 RandomCellPrefab(PrefabRepository.instance.StatIncreases, labyrinthParameters, mazeParameters, section, 0.5f * Vector3.up);
-        
+
             for (int i = 0; i < labyrinthParameters.healthDensity; i++)
                 RandomCellPrefab(PrefabRepository.instance.HealingItems, labyrinthParameters, mazeParameters, section, 0.5f * Vector3.up);
+
         }
 
     }
 
-    private GameObject RandomPrefab(GameObject[] prefabs, System.Random random)
-    {
-        return prefabs[random.Next() % prefabs.Length];
-    }
+}
 
-    private void RandomCellPrefab(GameObject[] prefabs, LabyrinthParameters labyrinthParameters, MazeParameters mazeParameters, int section, Vector3 offset)
+private GameObject RandomPrefab(GameObject[] prefabs, System.Random random)
+{
+    return prefabs[random.Next() % prefabs.Length];
+}
+
+private void RandomCellPrefab(GameObject[] prefabs, LabyrinthParameters labyrinthParameters, MazeParameters mazeParameters, int section, Vector3 offset)
+{
+    if (!mazeParameters.isStart && !mazeParameters.IsExit)
     {
-        if (!mazeParameters.isStart && !mazeParameters.IsExit)
+        int x, y;
+        (x, y) = RandomCell(section, labyrinthParameters.random);
+
+        if (!mazeParameters.IsFinalBoss)
         {
-            int x, y;
-            (x, y) = RandomCell(section, labyrinthParameters.random);
-
-            if (!mazeParameters.IsFinalBoss){
-                GameObject prefab = RandomPrefab(prefabs, labyrinthParameters.random);
-                prefab = GameObject.Instantiate(prefab);
-                prefab.transform.SetParent(mazeParameters.mazeOrigin.transform);
-                prefab.transform.localPosition = new Vector3((x + 0.5f) * cellWidth, wallDepth / 2, (y + 0.5f) * cellWidth) + offset;
-            } else {
-                GameObject finalBoss = GameObject.Instantiate(PrefabRepository.instance.FinalBoss);
-                finalBoss.transform.SetParent(mazeParameters.mazeOrigin.transform);
-                finalBoss.transform.localPosition = new Vector3((x + 0.5f) * cellWidth, wallDepth / 2, (y + 0.5f) * cellWidth) + offset;
-            }
+            GameObject prefab = RandomPrefab(prefabs, labyrinthParameters.random);
+            prefab = GameObject.Instantiate(prefab);
+            prefab.transform.SetParent(mazeParameters.mazeOrigin.transform);
+            prefab.transform.localPosition = new Vector3((x + 0.5f) * cellWidth, wallDepth / 2, (y + 0.5f) * cellWidth) + offset;
+        }
+        else
+        {
+            GameObject finalBoss = GameObject.Instantiate(PrefabRepository.instance.FinalBoss);
+            finalBoss.transform.SetParent(mazeParameters.mazeOrigin.transform);
+            finalBoss.transform.localPosition = new Vector3((x + 0.5f) * cellWidth, wallDepth / 2, (y + 0.5f) * cellWidth) + offset;
         }
     }
+}
 
-    private void AddToNavMesh(GameObject obj, bool walkable)
-    {
-        int area = (walkable) ? GameObjectUtility.GetNavMeshAreaFromName("Walkable") : GameObjectUtility.GetNavMeshAreaFromName("Not Walkable");
-        GameObjectUtility.SetStaticEditorFlags(obj, StaticEditorFlags.NavigationStatic);
-        GameObjectUtility.SetNavMeshArea(obj, area);
-    }
+private void AddToNavMesh(GameObject obj, bool walkable)
+{
+    int area = (walkable) ? GameObjectUtility.GetNavMeshAreaFromName("Walkable") : GameObjectUtility.GetNavMeshAreaFromName("Not Walkable");
+    GameObjectUtility.SetStaticEditorFlags(obj, StaticEditorFlags.NavigationStatic);
+    GameObjectUtility.SetNavMeshArea(obj, area);
+}
 }
