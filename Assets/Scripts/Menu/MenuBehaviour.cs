@@ -23,11 +23,13 @@ public class MenuBehaviour : MonoBehaviour
         Cursor.visible = true;
     }
 
-    public void PlayButtonHoverSound(){
+    public void PlayButtonHoverSound()
+    {
         FindObjectOfType<AudioManager>().Play("ButtonHover");
     }
 
-    public void PlayButtonClickSound(){
+    public void PlayButtonClickSound()
+    {
         FindObjectOfType<AudioManager>().Play("ButtonClick");
     }
 
@@ -37,10 +39,20 @@ public class MenuBehaviour : MonoBehaviour
         MoveCamera.setCameraSpeed(10);
     }
 
-    public void NewGame(){
-        SceneManager.LoadScene("Scenes/Gameplay");
+    public void EasyNewGame()
+    {
+        SceneManager.LoadScene("Scenes/Easy");
     }
-    
+
+    public void MediumNewGame()
+    {
+        SceneManager.LoadScene("Scenes/Medium");
+    }
+    public void HardNewGame()
+    {
+        SceneManager.LoadScene("Scenes/Hard");
+    }
+
     public float setCameraSpeed()
     {
         return 10;
@@ -53,12 +65,14 @@ public class MenuBehaviour : MonoBehaviour
         mainMenu.enabled = false;
     }
 
-    public void DisplayControls(){
+    public void DisplayControls()
+    {
         gameplayInstructions.enabled = false;
         controlsInfo.enabled = true;
     }
 
-    public void ExitToMenu(){
+    public void ExitToMenu()
+    {
         gameplayInstructions.enabled = false;
         controlsInfo.enabled = false;
         mainMenu.enabled = true;
@@ -66,12 +80,12 @@ public class MenuBehaviour : MonoBehaviour
 
     public void QuitGame()
     {
-        #if UNITY_STANDALONE
-            Application.Quit();
-        #endif
-        #if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-        #endif
+#if UNITY_STANDALONE
+        Application.Quit();
+#endif
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
     }
 
 }

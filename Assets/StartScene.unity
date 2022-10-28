@@ -929,7 +929,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 2119836770}
         m_TargetAssemblyTypeName: MenuBehaviour, Assembly-CSharp
-        m_MethodName: NewGame
+        m_MethodName: MediumNewGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2222,7 +2222,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2119836770}
         m_TargetAssemblyTypeName: MenuBehaviour, Assembly-CSharp
-        m_MethodName: NewGame
+        m_MethodName: EasyNewGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3177,7 +3177,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2119836770}
         m_TargetAssemblyTypeName: MenuBehaviour, Assembly-CSharp
-        m_MethodName: NewGame
+        m_MethodName: HardNewGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
