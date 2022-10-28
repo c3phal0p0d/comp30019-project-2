@@ -20,6 +20,7 @@ public class MenuBehaviour : MonoBehaviour
     void Start()
     {
         mainCamera = Camera.main;
+        Cursor.visible = true;
     }
 
     public void PlayButtonHoverSound(){

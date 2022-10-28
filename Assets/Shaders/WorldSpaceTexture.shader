@@ -29,12 +29,9 @@ Shader "Unlit/WorldSpaceTexture"
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
-            #pragma multi_compile_fwdbase nolightmap nodirlightmap nodynlightmap novertexlight
 
             #include "UnityStandardBRDF.cginc"
 			#include "UnityStandardUtils.cginc"
-            #include "AutoLight.cginc"
-            #include "Lighting.cginc"
 
             struct appdata
             {
@@ -53,8 +50,6 @@ Shader "Unlit/WorldSpaceTexture"
                 half3 tspace0 : TEXCOORD2;
                 half3 tspace1 : TEXCOORD3;
                 half3 tspace2 : TEXCOORD4;
-
-                SHADOW_COORDS(5)
             };
 
             sampler2D _MainTex;
@@ -86,8 +81,6 @@ Shader "Unlit/WorldSpaceTexture"
                 o.tspace0 = half3(worldTangent.x, worldBitangent.x, worldNormal.x);
                 o.tspace1 = half3(worldTangent.y, worldBitangent.y, worldNormal.y);
                 o.tspace2 = half3(worldTangent.z, worldBitangent.z, worldNormal.z);
-
-                TRANSFER_SHADOW(o)
 
                 return o;
             }
@@ -140,9 +133,7 @@ Shader "Unlit/WorldSpaceTexture"
                 diffuse *= 1.2*albedo;
                 diffuse *= occlusion;
 
-                fixed shadow = SHADOW_ATTENUATION(i);
-
-                float4 color = float4((diffuse + specular)*shadow, 1); 
+                float4 color = float4((diffuse + specular), 1); 
 
                 return color;
             }
@@ -159,12 +150,9 @@ Shader "Unlit/WorldSpaceTexture"
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
-            #pragma multi_compile_fwdbase nolightmap nodirlightmap nodynlightmap novertexlight
 
             #include "UnityStandardBRDF.cginc"
 			#include "UnityStandardUtils.cginc"
-            #include "AutoLight.cginc"
-            #include "Lighting.cginc"
 
             struct appdata
             {
@@ -183,8 +171,6 @@ Shader "Unlit/WorldSpaceTexture"
                 half3 tspace0 : TEXCOORD2;
                 half3 tspace1 : TEXCOORD3;
                 half3 tspace2 : TEXCOORD4;
-                
-                SHADOW_COORDS(5)
             };
 
             sampler2D _MainTex;
@@ -216,8 +202,6 @@ Shader "Unlit/WorldSpaceTexture"
                 o.tspace0 = half3(worldTangent.x, worldBitangent.x, worldNormal.x);
                 o.tspace1 = half3(worldTangent.y, worldBitangent.y, worldNormal.y);
                 o.tspace2 = half3(worldTangent.z, worldBitangent.z, worldNormal.z);
-
-                TRANSFER_SHADOW(o)
 
                 return o;
             }
@@ -269,46 +253,12 @@ Shader "Unlit/WorldSpaceTexture"
                 diffuse *= albedo;
                 diffuse *= occlusion;
 
-                fixed shadow = SHADOW_ATTENUATION(i);
-
-                float4 color = float4((diffuse + specular)*shadow, 1); 
+                float4 color = float4((diffuse + specular), 1); 
 
                 return color;
             }
 
             ENDCG
         }
-
-        // pass for shadow casting
-        Pass
-        {
-            Tags {"LightMode"="ShadowCaster"}
-
-            CGPROGRAM
-
-            #pragma vertex vert
-            #pragma fragment frag
-            #pragma multi_compile_shadowcaster
-
-            #include "UnityCG.cginc"
-
-            struct v2f { 
-                V2F_SHADOW_CASTER;
-            };
-
-            v2f vert(appdata_base v)
-            {
-                v2f o;
-                TRANSFER_SHADOW_CASTER_NORMALOFFSET(o)
-                return o;
-            }
-
-            float4 frag(v2f i) : SV_Target
-            {
-                SHADOW_CASTER_FRAGMENT(i)
-            }
-            ENDCG
-        }
     }
-    Fallback "Specular"
 }

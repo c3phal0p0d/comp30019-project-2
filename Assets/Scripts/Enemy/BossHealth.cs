@@ -54,6 +54,7 @@ public class BossHealth : EnemyHealth
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
+                Cursor.lockState = CursorLockMode.None;
                 SceneManager.LoadScene("StartScene");
             }
         }

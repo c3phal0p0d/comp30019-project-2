@@ -457,7 +457,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cfa4b57a51014b4eaf72febfd5a8a5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dissolveSpeedMultiplier: 0.5
+  dissolveSpeedMultiplier: 0.3
 --- !u!1101 &6934780490152844476
 AnimatorStateTransition:
   m_ObjectHideFlags: 1

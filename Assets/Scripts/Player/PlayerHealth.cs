@@ -13,6 +13,7 @@ public class PlayerHealth : Health
         base.Increment(amount);
         if (IsEmpty)
         {
+            FindObjectOfType<AudioManager>().Stop("BackgroundMusic");
             FindObjectOfType<AudioManager>().Play("Lose");
             foreach (MonoBehaviour c in GetComponents<MonoBehaviour>())
             {
