@@ -10191,9 +10191,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: {fileID: 1212054287818772789}
-  lengthScale: 0
-  heightScale: 0
-  depthScale: 0
+  lengthScale: 1
+  heightScale: 0.2
+  depthScale: 0.1
   cube: {fileID: 6437181706384760626}
 --- !u!1 &6437181706992655025
 GameObject:
