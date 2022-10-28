@@ -43,7 +43,7 @@ public class LabyrinthCreator
 
         // Inner Walls
 
-        if (!mazeParameters.isStart && !mazeParameters.IsExit)
+        if (!mazeParameters.isStart && !mazeParameters.IsExit && !mazeParameters.IsFinalBoss)
         {
             int i = 0;
             foreach (Maze.Wall wall in maze.HorizontalWalls)
@@ -475,14 +475,23 @@ public class LabyrinthCreator
 
     private void FillWithEntities(Maze maze, LabyrinthParameters labyrinthParameters, MazeParameters mazeParameters, int section)
     {
-        for (int i = 0; i < labyrinthParameters.enemyDensity; i++)
-            RandomCellPrefab(PrefabRepository.instance.Enemies, labyrinthParameters, mazeParameters, section, Vector3.zero);
+        if (mazeParameters.IsFinalBoss)
+        {
+            GameObject[] finalBoss = { PrefabRepository.instance.FinalBoss };
+            RandomCellPrefab(finalBoss, labyrinthParameters, mazeParameters, section, Vector3.zero);
+        }
+        else
+        {
+            for (int i = 0; i < labyrinthParameters.enemyDensity; i++)
+                RandomCellPrefab(PrefabRepository.instance.Enemies, labyrinthParameters, mazeParameters, section, Vector3.zero);
 
-        for (int i = 0; i < labyrinthParameters.pickupDensity; i++)
-            RandomCellPrefab(PrefabRepository.instance.StatIncreases, labyrinthParameters, mazeParameters, section, 0.5f * Vector3.up);
-        
-        for (int i = 0; i < labyrinthParameters.healthDensity; i++)
-            RandomCellPrefab(PrefabRepository.instance.HealingItems, labyrinthParameters, mazeParameters, section, 0.5f * Vector3.up);
+            for (int i = 0; i < labyrinthParameters.pickupDensity; i++)
+                RandomCellPrefab(PrefabRepository.instance.StatIncreases, labyrinthParameters, mazeParameters, section, 0.5f * Vector3.up);
+
+            for (int i = 0; i < labyrinthParameters.healthDensity; i++)
+                RandomCellPrefab(PrefabRepository.instance.HealingItems, labyrinthParameters, mazeParameters, section, 0.5f * Vector3.up);
+
+        }
 
     }
 
