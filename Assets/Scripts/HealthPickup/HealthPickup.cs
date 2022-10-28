@@ -16,7 +16,7 @@ public class HealthPickup : MonoBehaviour
 
         Health health = other.GetComponent<Health>();
 
-        if (health != null)
+        if (health != null && health.Value < health.MaxValue)
         {
             health.Increment(1);
             FindObjectOfType<AudioManager>().Play("CollectStatPickup");

@@ -10360,7 +10360,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialHealth: 100
-  enemyNumber: 0
+  enemyNumber: 4
   isHit: 0
   isDead: 0
   winScreen: {fileID: 5361234065168449241}
