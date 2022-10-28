@@ -220,7 +220,7 @@ Transform:
   - {fileID: 6456609882940324980}
   - {fileID: 6456609881549923257}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6456609882737518726
 MonoBehaviour:
@@ -249,10 +249,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 6456609882737518732}
-  walkSpeedScale: 0.6
+  walkSpeedScale: 0.4
   runSpeedMultiplier: 1.5
   gravity: -9.81
-  jumpHeight: 1
+  jumpHeight: 0.8
   groundCheck: {fileID: 6456609882940324980}
   groundDistance: 0.4
   groundMask:
@@ -499,7 +499,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.01
-  far clip plane: 1000
+  far clip plane: 100
   field of view: 60
   orthographic: 0
   orthographic size: 5

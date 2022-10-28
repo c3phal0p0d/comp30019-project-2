@@ -83,7 +83,7 @@ MonoBehaviour:
   numSections: 5
   isFinalLevel: 0
   enemyDensity: 2
-  pickupDensity: 2
+  pickupDensity: 5
   healthDensity: 0
   origin: {fileID: 0}
   brickMaterial: {fileID: 2100000, guid: 77febcaa355d74e3d8eb4ec6a0c08d3b, type: 2}
@@ -107,7 +107,7 @@ MonoBehaviour:
   mazeHeight: 10
   cellWidth: 3
   wallDepth: 1
-  wallHeight: 3
+  wallHeight: 3.2
   tubeHeight: 10
 --- !u!114 &7101157739206010134
 MonoBehaviour:
