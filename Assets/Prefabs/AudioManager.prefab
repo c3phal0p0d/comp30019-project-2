@@ -52,7 +52,7 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - clip: {fileID: 8300000, guid: b78bc0c7398ef411aad2f7d7206922ba, type: 3}
-    volume: 0.1
+    volume: 0.15
     name: BackgroundMusic
     loop: 1
     source: {fileID: 0}

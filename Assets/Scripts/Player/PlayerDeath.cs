@@ -14,8 +14,6 @@ public class PlayerDeath : MonoBehaviour
     [SerializeField]
     private Canvas deathMessage;
 
-
-
     private float timer;
 
     private void Start()
@@ -56,9 +54,6 @@ public class PlayerDeath : MonoBehaviour
         if (timer < 0)
         {
             timer = 0;
-
-
-
             deathMessage.enabled = true;
 
 

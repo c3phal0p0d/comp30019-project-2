@@ -63,7 +63,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f2b0300f8bd1d14db245ab04f3cd562, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numLevels: 9
+  useInitialSeed: 1
+  seed: 0
+  numLevels: 6
   initialLabyrinthParameters: {fileID: 7101157739206010136}
   initialLabyrinthSizes: {fileID: 7101157739206010137}
 --- !u!114 &7101157739206010136
@@ -81,7 +83,8 @@ MonoBehaviour:
   numSections: 5
   isFinalLevel: 0
   enemyDensity: 2
-  pickupDensity: 5
+  pickupDensity: 2
+  healthDensity: 0
   origin: {fileID: 0}
   brickMaterial: {fileID: 2100000, guid: 77febcaa355d74e3d8eb4ec6a0c08d3b, type: 2}
   blackMaterial: {fileID: 2100000, guid: 49aba598592887249b8174aadee0e35b, type: 2}
@@ -123,6 +126,7 @@ MonoBehaviour:
   - {fileID: 2523241770001930196, guid: e585706432fb744b2a8af7326155ef24, type: 3}
   - {fileID: 1849577864497754533, guid: f7346fc1bc52c4d419beab4b228184f0, type: 3}
   - {fileID: 2523241770001930196, guid: dad7201c1c8c9ea4e8376a2c070a4458, type: 3}
+  healingItem: {fileID: 0}
   enemies:
   - {fileID: 4057458054345064265, guid: 1f953d39803424d3eaea7254aa5c3178, type: 3}
   - {fileID: 1962108098383283150, guid: b9bee54883eef438ba8c0eefe0377208, type: 3}

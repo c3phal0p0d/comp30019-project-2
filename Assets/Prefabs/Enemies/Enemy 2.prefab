@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 1962108097602675370}
   - component: {fileID: 1962108097602675371}
   m_Layer: 2
-  m_Name: HealthBar
+  m_Name: EnemyHealthBar
   m_TagString: UIObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
