@@ -783,10 +783,22 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7101157739206010134, guid: 382dd6da2692f3043a4a20374d096499, type: 3}
+      propertyPath: healingItems.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7101157739206010134, guid: 382dd6da2692f3043a4a20374d096499, type: 3}
+      propertyPath: healingItems.Array.data[0]
+      value: 
+      objectReference: {fileID: 6821873818605990397, guid: dd6c11689261a41c5b7b5fde063ca04a, type: 3}
     - target: {fileID: 7101157739206010136, guid: 382dd6da2692f3043a4a20374d096499, type: 3}
       propertyPath: origin
       value: 
       objectReference: {fileID: 581613229}
+    - target: {fileID: 7101157739206010136, guid: 382dd6da2692f3043a4a20374d096499, type: 3}
+      propertyPath: healthDensity
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7101157739206010138, guid: 382dd6da2692f3043a4a20374d096499, type: 3}
       propertyPath: m_RootOrder
       value: 0

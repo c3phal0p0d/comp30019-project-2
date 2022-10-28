@@ -480,7 +480,9 @@ public class LabyrinthCreator
 
         for (int i = 0; i < labyrinthParameters.pickupDensity; i++)
             RandomCellPrefab(PrefabRepository.instance.StatIncreases, labyrinthParameters, mazeParameters, section, 0.5f * Vector3.up);
-
+        
+        for (int i = 0; i < labyrinthParameters.healthDensity; i++)
+            RandomCellPrefab(PrefabRepository.instance.HealingItems, labyrinthParameters, mazeParameters, section, 0.5f * Vector3.up);
 
     }
 

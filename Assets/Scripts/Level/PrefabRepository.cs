@@ -14,7 +14,7 @@ public class PrefabRepository : MonoBehaviour
     [SerializeField]
     private GameObject[] statIncreases = new GameObject[Enum.GetNames(typeof(PlayerStats.StatType)).Length];
     [SerializeField]
-    private GameObject healingItem;
+    private GameObject[] healingItems;
     [SerializeField]
     private GameObject[] enemies;
     [SerializeField]
@@ -26,6 +26,7 @@ public class PrefabRepository : MonoBehaviour
     }
 
     public GameObject[] StatIncreases => statIncreases;
+    public GameObject[] HealingItems => healingItems;
     public GameObject[] Enemies => enemies;
     public GameObject FinalBoss => finalBoss;
 }
@@ -42,7 +43,7 @@ class PrefabRepositoryEditor : Editor
     private void OnEnable()
     {
         statIncreaseArray = serializedObject.FindProperty("statIncreases");
-        healingItemObject = serializedObject.FindProperty("healingItem");
+        healingItemObject = serializedObject.FindProperty("healingItems");
         enemyArray = serializedObject.FindProperty("enemies");
         finalBossObject = serializedObject.FindProperty("finalBoss");
     }

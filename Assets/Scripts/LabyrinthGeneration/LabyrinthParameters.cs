@@ -9,7 +9,6 @@ public class LabyrinthParameters : MonoBehaviour, ICloneable
     public bool isFinalLevel;
     public int enemyDensity;
     public int pickupDensity;
-
     public int healthDensity;
     public GameObject origin;
     public System.Random random;
