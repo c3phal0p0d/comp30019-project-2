@@ -116,6 +116,7 @@ public class LabyrinthCreator
             }
         }
 
+
     }
 
     private void SpawnTorch(int torchRotation, Vector3 torchPositionOffset, GameObject wallObj, LabyrinthParameters parameters)
@@ -494,40 +495,28 @@ public class LabyrinthCreator
 
     }
 
-}
-
-private GameObject RandomPrefab(GameObject[] prefabs, System.Random random)
-{
-    return prefabs[random.Next() % prefabs.Length];
-}
-
-private void RandomCellPrefab(GameObject[] prefabs, LabyrinthParameters labyrinthParameters, MazeParameters mazeParameters, int section, Vector3 offset)
-{
-    if (!mazeParameters.isStart && !mazeParameters.IsExit)
+    private GameObject RandomPrefab(GameObject[] prefabs, System.Random random)
     {
-        int x, y;
-        (x, y) = RandomCell(section, labyrinthParameters.random);
+        return prefabs[random.Next() % prefabs.Length];
+    }
 
-        if (!mazeParameters.IsFinalBoss)
+    private void RandomCellPrefab(GameObject[] prefabs, LabyrinthParameters labyrinthParameters, MazeParameters mazeParameters, int section, Vector3 offset)
+    {
+        if (!mazeParameters.isStart && !mazeParameters.IsExit)
         {
+            int x, y;
+            (x, y) = RandomCell(section, labyrinthParameters.random);
             GameObject prefab = RandomPrefab(prefabs, labyrinthParameters.random);
             prefab = GameObject.Instantiate(prefab);
             prefab.transform.SetParent(mazeParameters.mazeOrigin.transform);
             prefab.transform.localPosition = new Vector3((x + 0.5f) * cellWidth, wallDepth / 2, (y + 0.5f) * cellWidth) + offset;
         }
-        else
-        {
-            GameObject finalBoss = GameObject.Instantiate(PrefabRepository.instance.FinalBoss);
-            finalBoss.transform.SetParent(mazeParameters.mazeOrigin.transform);
-            finalBoss.transform.localPosition = new Vector3((x + 0.5f) * cellWidth, wallDepth / 2, (y + 0.5f) * cellWidth) + offset;
-        }
     }
-}
 
-private void AddToNavMesh(GameObject obj, bool walkable)
-{
-    int area = (walkable) ? GameObjectUtility.GetNavMeshAreaFromName("Walkable") : GameObjectUtility.GetNavMeshAreaFromName("Not Walkable");
-    GameObjectUtility.SetStaticEditorFlags(obj, StaticEditorFlags.NavigationStatic);
-    GameObjectUtility.SetNavMeshArea(obj, area);
-}
+    private void AddToNavMesh(GameObject obj, bool walkable)
+    {
+        int area = (walkable) ? GameObjectUtility.GetNavMeshAreaFromName("Walkable") : GameObjectUtility.GetNavMeshAreaFromName("Not Walkable");
+        GameObjectUtility.SetStaticEditorFlags(obj, StaticEditorFlags.NavigationStatic);
+        GameObjectUtility.SetNavMeshArea(obj, area);
+    }
 }
