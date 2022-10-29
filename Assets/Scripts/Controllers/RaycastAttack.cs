@@ -45,7 +45,9 @@ public class RaycastAttack : MonoBehaviour
         // Deal damage
         if (hitObject != null)
         {
-            hitObject.GetComponentInParent<BarStat>().Increment(-damage);
+            if (hitObject.GetComponentInParent<BarStat>() != null){
+                hitObject.GetComponentInParent<BarStat>().Increment(-damage);
+            }
         }
     }
 
