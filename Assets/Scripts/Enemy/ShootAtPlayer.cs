@@ -61,18 +61,21 @@ public class ShootAtPlayer : MonoBehaviour
         yield return new WaitForSeconds(shootDelay);
 
         if (!(enemyHealth.isHit || enemyHealth.isDead)){
+            yield return new WaitForSeconds(Time.deltaTime);
             // Shoot projectile
-            FindObjectOfType<AudioManager>().Play("Fireball");
-            GameObject newProjectile = GameObject.Instantiate(projectile);
-            newProjectile.transform.position = origin.transform.position;
-            newProjectile.transform.localScale = new Vector3(size, size, size);
-            newProjectile.GetComponent<LinearProjectile>().SetParameters(
-                "Enemy",
-                "Player",
-                damage,
-                (PlayerManager.instance.gameObject.transform.position - transform.position).normalized * speed,
-                lifetime
-            );
+            if (!(enemyHealth.isHit || enemyHealth.isDead)){
+                FindObjectOfType<AudioManager>().Play("Fireball");
+                GameObject newProjectile = GameObject.Instantiate(projectile);
+                newProjectile.transform.position = origin.transform.position;
+                newProjectile.transform.localScale = new Vector3(size, size, size);
+                newProjectile.GetComponent<LinearProjectile>().SetParameters(
+                    "Enemy",
+                    "Player",
+                    damage,
+                    (PlayerManager.instance.gameObject.transform.position - transform.position).normalized * speed,
+                    lifetime
+                );
+            }
         }
 
         // Start enemy forward movement again
