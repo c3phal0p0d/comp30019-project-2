@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class MenuBehaviour : MonoBehaviour
 {
-    // Start is called before the first frame update
     public string difficultySelectionScene;
     public GameObject canvas;
     public Camera mainCamera;
@@ -19,8 +18,8 @@ public class MenuBehaviour : MonoBehaviour
 
     void Start()
     {
-        mainCamera = Camera.main;
         Cursor.visible = true;
+        mainCamera.GetComponent<MoveCamera>().move = false;
     }
 
     public void PlayButtonHoverSound()
@@ -36,6 +35,7 @@ public class MenuBehaviour : MonoBehaviour
     public void GoToDifficultySelection()
     {
         canvas.SetActive(false);
+        mainCamera.GetComponent<MoveCamera>().move = true;
         MoveCamera.setCameraSpeed(10);
     }
 
@@ -51,11 +51,6 @@ public class MenuBehaviour : MonoBehaviour
     public void HardNewGame()
     {
         SceneManager.LoadScene("Scenes/Hard");
-    }
-
-    public float setCameraSpeed()
-    {
-        return 10;
     }
 
     public void DisplayInstructions()

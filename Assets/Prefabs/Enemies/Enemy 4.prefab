@@ -10236,7 +10236,7 @@ Transform:
   - {fileID: 2742579530806681578}
   - {fileID: 383404925}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!195 &6437181706992655027
 NavMeshAgent:
@@ -10312,7 +10312,7 @@ MonoBehaviour:
   cooldown: 5
   projectile: {fileID: 3168523829568367557, guid: 264b689cfbb6d4da8aab635f3516003a, type: 3}
   origin: {fileID: 6437181707836015551}
-  shootDelay: 2
+  shootDelay: 1.4
 --- !u!95 &6437181706992655038
 Animator:
   serializedVersion: 4
@@ -10359,7 +10359,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b0407418d9026b4fac32beffa9b9caf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialHealth: 100
+  initialHealth: 20
   enemyNumber: 4
   isHit: 0
   isDead: 0

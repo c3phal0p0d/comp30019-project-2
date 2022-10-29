@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class DisplayCanvas : MonoBehaviour
 {
-    // Start is called before the first frame update
-
     public GameObject difficultyCamera;
     private Canvas difficultySelection;
 

@@ -395,7 +395,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   difficultySelectionScene: SelectDifficulty
   canvas: {fileID: 58522543}
-  mainCamera: {fileID: 0}
+  mainCamera: {fileID: 2098095317}
   gameplayInstructions: {fileID: 1725864742}
   controlsInfo: {fileID: 2026560084}
   mainMenu: {fileID: 58522544}
@@ -4072,7 +4072,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   difficultySelectionScene: SelectDifficulty
   canvas: {fileID: 1725864738}
-  mainCamera: {fileID: 0}
+  mainCamera: {fileID: 2098095317}
   gameplayInstructions: {fileID: 1725864742}
   controlsInfo: {fileID: 2026560084}
   mainMenu: {fileID: 58522544}
@@ -4807,7 +4807,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   difficultySelectionScene: SelectDifficulty
   canvas: {fileID: 2026560083}
-  mainCamera: {fileID: 0}
+  mainCamera: {fileID: 2098095317}
   gameplayInstructions: {fileID: 1725864742}
   controlsInfo: {fileID: 2026560084}
   mainMenu: {fileID: 58522544}
@@ -5231,6 +5231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e6494e0a2f37024982af55face7bc51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  move: 0
 --- !u!81 &2098095316
 AudioListener:
   m_ObjectHideFlags: 0
@@ -5481,7 +5482,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   difficultySelectionScene: SelectDifficulty
   canvas: {fileID: 2119836768}
-  mainCamera: {fileID: 0}
+  mainCamera: {fileID: 2098095317}
   gameplayInstructions: {fileID: 0}
   controlsInfo: {fileID: 0}
   mainMenu: {fileID: 0}
