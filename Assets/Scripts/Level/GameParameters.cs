@@ -47,7 +47,8 @@ public class GameParameters : MonoBehaviour
         labyrinthParameters.isFinalLevel = level == numLevels;
         if (labyrinthParameters.isFinalLevel)
             labyrinthParameters.numSections = 2;
-        labyrinthParameters.enemyDensity = 1 + level / 2;
+        if ((level + 1) % 2 == 0)
+            labyrinthParameters.enemyDensity++;
 
         labyrinthSizes = (LabyrinthSize)labyrinthSizes.Clone();
         if ((level+1) % 2 == 0)

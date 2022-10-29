@@ -368,10 +368,30 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4517670432373172248, guid: c2f6a8ae944b61444a4f5c81e9f75da0, type: 3}
+      propertyPath: mazeWidth
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4517670432373172248, guid: c2f6a8ae944b61444a4f5c81e9f75da0, type: 3}
+      propertyPath: mazeHeight
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4517670432373172249, guid: c2f6a8ae944b61444a4f5c81e9f75da0, type: 3}
       propertyPath: origin
       value: 
       objectReference: {fileID: 581613229}
+    - target: {fileID: 4517670432373172249, guid: c2f6a8ae944b61444a4f5c81e9f75da0, type: 3}
+      propertyPath: enemyDensity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4517670432373172249, guid: c2f6a8ae944b61444a4f5c81e9f75da0, type: 3}
+      propertyPath: healthDensity
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4517670432373172249, guid: c2f6a8ae944b61444a4f5c81e9f75da0, type: 3}
+      propertyPath: pickupDensity
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4517670432373172251, guid: c2f6a8ae944b61444a4f5c81e9f75da0, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -422,7 +442,11 @@ PrefabInstance:
       objectReference: {fileID: 581613229}
     - target: {fileID: 4517670432373172253, guid: c2f6a8ae944b61444a4f5c81e9f75da0, type: 3}
       propertyPath: seed
-      value: 392345460
+      value: 859949728
+      objectReference: {fileID: 0}
+    - target: {fileID: 4517670432373172253, guid: c2f6a8ae944b61444a4f5c81e9f75da0, type: 3}
+      propertyPath: numLevels
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4517670432373172254, guid: c2f6a8ae944b61444a4f5c81e9f75da0, type: 3}
       propertyPath: m_Name
