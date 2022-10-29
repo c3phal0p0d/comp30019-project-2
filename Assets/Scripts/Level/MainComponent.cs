@@ -33,9 +33,10 @@ public class MainComponent : MonoBehaviour
     {
         foreach (Transform child0 in levelObject.transform)
         {
+            Debug.Log(LayerMask.NameToLayer("ToDestroy"));
             foreach (Transform child1 in child0)
             {
-                child1.gameObject.layer = LayerMask.NameToLayer("ToDestroy");
+                child1.gameObject.layer = (int)LayerMask.NameToLayer("ToDestroy");
             }
         }
         // Generate new maze
