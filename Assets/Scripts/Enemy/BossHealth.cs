@@ -61,6 +61,8 @@ public class BossHealth : EnemyHealth
     }
 
     private void RemoveObjectsFromScene(){
+        FindObjectOfType<AudioManager>().Stop("BackgroundMusic");
+
         // remove stat items
         GameObject[] statItemsInScene = GameObject.FindGameObjectsWithTag("StatItem");
         foreach (GameObject statItem in statItemsInScene)
