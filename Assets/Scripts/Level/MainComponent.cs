@@ -31,6 +31,13 @@ public class MainComponent : MonoBehaviour
 
     public void NextLevel()
     {
+        foreach (Transform child0 in levelObject.transform)
+        {
+            foreach (Transform child1 in child0)
+            {
+                child1.gameObject.layer = LayerMask.NameToLayer("ToDestroy");
+            }
+        }
         // Generate new maze
         DeleteLevel();
         LabyrinthCreator lc = new LabyrinthCreator(gameParameters.LevelSizes);
