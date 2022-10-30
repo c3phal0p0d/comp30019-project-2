@@ -42,6 +42,11 @@ public class BossHealth : EnemyHealth
         }
     }
 
+    private void Start(){
+        FindObjectOfType<AudioManager>().Play("BossMusic");
+        FindObjectOfType<AudioManager>().Stop("BackgroundMusic");
+    }
+
     private void Update()
     {
         if (isDead)
@@ -61,7 +66,7 @@ public class BossHealth : EnemyHealth
     }
 
     private void RemoveObjectsFromScene(){
-        FindObjectOfType<AudioManager>().Stop("BackgroundMusic");
+        FindObjectOfType<AudioManager>().Stop("BossMusic");
 
         // remove stat items
         GameObject[] statItemsInScene = GameObject.FindGameObjectsWithTag("StatItem");

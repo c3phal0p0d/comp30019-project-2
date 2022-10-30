@@ -59,7 +59,11 @@ public class PauseMenuBehaviour : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         pauseMenu.enabled = false;
         Time.timeScale = 1;
-        FindObjectOfType<AudioManager>().Play("BackgroundMusic");
+        if (FindObjectOfType<BossHealth>()!=null){
+            FindObjectOfType<AudioManager>().Play("BossMusic");
+        } else {
+            FindObjectOfType<AudioManager>().Play("BackgroundMusic");
+        }
         FindObjectOfType<PlayerAttack>().isPaused = false;
     }
 
