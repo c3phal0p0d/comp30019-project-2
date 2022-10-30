@@ -32,11 +32,6 @@ public class HealthPickUp : MonoBehaviour
         }
     }
 
-    IEnumerator DestroyObject(){
-        yield return new WaitForSeconds(1);
-        gameObject.SetActive(false);
-    }
-
     private void OnTriggerExit(Collider other){
         if (isPickedUp){
             gameObject.SetActive(false);

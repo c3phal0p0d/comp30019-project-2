@@ -35,12 +35,7 @@ public class HealthIncreasePickup : MonoBehaviour
             }
         }
     }
-
-    IEnumerator DestroyObject(){
-        yield return new WaitForSeconds(3);
-        gameObject.SetActive(false);
-    }
-
+    
     private void OnTriggerExit(Collider other){
         if (isPickedUp){
             gameObject.SetActive(false);
