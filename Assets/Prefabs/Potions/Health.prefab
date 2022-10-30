@@ -33,7 +33,7 @@ Transform:
   m_Children:
   - {fileID: 9073317037642968763}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6947800314760756797
 MonoBehaviour:
@@ -75,8 +75,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.1
-  m_Height: 0.27
+  m_Radius: 0.2
+  m_Height: 0.45
   m_Direction: 1
   m_Center: {x: 0, y: 0.03, z: 0}
 --- !u!1001 &8818150018109671760
