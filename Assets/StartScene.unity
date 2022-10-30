@@ -2664,7 +2664,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 7, y: -15}
+  m_AnchoredPosition: {x: 7, y: -41}
   m_SizeDelta: {x: 600, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1124246564
@@ -4296,7 +4296,9 @@ MonoBehaviour:
     <b><size=120%>SPRINT:</size></b>   LEFT SHIFT KEY
 
     <b><size=120%>ATTACK:</size></b>  
-    LEFT MOUSE BUTTON'
+    LEFT MOUSE BUTTON
+
+    <b><size=120%>PAUSE GAME:</size></b>  ESCAPE KEY'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d44bb72c6c03a4dc1b4e6442da713fcf, type: 2}
   m_sharedMaterial: {fileID: -1479752315666207127, guid: d44bb72c6c03a4dc1b4e6442da713fcf, type: 2}

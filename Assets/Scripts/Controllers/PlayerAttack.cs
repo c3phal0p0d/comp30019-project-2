@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
+    public Canvas pauseMenu;
     [SerializeField] private RaycastAttack caster;
 
     private PlayerStats.Stat strengthStat;
@@ -13,7 +14,7 @@ public class PlayerAttack : MonoBehaviour
     private float cooldown;
 
     private bool canAttack = false;
-
+    public bool isPaused = false;
 
     private void Start()
     {
@@ -26,7 +27,7 @@ public class PlayerAttack : MonoBehaviour
         cooldown -= Time.deltaTime;
         cooldown = (cooldown < 0) ? 0 : cooldown;
 
-        if (cooldown == 0 && Input.GetMouseButtonDown(0))
+        if (cooldown == 0 && Input.GetMouseButtonDown(0) && !isPaused)
         {
             cooldown = attackCooldown;
             canAttack = true;
@@ -38,7 +39,16 @@ public class PlayerAttack : MonoBehaviour
             FindObjectOfType<AudioManager>().Play("WeaponAttack");
             caster.Cast(strengthStat.Value);
             canAttack = false;
+        }
 
+        // Pause game
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Cursor.lockState = CursorLockMode.None;
+            pauseMenu.enabled = true;
+            Time.timeScale = 0;
+            FindObjectOfType<AudioManager>().Stop("BackgroundMusic");
+            isPaused = true;
         }
     }
 }
