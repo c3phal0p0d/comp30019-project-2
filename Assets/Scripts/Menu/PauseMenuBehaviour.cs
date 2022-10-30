@@ -56,6 +56,7 @@ public class PauseMenuBehaviour : MonoBehaviour
 
     public void ResumeGame(){
         Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         pauseMenu.enabled = false;
         Time.timeScale = 1;
         FindObjectOfType<AudioManager>().Play("BackgroundMusic");
