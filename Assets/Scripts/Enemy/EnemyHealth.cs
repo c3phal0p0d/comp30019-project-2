@@ -50,6 +50,7 @@ public class EnemyHealth : BarStat
         base.Increment(amount);
         if (IsEmpty)
         {
+            GetComponent<Collider>().enabled = false;
             // Pause enemy forward movement while animation is playing 
             agent.isStopped = true;
 
