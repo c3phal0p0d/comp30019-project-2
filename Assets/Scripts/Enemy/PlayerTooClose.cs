@@ -32,7 +32,7 @@ public class PlayerTooClose : MonoBehaviour
 
         if (collider.gameObject.tag == "Player")
         {
-            Debug.Log("Enter");
+
             playerTooClose = true;
         }
     }
@@ -41,7 +41,7 @@ public class PlayerTooClose : MonoBehaviour
     {
         if (collider.gameObject.tag == "Player")
         {
-            Debug.Log("close");
+
 
             playerTooClose = false;
             damageCoolDown = 2f;
