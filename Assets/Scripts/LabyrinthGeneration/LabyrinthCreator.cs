@@ -12,9 +12,6 @@ public class LabyrinthCreator
     private float wallHeight = 1.5f;
     private float tubeHeight = 10f;
 
-    private HashSet<Tuple<int, int, int>> cellsUsed;
-    private readonly int max_tries;
-
     private List<Tuple<int, int>> sectionLocations;
     private List<Tuple<Maze, MazeParameters>> mazeAndParametersList;
 
@@ -27,9 +24,6 @@ public class LabyrinthCreator
         this.wallDepth = sizes.wallDepth;
         this.tubeHeight = sizes.tubeHeight;
 
-        max_tries = 10 * this.mazeWidth * mazeHeight;
-
-        cellsUsed = new HashSet<Tuple<int, int, int>>();
         sectionLocations = new List<Tuple<int, int>>();
         mazeAndParametersList = new List<Tuple<Maze, MazeParameters>>();
     }
@@ -455,57 +449,41 @@ public class LabyrinthCreator
         levelEnd.transform.localPosition = new Vector3(mazeWidth * cellWidth / 2, -tubeHeight / 2, mazeHeight * cellWidth / 2);
     }
 
-    private (int, int) RandomCell(int section, System.Random random)
-    {
-        Tuple<int, int, int> newCell = new Tuple<int, int, int>(section, random.Next() % mazeWidth, random.Next() % mazeHeight);
-        int i = 0;
-        while (cellsUsed.Contains(newCell) && i < max_tries)
-        {
-            newCell = new Tuple<int, int, int>(section, random.Next() % mazeWidth, random.Next() % mazeHeight);
-            i++;
-        }
-        if (i == max_tries) ; // frick
-        cellsUsed.Add(newCell);
-        return (newCell.Item2, newCell.Item3);
-    }
-
     private void FillWithEntities(Maze maze, LabyrinthParameters labyrinthParameters, MazeParameters mazeParameters, int section)
     {
-        if (mazeParameters.IsFinalBoss)
+        if (!mazeParameters.isStart && !mazeParameters.IsExit)
         {
-            GameObject[] finalBoss = { PrefabRepository.instance.FinalBoss };
-            RandomCellPrefab(finalBoss, labyrinthParameters, mazeParameters, section, Vector3.zero);
+            if (mazeParameters.IsFinalBoss)
+            {
+                GameObject[] finalBoss = { PrefabRepository.instance.FinalBoss };
+                SpawnMultipleEntities(1, finalBoss, labyrinthParameters, mazeParameters, section, Vector3.zero);
+            }
+            else
+            {
+                SpawnMultipleEntities(labyrinthParameters.enemyDensity, PrefabRepository.instance.Enemies, labyrinthParameters, mazeParameters, section, Vector3.zero);
+                SpawnMultipleEntities(labyrinthParameters.pickupDensity, PrefabRepository.instance.StatIncreases, labyrinthParameters, mazeParameters, section, 0.5f * Vector3.up);
+                SpawnMultipleEntities(labyrinthParameters.healthDensity, PrefabRepository.instance.HealingItems, labyrinthParameters, mazeParameters, section, 0.5f * Vector3.up);
+            }
         }
-        else
+    }
+
+    private void SpawnMultipleEntities(int numEntities, GameObject[] prefabs, LabyrinthParameters lp, MazeParameters mp, int section, Vector3 offset)
+    {
+        CellDistributor cellDistributor = new CellDistributor(mazeWidth, mazeHeight);
+        for (int i = 0; i < numEntities; i++)
         {
-            for (int i = 0; i < labyrinthParameters.enemyDensity; i++)
-                RandomCellPrefab(PrefabRepository.instance.Enemies, labyrinthParameters, mazeParameters, section, Vector3.zero);
+            GameObject prefab = RandomPrefab(prefabs, lp.random);
+            (int x, int y) = cellDistributor.RandomCell(lp.random);
 
-            for (int i = 0; i < labyrinthParameters.pickupDensity; i++)
-                RandomCellPrefab(PrefabRepository.instance.StatIncreases, labyrinthParameters, mazeParameters, section, 0.5f * Vector3.up);
-
-            for (int i = 0; i < labyrinthParameters.healthDensity; i++)
-                RandomCellPrefab(PrefabRepository.instance.HealingItems, labyrinthParameters, mazeParameters, section, 0.5f * Vector3.up);
+            prefab = GameObject.Instantiate(prefab);
+            prefab.transform.SetParent(mp.mazeOrigin.transform);
+            prefab.transform.localPosition = new Vector3((x + 0.5f) * cellWidth, wallDepth / 2, (y + 0.5f) * cellWidth) + offset;
 
         }
-
     }
 
     private GameObject RandomPrefab(GameObject[] prefabs, System.Random random)
     {
         return prefabs[random.Next() % prefabs.Length];
-    }
-
-    private void RandomCellPrefab(GameObject[] prefabs, LabyrinthParameters labyrinthParameters, MazeParameters mazeParameters, int section, Vector3 offset)
-    {
-        if (!mazeParameters.isStart && !mazeParameters.IsExit)
-        {
-            int x, y;
-            (x, y) = RandomCell(section, labyrinthParameters.random);
-            GameObject prefab = RandomPrefab(prefabs, labyrinthParameters.random);
-            prefab = GameObject.Instantiate(prefab);
-            prefab.transform.SetParent(mazeParameters.mazeOrigin.transform);
-            prefab.transform.localPosition = new Vector3((x + 0.5f) * cellWidth, wallDepth / 2, (y + 0.5f) * cellWidth) + offset;
-        }
     }
 }
