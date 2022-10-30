@@ -21,7 +21,10 @@ public class PlayerTooClose : MonoBehaviour
         if (damageCoolDown <= 0)
         {
             var x = PlayerManager.instance.gameObject.GetComponent<PlayerHealth>();
-            x.Increment(-0.01f);
+            x.Increment(-0.8f);
+            damageCoolDown = 2f;
+
+
         }
 
     }
