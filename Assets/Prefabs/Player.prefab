@@ -249,7 +249,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 6456609882737518732}
-  pauseMenu: {fileID: 0}
   walkSpeedScale: 0.4
   runSpeedMultiplier: 1.5
   gravity: -9.81
@@ -360,7 +359,7 @@ MonoBehaviour:
   targetTag: Enemy
   attackDistance: 10
   ray: {fileID: 6456609881549923254}
-  damageDelay: 1.1
+  damageDelay: 0.8
   layerMask:
     serializedVersion: 2
     m_Bits: 328
@@ -376,8 +375,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9f0fc733190e9644aa62496cea4ca5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pauseMenu: {fileID: 0}
   caster: {fileID: 6456609882737518734}
-  attackCooldown: 1.5
+  attackCooldown: 1.1
+  isPaused: 0
 --- !u!1 &6456609882940324981
 GameObject:
   m_ObjectHideFlags: 0
