@@ -9,6 +9,8 @@ public class HealthIncreasePickup : MonoBehaviour
     [SerializeField] private Canvas fullHealthIndicator;
     [SerializeField] private Canvas statIncreaseMessage;
 
+    private bool isPickedUp = false;
+
     void Update()
     {
         transform.Rotate(0, 1, 0, Space.Self);
@@ -19,11 +21,14 @@ public class HealthIncreasePickup : MonoBehaviour
 
         if (health != null)
         {
-            if (health.Value < health.MaxValue){
+            if (health.Value < health.MaxValue && !isPickedUp){
                 health.Increment(1);
                 FindObjectOfType<AudioManager>().Play("CollectStatPickup");
                 statIncreaseMessage.enabled = true;
-                DestroyObject();
+                isPickedUp = true;
+
+                // Remove from scene leaving only health indicator message
+                transform.GetChild(0).gameObject.SetActive(false);
             }
             else {
                 fullHealthIndicator.enabled = true;
@@ -37,6 +42,9 @@ public class HealthIncreasePickup : MonoBehaviour
     }
 
     private void OnTriggerExit(Collider other){
+        if (isPickedUp){
+            gameObject.SetActive(false);
+        }
         fullHealthIndicator.enabled = false;
     }
 }
