@@ -76,7 +76,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4278976649
-  m_fontColor: {r: 0.5372549, g: 0, b: 0.045736372, a: 1}
+  m_fontColor: {r: 0.8, g: 0.59607846, b: 0.14117648, a: 1}
   m_enableVertexGradient: 1
   m_colorMode: 3
   m_fontColorGradient:
@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 6945483426423226905}
   - component: {fileID: 9222425707573401484}
   m_Layer: 5
-  m_Name: FULL HEALTH INDICATOR
+  m_Name: FULL AMMO INDICATOR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
