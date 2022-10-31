@@ -469,15 +469,19 @@ public class LabyrinthCreator
 
     private void SpawnMultipleEntities(int numEntities, GameObject[] prefabs, LabyrinthParameters lp, MazeParameters mp, int section, Vector3 offset)
     {
+        System.Random otherRandom = new System.Random();
         CellDistributor cellDistributor = new CellDistributor(mazeWidth, mazeHeight);
         for (int i = 0; i < numEntities; i++)
         {
             GameObject prefab = RandomPrefab(prefabs, lp.random);
             (int x, int y) = cellDistributor.RandomCell(lp.random);
 
+            float dx = (float)otherRandom.NextDouble() * cellWidth * 0.25f;
+            float dz = (float)otherRandom.NextDouble() * cellWidth * 0.25f;
+
             prefab = GameObject.Instantiate(prefab);
             prefab.transform.SetParent(mp.mazeOrigin.transform);
-            prefab.transform.localPosition = new Vector3((x + 0.5f) * cellWidth, wallDepth / 2, (y + 0.5f) * cellWidth) + offset;
+            prefab.transform.localPosition = new Vector3((x + 0.5f) * cellWidth, wallDepth / 2, (y + 0.5f) * cellWidth) + offset + new Vector3(dx, 0, dz);
 
         }
     }
