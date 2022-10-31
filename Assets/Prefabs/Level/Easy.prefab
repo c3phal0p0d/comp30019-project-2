@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4517670432373172254
+--- !u!1 &2695124059926853654
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,13 +8,13 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4517670432373172251}
-  - component: {fileID: 4517670432373172252}
-  - component: {fileID: 4517670432373172253}
-  - component: {fileID: 4517670432373172249}
-  - component: {fileID: 4517670432373172248}
-  - component: {fileID: 4517670432373172247}
-  - component: {fileID: 4517670432373172246}
+  - component: {fileID: 2695124059926853651}
+  - component: {fileID: 2695124059926853652}
+  - component: {fileID: 2695124059926853653}
+  - component: {fileID: 2695124059926853649}
+  - component: {fileID: 2695124059926853648}
+  - component: {fileID: 2695124059926853663}
+  - component: {fileID: 2695124059926853662}
   m_Layer: 0
   m_Name: Easy
   m_TagString: Wall
@@ -22,13 +22,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4517670432373172251
+--- !u!4 &2695124059926853651
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4517670432373172254}
+  m_GameObject: {fileID: 2695124059926853654}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -37,44 +37,44 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4517670432373172252
+--- !u!114 &2695124059926853652
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4517670432373172254}
+  m_GameObject: {fileID: 2695124059926853654}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9c44c077e2c3b1448a59ee67cbf00d41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameParameters: {fileID: 4517670432373172253}
+  gameParameters: {fileID: 2695124059926853653}
   levelObject: {fileID: 0}
---- !u!114 &4517670432373172253
+--- !u!114 &2695124059926853653
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4517670432373172254}
+  m_GameObject: {fileID: 2695124059926853654}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0f2b0300f8bd1d14db245ab04f3cd562, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   useInitialSeed: 0
-  seed: 1861640760
-  numLevels: 3
-  initialLabyrinthParameters: {fileID: 4517670432373172249}
-  initialLabyrinthSizes: {fileID: 4517670432373172248}
---- !u!114 &4517670432373172249
+  seed: 384572836
+  numLevels: 6
+  initialLabyrinthParameters: {fileID: 2695124059926853649}
+  initialLabyrinthSizes: {fileID: 2695124059926853648}
+--- !u!114 &2695124059926853649
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4517670432373172254}
+  m_GameObject: {fileID: 2695124059926853654}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 654da310439d81142af8f2b7f2061321, type: 3}
@@ -82,40 +82,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numSections: 2
   isFinalLevel: 0
-  enemyDensity: 2
-  pickupDensity: 3
-  healthDensity: 3
+  enemyDensity: 3
+  pickupDensity: 4
+  healthDensity: 4
+  ammoDensity: 4
   origin: {fileID: 0}
   brickMaterial: {fileID: 2100000, guid: 77febcaa355d74e3d8eb4ec6a0c08d3b, type: 2}
   blackMaterial: {fileID: 2100000, guid: 49aba598592887249b8174aadee0e35b, type: 2}
   wallObject: {fileID: 5722773736405991263, guid: 6472207b138fabf4ba403d91b8d904cd, type: 3}
   wallTorchPrefab: {fileID: 139546498731853840, guid: cb830cd1c76c84be794b539e67e2659f, type: 3}
   levelEndPrefab: {fileID: 6606837702791187695, guid: 72558dff70a381d4f9e277e78e68f2a7, type: 3}
---- !u!114 &4517670432373172248
+--- !u!114 &2695124059926853648
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4517670432373172254}
+  m_GameObject: {fileID: 2695124059926853654}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 42d61c67c4c07b341b1c72b1a6df5008, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazeWidth: 10
-  mazeHeight: 10
+  mazeWidth: 5
+  mazeHeight: 5
   cellWidth: 3
   wallDepth: 1
   wallHeight: 3.2
   tubeHeight: 10
---- !u!114 &4517670432373172247
+--- !u!114 &2695124059926853663
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4517670432373172254}
+  m_GameObject: {fileID: 2695124059926853654}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0728d4f34d376b049bee47c4cb72cd16, type: 3}
@@ -126,20 +127,23 @@ MonoBehaviour:
   - {fileID: 2523241770001930196, guid: e585706432fb744b2a8af7326155ef24, type: 3}
   - {fileID: 1849577864497754533, guid: f7346fc1bc52c4d419beab4b228184f0, type: 3}
   - {fileID: 2523241770001930196, guid: dad7201c1c8c9ea4e8376a2c070a4458, type: 3}
+  - {fileID: 2523241770001930196, guid: 5acde3f4c320cb840b297db6b4eadb3f, type: 3}
   healingItems:
   - {fileID: 6821873818605990397, guid: dd6c11689261a41c5b7b5fde063ca04a, type: 3}
+  ammoItems:
+  - {fileID: 6390380791006183035, guid: ff88a30b728b11b4496495a4b06043af, type: 3}
   enemies:
   - {fileID: 4057458054345064265, guid: 1f953d39803424d3eaea7254aa5c3178, type: 3}
   - {fileID: 1962108098383283150, guid: b9bee54883eef438ba8c0eefe0377208, type: 3}
   - {fileID: 7005831427890307639, guid: 5b34c035a3b3a4404a71c7e6fe313032, type: 3}
   finalBoss: {fileID: 6437181706992655025, guid: a169068f39e5a47519ec11a46671b25c, type: 3}
---- !u!114 &4517670432373172246
+--- !u!114 &2695124059926853662
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4517670432373172254}
+  m_GameObject: {fileID: 2695124059926853654}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}

@@ -12,10 +12,13 @@ public class AmmoUI : MonoBehaviour
     {
         bar.BarWidth = ammo.MaxValue * barScale;
         bar.OverBarWidth = ammo.Value * barScale;
+        bar.UnderBarWidth = ammo.Value * barScale;
     }
 
     void Update()
     {
         bar.OverBarWidth = ammo.Value * barScale;
+        bar.BarWidth = ammo.MaxValue * barScale;
+        bar.UnderBarWidth = ammo.Value * barScale;
     }
 }

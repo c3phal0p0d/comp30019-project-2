@@ -10,6 +10,7 @@ public class LabyrinthParameters : MonoBehaviour, ICloneable
     public int enemyDensity;
     public int pickupDensity;
     public int healthDensity;
+    public int ammoDensity;
     public GameObject origin;
     public System.Random random;
     public Material brickMaterial;

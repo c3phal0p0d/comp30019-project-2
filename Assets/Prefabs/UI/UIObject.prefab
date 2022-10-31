@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 6126769413713995425}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.9, y: 0.675, z: 1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.02, y: 0.02, z: 0.02}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6478169426259766132}
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bar: {fileID: 5960074467365701005}
   ammo: {fileID: 0}
-  barScale: 2
+  barScale: 4
 --- !u!1 &6478169425341628576
 GameObject:
   m_ObjectHideFlags: 0

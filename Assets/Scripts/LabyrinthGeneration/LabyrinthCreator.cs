@@ -463,6 +463,7 @@ public class LabyrinthCreator
                 SpawnMultipleEntities(labyrinthParameters.enemyDensity, PrefabRepository.instance.Enemies, labyrinthParameters, mazeParameters, section, Vector3.zero);
                 SpawnMultipleEntities(labyrinthParameters.pickupDensity, PrefabRepository.instance.StatIncreases, labyrinthParameters, mazeParameters, section, 0.5f * Vector3.up);
                 SpawnMultipleEntities(labyrinthParameters.healthDensity, PrefabRepository.instance.HealingItems, labyrinthParameters, mazeParameters, section, 0.5f * Vector3.up);
+                SpawnMultipleEntities(labyrinthParameters.ammoDensity, PrefabRepository.instance.AmmoItems, labyrinthParameters, mazeParameters, section, 0.5f * Vector3.up);
             }
         }
     }
