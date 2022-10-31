@@ -2054,7 +2054,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -109, y: 156}
+  m_AnchoredPosition: {x: -109, y: 170}
   m_SizeDelta: {x: 155, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &869056940
@@ -2922,8 +2922,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 7, y: -41}
-  m_SizeDelta: {x: 600, y: 400}
+  m_AnchoredPosition: {x: 7, y: -57}
+  m_SizeDelta: {x: 700, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1124246564
 CanvasRenderer:
@@ -3770,7 +3770,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1, y: -25}
+  m_AnchoredPosition: {x: -1, y: -4}
   m_SizeDelta: {x: 600, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1412341634
@@ -4380,7 +4380,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -109, y: 156}
+  m_AnchoredPosition: {x: -109, y: 170}
   m_SizeDelta: {x: 155, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1600419385
@@ -5100,8 +5100,14 @@ MonoBehaviour:
 
     <b><size=120%>SPRINT:</size></b>   LEFT SHIFT KEY
 
-    <b><size=120%>ATTACK:</size></b>  
-    LEFT MOUSE BUTTON
+    <b><size=120%>MELEE
+    ATTACK:</size></b>   LEFT MOUSE BUTTON
+
+    <b><size=120%> CHARGE RANGED ATTACK:</size></b>
+    HOLD RIGHT MOUSE BUTTON
+
+    <b><size=120%>RANGED ATTACK:</size></b> RELEASE
+    RIGHT MOUSE BUTTON
 
     <b><size=120%>PAUSE GAME:</size></b>  ESCAPE KEY'
   m_isRightToLeft: 0
