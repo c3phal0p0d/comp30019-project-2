@@ -5,11 +5,16 @@ using UnityEngine;
 public class PlayerTooClose : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField] private float damageCoolDown = 2f;
+    [SerializeField] private float maxDamageCoolDown = 0.6f;
+    private float damageCoolDown;
     private bool inflictDamage;
     private bool playerTooClose;
 
     // Update is called once per frame
+    void Start()
+    {
+        damageCoolDown = maxDamageCoolDown;
+    }
     void Update()
     {
 
@@ -22,7 +27,7 @@ public class PlayerTooClose : MonoBehaviour
         {
             var x = PlayerManager.instance.gameObject.GetComponent<PlayerHealth>();
             x.Increment(-0.8f);
-            damageCoolDown = 2f;
+            damageCoolDown = maxDamageCoolDown;
 
 
         }
