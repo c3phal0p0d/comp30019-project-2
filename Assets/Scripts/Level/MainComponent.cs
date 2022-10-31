@@ -46,6 +46,7 @@ public class MainComponent : MonoBehaviour
 
         levelNumber++;
         gameParameters.UpdateParameters(levelNumber);
+
     }
 
     private void FixedUpdate()

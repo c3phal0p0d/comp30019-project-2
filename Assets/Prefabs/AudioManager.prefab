@@ -111,3 +111,13 @@ MonoBehaviour:
     name: BossMusic
     loop: 1
     source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: f4d93e3e28f6ed540ab3683b3f62eb0c, type: 3}
+    volume: 0.3
+    name: Draw
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: cf5ea4cc4325b9b42b537809ef6a11cc, type: 3}
+    volume: 0.3
+    name: Release
+    loop: 0
+    source: {fileID: 0}

@@ -41,8 +41,15 @@ public class PlayerAttack : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1) && !ammo.IsEmpty && !isPaused)
         {
+            FindObjectOfType<AudioManager>().Play("Draw");
             isChargingRangedAttack = true;
             rangedAttackCharge = 0;
+        }
+
+        if (Input.GetMouseButtonUp(1) && !ammo.IsEmpty && !isPaused)
+        {
+            FindObjectOfType<AudioManager>().Stop("Draw");
+            FindObjectOfType<AudioManager>().Play("Release");
         }
 
         if (!isChargingRangedAttack && meleeAttackCooldown == 0 && Input.GetMouseButtonDown(0) && !isPaused)
