@@ -43,6 +43,10 @@ public class PlayerDeath : MonoBehaviour
         {
             GameObject.Find("StaminaBar").SetActive(false);
         }
+        if (GameObject.Find("AmmoBar") != null)
+        {
+            GameObject.Find("AmmoBar").SetActive(false);
+        }
 
     }
 

@@ -91,6 +91,10 @@ public class BossHealth : EnemyHealth
         {
             GameObject.Find("StaminaBar").SetActive(false);
         }
+        if (GameObject.Find("AmmoBar") != null)
+        {
+            GameObject.Find("AmmoBar").SetActive(false);
+        }
 
         // Stop player movement
         GameObject player = GameObject.Find("Player");
