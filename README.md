@@ -43,7 +43,7 @@ Teamwork plan
 * Ask for help when not sure
 ###
 
-## TASK ALLOCATION  
+### TASK ALLOCATION  
 
 ### 12/09
 * Labyrinth layout generation - Andrew
