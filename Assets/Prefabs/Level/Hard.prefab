@@ -64,7 +64,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useInitialSeed: 0
-  seed: 1861640760
+  seed: 1148650408
   numLevels: 9
   initialLabyrinthParameters: {fileID: 2695124059926853649}
   initialLabyrinthSizes: {fileID: 2695124059926853648}
@@ -126,6 +126,7 @@ MonoBehaviour:
   - {fileID: 2523241770001930196, guid: e585706432fb744b2a8af7326155ef24, type: 3}
   - {fileID: 1849577864497754533, guid: f7346fc1bc52c4d419beab4b228184f0, type: 3}
   - {fileID: 2523241770001930196, guid: dad7201c1c8c9ea4e8376a2c070a4458, type: 3}
+  - {fileID: 6947800314760756796, guid: e27a6c6f7f18f47b4aa8be7769c1fdae, type: 3}
   healingItems:
   - {fileID: 6821873818605990397, guid: dd6c11689261a41c5b7b5fde063ca04a, type: 3}
   enemies:

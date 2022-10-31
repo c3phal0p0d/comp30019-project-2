@@ -10,9 +10,11 @@ using UnityEditor;
 public class PlayerStats : MonoBehaviour
 {
     [SerializeField]
-    private BarStat playerHealth;
+    private PlayerHealth playerHealth;
     [SerializeField]
-    private BarStat playerStamina;
+    private Stamina playerStamina;
+    [SerializeField]
+    private PlayerAmmo playerAmmo;
     [SerializeField]
     private float[] initialValues = new float[Enum.GetNames(typeof(StatType)).Length];
     [SerializeField]
@@ -44,7 +46,8 @@ public class PlayerStats : MonoBehaviour
         MaxHealth,
         MaxStamina,
         Speed,
-        Strength
+        Strength,
+        MaxAmmo
     }
 
     private Stat[] stats;
@@ -57,6 +60,7 @@ public class PlayerStats : MonoBehaviour
 
         playerHealth.SetStat(GetStat(StatType.MaxHealth));
         playerStamina.SetStat(GetStat(StatType.MaxStamina));
+        playerAmmo.SetStat(GetStat(StatType.MaxAmmo));
     }
 
     public Stat GetStat(StatType statType)
@@ -71,6 +75,7 @@ class PlayerStatsEditor : Editor
 {
     SerializedProperty playerHealthProperty;
     SerializedProperty playerStaminaProperty;
+    SerializedProperty playerAmmoProperty;
     SerializedProperty playerInitialStatsArray;
     SerializedProperty playerMaxStatsArray;
 
@@ -78,6 +83,7 @@ class PlayerStatsEditor : Editor
     {
         playerHealthProperty = serializedObject.FindProperty("playerHealth");
         playerStaminaProperty = serializedObject.FindProperty("playerStamina");
+        playerAmmoProperty = serializedObject.FindProperty("playerAmmo");
         playerInitialStatsArray = serializedObject.FindProperty("initialValues");
         playerMaxStatsArray = serializedObject.FindProperty("maxValues");
     }
@@ -92,6 +98,7 @@ class PlayerStatsEditor : Editor
 
         EditorGUILayout.PropertyField(playerHealthProperty);
         EditorGUILayout.PropertyField(playerStaminaProperty);
+        EditorGUILayout.PropertyField(playerAmmoProperty);
 
         EditorGUILayout.LabelField("Player Stats (Initial, Max)");
         string[] statNames = Enum.GetNames(typeof(PlayerStats.StatType));

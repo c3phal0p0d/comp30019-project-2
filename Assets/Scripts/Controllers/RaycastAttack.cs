@@ -10,16 +10,12 @@ public class RaycastAttack : MonoBehaviour
     [SerializeField]
     private string targetTag;
     [SerializeField]
-    private float attackDistance = 3;
-    [SerializeField]
     private GameObject ray;
-    [SerializeField]
-    private float damageDelay = 1.1f;
     [SerializeField]
     private LayerMask layerMask;
 
 
-    public void Cast(float damage)
+    public void Cast(float damage, float attackDistance, float damageDelay)
     {
 
         RaycastHit[] hits = Physics.RaycastAll(ray.transform.position, ray.transform.forward, attackDistance, layerMask);
@@ -30,14 +26,14 @@ public class RaycastAttack : MonoBehaviour
                 continue;
             if (hitObject.CompareTag(targetTag))
             {
-                StartCoroutine(DealDamage(hitObject, damage));
+                StartCoroutine(DealDamage(hitObject, damage, damageDelay));
             }
             else
                 break;
         }
     }
 
-    IEnumerator DealDamage(GameObject hitObject, float damage)
+    IEnumerator DealDamage(GameObject hitObject, float damage, float damageDelay)
     {
         // Wait for player attack animation to finish playing before dealing damage to enemy
         yield return new WaitForSeconds(damageDelay);

@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5144408547519574128
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2911845557047586205}
+  m_Layer: 0
+  m_Name: RangedAttackOrigin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2911845557047586205
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5144408547519574128}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1.48}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6456609881549923257}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6456609881549923254
 GameObject:
   m_ObjectHideFlags: 0
@@ -29,6 +60,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6456609883347996721}
+  - {fileID: 2911845557047586205}
   m_Father: {fileID: 6456609882737518727}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -195,6 +227,7 @@ GameObject:
   - component: {fileID: 3790195572757571476}
   - component: {fileID: 8319287314956452010}
   - component: {fileID: 6456609882737518731}
+  - component: {fileID: 3710960383655911244}
   - component: {fileID: 6456609882737518734}
   - component: {fileID: 6456609882737518735}
   m_Layer: 0
@@ -220,7 +253,7 @@ Transform:
   - {fileID: 6456609882940324980}
   - {fileID: 6456609881549923257}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6456609882737518726
 MonoBehaviour:
@@ -305,16 +338,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerHealth: {fileID: 8319287314956452010}
   playerStamina: {fileID: 6456609882737518731}
+  playerAmmo: {fileID: 3710960383655911244}
   initialValues:
-  - 20
+  - 15
   - 5
   - 10
-  - 5
+  - 4
+  - 1
   maxValues:
   - 40
   - 20
   - 20
-  - 20
+  - 12
+  - 10
 --- !u!114 &8319287314956452010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -343,6 +379,18 @@ MonoBehaviour:
   useRate: 1
   rechargeRate: 0.5
   exhaustionTime: 5
+--- !u!114 &3710960383655911244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6456609882737518724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83c8783f36bce2e47b5385ab862980ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &6456609882737518734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -357,9 +405,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selfTag: Player
   targetTag: Enemy
-  attackDistance: 10
   ray: {fileID: 6456609881549923254}
-  damageDelay: 0.8
   layerMask:
     serializedVersion: 2
     m_Bits: 328
@@ -377,7 +423,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 0}
   caster: {fileID: 6456609882737518734}
-  attackCooldown: 1.1
+  ammo: {fileID: 3710960383655911244}
+  meleeAttackRange: 3
+  meleeAttackCooldownTime: 1.5
+  meleeDamageDelay: 0.8
+  rangedAttackBulletPrefab: {fileID: 6307369905735688978, guid: 156dcad6cca009a4e8e87dfffe28e564, type: 3}
+  rangedAttackBulletOrigin: {fileID: 2911845557047586205}
+  rangedAttackRange: 100
+  minRangedAttackCharge: 0.5
+  rangedAttackChargeTime: 2
+  rangedAttackAmmoUse: 1
   isPaused: 0
 --- !u!1 &6456609882940324981
 GameObject:
