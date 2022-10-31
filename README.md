@@ -18,82 +18,6 @@ We met as a team on 11/09 and 12/09  where we discussed our gameplay plan and ho
 
 * Randomly generated maze
 * Monsters 
-* Items around (weapons, stat increases)   
-* Goal: get from start to finish
-* Health bar
-* Stamina
-* Stats 
-* Droppable beacons / torches / checkpoint
-* Levels (each level is a new maze)
-* Can choose a starting difficulty
-* Gets harder with each level
-* Time trial
-* Lore pickups (permanent, may or may not be in a maze)
-* left and right walls have different textures 
-* 3d UI ?
-* Camera Orientation - FP with Free look 
-* Vines and plants on walls
-* Door between sections
-* Having render distance 
-* Walls and atmosphere changes when close to enemies 
-* tasked to kill the  minotaur
-* sound effects
-
-###
-Teamwork plan 
-
-* Start mostly by implementing mechanics with minimal visuals.
-* These are the jobs we have allocated so far:
-* Have frequent meetings with the team 
-* Work in separate branches
-* Ask for help when not sure
-###
-TASK ALLOCATION 
-* Labyrinth layout generation - Andrew
-* Player controller - Rajneesh 
-* Game pickups - Meaghan :)
-* 3D models - Natasha
-
-
-<!-- [[EndTeamworkPlan]] PLEASE LEAVE THIS LINE UNTOUCHED -->
-## Final Report
-
-### Table of contents
-
-* [Game Summary](#game-summary)
-* [How To Play](#how-to-play)
-* [High Level Gameplay Decisions](#high-level-gameplay-decisions)
-* [Graphical and Sound Assets](#graphical-and-sound-assets)
-* [Graphics Pipeline](#graphics-pipeline)
-* [Procedural Generation](#procedural-generation)
-* [Particle System](#particle-system)
-* [Querying and Observational Methods](#querying-and-observational-methods)
-* [Changes from Participant Feedback](#changes-from-participant-feedback)
-
-
-### Game Summary
-
-The Minotaur is a mythical creature of great might, who had a labyrinth created around it just to contain its power. Every year the king sends nine of his greatest warriors to try and defeat the unstoppable beast and after forty winters, no mortal has yet had the power to defeat it.
-
-Theseus, son of Aegeus and the undefeated champion of Greece, has taken upon himself the challenge of defeating the Minotaur. Our courageous champion has decided to face the beast alone. 
-
-Traverse the labyrinth as Theseus, collect items and fight monsters, and delve deeper into the brink to finally kill the accursed beast.
-
-## Teamwork plan/summary
-
-<!-- [[StartTeamworkPlan]] PLEASE LEAVE THIS LINE UNTOUCHED -->
-
-<!-- Fill this section by Milestone 1 (see specification for details) -->
-
-###
-11/09/2022 - 16/09/2022
-###
-Summary
-
-We met as a team on 11/09 and 12/09  where we discussed our gameplay plan and how the game should look like.We discussed about the gameplay and mechanics which includes but were not limited to :
-
-* Randomly generated maze
-* Monsters 
 * Items around (stat increases)   
 * Goal: Kill minotaur
 * Health bar
@@ -170,6 +94,28 @@ Teamwork plan
 
 
 <!-- [[EndTeamworkPlan]] PLEASE LEAVE THIS LINE UNTOUCHED -->
+## Final Report
+
+### Table of contents
+
+* [Game Summary](#game-summary)
+* [How To Play](#how-to-play)
+* [High Level Gameplay Decisions](#high-level-gameplay-decisions)
+* [Graphical and Sound Assets](#graphical-and-sound-assets)
+* [Graphics Pipeline](#graphics-pipeline)
+* [Procedural Generation](#procedural-generation)
+* [Particle System](#particle-system)
+* [Querying and Observational Methods](#querying-and-observational-methods)
+* [Changes from Participant Feedback](#changes-from-participant-feedback)
+
+
+### Game Summary
+
+The Minotaur is a mythical creature of great might, who had a labyrinth created around it just to contain its power. Every year the king sends nine of his greatest warriors to try and defeat the unstoppable beast and after forty winters, no mortal has yet had the power to defeat it.
+
+Theseus, son of Aegeus and the undefeated champion of Greece, has taken upon himself the challenge of defeating the Minotaur. Our courageous champion has decided to face the beast alone. 
+
+Traverse the labyrinth as Theseus, collect items and fight monsters, and delve deeper into the brink to finally kill the accursed beast.
 
 
 ### How to play
