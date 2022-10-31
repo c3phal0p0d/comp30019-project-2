@@ -106,7 +106,7 @@ MonoBehaviour:
     name: Lose
     loop: 0
     source: {fileID: 0}
-  - clip: {fileID: 8300000, guid: e16963015aefd436eb54581643ad2a13, type: 3}
+  - clip: {fileID: 8300000, guid: 9f9fb24f96b396d4fa7d490c8883b454, type: 3}
     volume: 0.3
     name: BossMusic
     loop: 1
