@@ -48,6 +48,7 @@ public class PlayerAttack : MonoBehaviour
             pauseMenu.enabled = true;
             Time.timeScale = 0;
             FindObjectOfType<AudioManager>().Stop("BackgroundMusic");
+            FindObjectOfType<AudioManager>().Stop("BossMusic");
             isPaused = true;
         }
     }

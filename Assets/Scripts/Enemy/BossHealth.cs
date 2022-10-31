@@ -29,6 +29,8 @@ public class BossHealth : EnemyHealth
         base.Increment(amount);
         if (IsEmpty)
         {
+            GetComponent<Collider>().enabled = false;
+            transform.GetChild(5).GetComponent<Collider>().enabled = false;
             // Pause enemy forward movement while animation is playing 
             agent.isStopped = true;
             isDead = true;
@@ -42,10 +44,19 @@ public class BossHealth : EnemyHealth
         }
     }
 
+    private void Start()
+    {
+        FindObjectOfType<AudioManager>().Play("BossMusic");
+        FindObjectOfType<AudioManager>().Stop("BackgroundMusic");
+    }
+
     private void Update()
     {
         if (isDead)
         {
+            gameObject.GetComponent<ShootAtPlayer>().enabled = false;
+            gameObject.GetComponentInChildren<PlayerTooClose>().enabled = false;
+
             // Display win screen
             winScreen.enabled = true;
             pSystem.transform.rotation = Quaternion.identity;
@@ -60,8 +71,9 @@ public class BossHealth : EnemyHealth
         }
     }
 
-    private void RemoveObjectsFromScene(){
-        FindObjectOfType<AudioManager>().Stop("BackgroundMusic");
+    private void RemoveObjectsFromScene()
+    {
+        // FindObjectOfType<AudioManager>().Stop("BossMusic");
 
         // remove stat items
         GameObject[] statItemsInScene = GameObject.FindGameObjectsWithTag("StatItem");

@@ -91,11 +91,6 @@ MonoBehaviour:
     name: CollectStatPickup
     loop: 0
     source: {fileID: 0}
-  - clip: {fileID: 8300000, guid: 53a12e471a7c5482a9ebcee3be9649c8, type: 3}
-    volume: 0.2
-    name: CollectFoodPickup
-    loop: 0
-    source: {fileID: 0}
   - clip: {fileID: 8300000, guid: ba4b48826475e4481a991070a94aeee0, type: 3}
     volume: 0.1
     name: ButtonClick
@@ -110,4 +105,9 @@ MonoBehaviour:
     volume: 0.2
     name: Lose
     loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 9f9fb24f96b396d4fa7d490c8883b454, type: 3}
+    volume: 0.3
+    name: BossMusic
+    loop: 1
     source: {fileID: 0}
