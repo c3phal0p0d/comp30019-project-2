@@ -37,7 +37,6 @@ We met as a team on 11/09 and 12/09  where we discussed our gameplay plan and ho
 Teamwork plan 
 
 * Start mostly by implementing mechanics with minimal visuals.
-* These are the jobs we have allocated so far:
 * Have frequent meetings with the team 
 * Work in separate branches
 * Ask for help when not sure
