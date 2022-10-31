@@ -314,6 +314,7 @@ Some of the main improvements that were suggested by participants from both the 
 * [Game trailer music](https://www.youtube.com/watch?v=4yFqRpABTTw)
 * [Game background music](https://www.youtube.com/watch?v=daCbyE6BwWQ)
 * [BossBattleMusic](https://www.youtube.com/watch?v=n_8LAvwJMq8)
+* [Range Attack Sound](https://www.youtube.com/watch?v=kiKOo6HQFRw)
 * [Sword slash](https://freesound.org/people/qubodup/sounds/184422)
 * [Player damage](https://freesound.org/people/Christopherderp/sounds/342231/)
 * [Player death](https://freesound.org/people/florianreichelt/sounds/412427/)
@@ -325,6 +326,7 @@ Some of the main improvements that were suggested by participants from both the 
 * [Stat pickup](https://freesound.org/people/plasterbrain/sounds/608431/)
 * [Menu button click](https://freesound.org/people/Robinhood76/sounds/269259/)
 * [Menu button hover](https://freesound.org/people/Leszek_Szary/sounds/146720/)
+
 
 #### Learning resources
 * [3D Ingame UI - Jimmy Vegas](https://www.youtube.com/watch?v=bbnVpPiQ_rU)
