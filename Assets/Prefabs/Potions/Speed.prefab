@@ -288,6 +288,7 @@ MonoBehaviour:
   stat: 2
   rotation: {x: 0, y: 0, z: 0}
   statIncreaseMessage: {fileID: 2680572158667571273}
+  increaseAmount: 0.0839
 --- !u!54 &1713558389
 Rigidbody:
   m_ObjectHideFlags: 0
