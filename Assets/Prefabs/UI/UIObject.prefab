@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7544414937069555546}
   - component: {fileID: 5960074467365701005}
+  - component: {fileID: 3985692481395881600}
   m_Layer: 15
   m_Name: AmmoBar
-  m_TagString: Untagged
+  m_TagString: UIObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6126769413713995425}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.9, y: 0.675, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -44,12 +45,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8f75f41c4f7b764186d76ffc7916d3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  origin: {fileID: 0}
-  underBarMaterial: {fileID: 0}
-  overBarMaterial: {fileID: 0}
-  horizontalBorderMaterial: {fileID: 0}
-  verticalBorderMaterial: {fileID: 0}
-  backMaterial: {fileID: 0}
+  origin: {fileID: 6126769413713995425}
+  underBarMaterial: {fileID: 2100000, guid: ffe40366fafb3824eafee01235b99627, type: 2}
+  overBarMaterial: {fileID: 2100000, guid: b1692a71223588d4a8a1c5fe80d63a78, type: 2}
+  horizontalBorderMaterial: {fileID: 2100000, guid: f876b8d76f4c640e9a8f1f4a47a35e64, type: 2}
+  verticalBorderMaterial: {fileID: 2100000, guid: 463ab3f4814364a0c894961c6ea7212a, type: 2}
+  backMaterial: {fileID: 2100000, guid: 5d5065070dab44f34abdca36c0b627af, type: 2}
+--- !u!114 &3985692481395881600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6126769413713995425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a18481f2821504e4f95e78539ce0cbfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bar: {fileID: 5960074467365701005}
+  ammo: {fileID: 0}
+  barScale: 2
 --- !u!1 &6478169425341628576
 GameObject:
   m_ObjectHideFlags: 0
@@ -244,6 +260,7 @@ MonoBehaviour:
   uiObjects:
   - {fileID: 6478169427263631744}
   - {fileID: 6478169425864814792}
+  - {fileID: 6126769413713995425}
 --- !u!1 &6478169426654820695
 GameObject:
   m_ObjectHideFlags: 0

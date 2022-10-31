@@ -373,9 +373,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selfTag: Player
   targetTag: Enemy
-  attackDistance: 10
   ray: {fileID: 6456609881549923254}
-  damageDelay: 0.8
   layerMask:
     serializedVersion: 2
     m_Bits: 328
@@ -393,7 +391,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 0}
   caster: {fileID: 6456609882737518734}
-  attackCooldown: 1.1
+  ammo: {fileID: 3710960383655911244}
+  meleeAttackRange: 3
+  meleeAttackCooldownTime: 1.5
+  meleeDamageDelay: 0.8
+  rangedAttackRange: 100
+  rangedAttackChargeTime: 2
+  rangedAttackAmmoUse: 1
   isPaused: 0
 --- !u!1 &6456609882940324981
 GameObject:

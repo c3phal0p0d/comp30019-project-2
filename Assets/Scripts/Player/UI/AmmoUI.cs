@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class AmmoUI : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] private UIBar3D bar;
+    [SerializeField] private PlayerAmmo ammo;
+    [SerializeField] private float barScale;
+
     void Start()
     {
-        
+        bar.BarWidth = ammo.MaxValue * barScale;
+        bar.OverBarWidth = ammo.Value * barScale;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        bar.OverBarWidth = ammo.Value * barScale;
     }
 }
