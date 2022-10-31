@@ -173,6 +173,21 @@ StrengthStat which increases the strength of the player.
     <img src="Images/StrengthStat.jpeg">
 </p>
 
+Ammo Stat which increases the maximum ammo capacity of the player. The player can hold right click to charge a ranged attack. Charging longer will deal more damage (quadratically) but consume more ammo (linearly), thus making it beneficial to fully charge the ranged attack."
+<p align=“center">
+    <img src="Images/AmmoStat.jpeg">
+</p>
+
+Healing Item which refills the player's health.
+<p align=“center">
+    <img src="Images/HealingItem.jpeg">
+</p>
+
+Ammo Item which refills the player's ammo.
+<p align=“center">
+    <img src="Images/AmmoItem.jpeg">
+</p>
+
 ### Graphical and Sound Assets
 
 No graphical & sound assets were custom made for this project. Refer to the references section for all the assets used in the game.
