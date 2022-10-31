@@ -117,6 +117,7 @@ GameObject:
   - component: {fileID: 7005831427890307641}
   - component: {fileID: 7005831427890307640}
   - component: {fileID: 5346657929361120752}
+  - component: {fileID: 5973111498108362164}
   m_Layer: 6
   m_Name: Enemy 3
   m_TagString: Enemy
@@ -267,6 +268,22 @@ CapsuleCollider:
   m_Height: 2.99
   m_Direction: 1
   m_Center: {x: 0, y: 1.21, z: 0}
+--- !u!114 &5973111498108362164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7005831427890307639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fe0778898425f240879be147a911ef4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minPickupToSpawn: 3
+  maxPickupToSpawn: 5
+  chanceForHealingItem: 0.5
+  horizontalSpawnScale: 0.3
 --- !u!1 &7005831428473535289
 GameObject:
   m_ObjectHideFlags: 0
