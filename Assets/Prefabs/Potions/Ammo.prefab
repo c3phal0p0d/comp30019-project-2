@@ -303,7 +303,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: +1 HEALTH
+  m_text: +1 AMMO
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d44bb72c6c03a4dc1b4e6442da713fcf, type: 2}
   m_sharedMaterial: {fileID: -1479752315666207127, guid: d44bb72c6c03a4dc1b4e6442da713fcf, type: 2}
@@ -313,7 +313,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4278976649
-  m_fontColor: {r: 0.5372549, g: 0, b: 0.045736372, a: 1}
+  m_fontColor: {r: 0.5372549, g: 0.37955552, b: 0, a: 1}
   m_enableVertexGradient: 1
   m_colorMode: 3
   m_fontColorGradient:

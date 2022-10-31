@@ -14,13 +14,14 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private float meleeDamageDelay = 0.8f;
     private float meleeAttackCooldown;
 
+    [SerializeField] private GameObject rangedAttackBulletPrefab;
+    [SerializeField] private Transform rangedAttackBulletOrigin;
     [SerializeField] private float rangedAttackRange = 100f;
     [SerializeField] private float minRangedAttackCharge = 0.5f;
     [SerializeField] private float rangedAttackChargeTime;
     [SerializeField] private float rangedAttackAmmoUse;
     private float rangedAttackCharge;
     private bool isChargingRangedAttack;
-    private bool isFullyChargedRangedAttack;
 
     private bool canAttack = false;
     public bool isPaused = false;
@@ -55,10 +56,7 @@ public class PlayerAttack : MonoBehaviour
             float prevCharge = rangedAttackCharge;
             rangedAttackCharge += Time.deltaTime / rangedAttackChargeTime;
             if (rangedAttackCharge > 1f)
-            {
-                isFullyChargedRangedAttack = true;
                 rangedAttackCharge = 1f;
-            }
             float chargeChange = rangedAttackCharge - prevCharge;
             ammo.Increment(-rangedAttackAmmoUse * chargeChange);
             if (Input.GetMouseButtonUp(1) || ammo.IsEmpty)
@@ -66,7 +64,11 @@ public class PlayerAttack : MonoBehaviour
                 isChargingRangedAttack = false;
                 // Raycast attack
                 if (rangedAttackCharge > minRangedAttackCharge)
-                    caster.Cast(strengthStat.Value * rangedAttackCharge * rangedAttackCharge, rangedAttackRange, 0f);
+                {
+                    GameObject bullet = GameObject.Instantiate(rangedAttackBulletPrefab);
+                    float damage = strengthStat.Value * rangedAttackCharge * rangedAttackCharge;
+                    bullet.GetComponentInChildren<BouncyBullet>().Initialize(rangedAttackBulletOrigin.position, rangedAttackBulletOrigin.forward, damage, rangedAttackCharge);
+                }
             }
         }
 

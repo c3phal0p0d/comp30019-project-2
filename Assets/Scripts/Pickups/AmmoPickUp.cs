@@ -17,7 +17,7 @@ public class AmmoPickUp : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        Ammo ammo = other.GetComponent<Ammo>();
+        PlayerAmmo ammo = other.GetComponent<PlayerAmmo>();
 
         if (ammo != null)
         {

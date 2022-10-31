@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5144408547519574128
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2911845557047586205}
+  m_Layer: 0
+  m_Name: RangedAttackOrigin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2911845557047586205
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5144408547519574128}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1.48}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6456609881549923257}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6456609881549923254
 GameObject:
   m_ObjectHideFlags: 0
@@ -29,6 +60,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6456609883347996721}
+  - {fileID: 2911845557047586205}
   m_Father: {fileID: 6456609882737518727}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -395,7 +427,10 @@ MonoBehaviour:
   meleeAttackRange: 3
   meleeAttackCooldownTime: 1.5
   meleeDamageDelay: 0.8
+  rangedAttackBulletPrefab: {fileID: 6307369905735688978, guid: 156dcad6cca009a4e8e87dfffe28e564, type: 3}
+  rangedAttackBulletOrigin: {fileID: 2911845557047586205}
   rangedAttackRange: 100
+  minRangedAttackCharge: 0.5
   rangedAttackChargeTime: 2
   rangedAttackAmmoUse: 1
   isPaused: 0
