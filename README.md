@@ -123,8 +123,10 @@ Traverse the labyrinth as Theseus, collect items and fight monsters, and delve d
 **Controls**  
 Move: W, A, S, D Keys  
 Jump: Spacebar  
-Attack: Left Mouse Button  
 Sprint: Left Shift Key  
+Melee attack: Left Mouse Button  
+Charge ranged attack: Hold Right Mouse button
+Ranged attack: Release Right Mouse button
 Pause: Escape Key  
 
 **Gameplay**  
