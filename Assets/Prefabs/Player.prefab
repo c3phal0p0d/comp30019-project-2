@@ -195,6 +195,7 @@ GameObject:
   - component: {fileID: 3790195572757571476}
   - component: {fileID: 8319287314956452010}
   - component: {fileID: 6456609882737518731}
+  - component: {fileID: 3710960383655911244}
   - component: {fileID: 6456609882737518734}
   - component: {fileID: 6456609882737518735}
   m_Layer: 0
@@ -220,7 +221,7 @@ Transform:
   - {fileID: 6456609882940324980}
   - {fileID: 6456609881549923257}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6456609882737518726
 MonoBehaviour:
@@ -305,16 +306,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerHealth: {fileID: 8319287314956452010}
   playerStamina: {fileID: 6456609882737518731}
+  playerAmmo: {fileID: 3710960383655911244}
   initialValues:
-  - 20
+  - 15
   - 5
   - 10
-  - 5
+  - 4
+  - 1
   maxValues:
   - 40
   - 20
   - 20
-  - 20
+  - 12
+  - 10
 --- !u!114 &8319287314956452010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -343,6 +347,18 @@ MonoBehaviour:
   useRate: 1
   rechargeRate: 0.5
   exhaustionTime: 5
+--- !u!114 &3710960383655911244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6456609882737518724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83c8783f36bce2e47b5385ab862980ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &6456609882737518734
 MonoBehaviour:
   m_ObjectHideFlags: 0
