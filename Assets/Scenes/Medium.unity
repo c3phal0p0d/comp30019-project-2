@@ -2565,6 +2565,10 @@ PrefabInstance:
       propertyPath: health
       value: 
       objectReference: {fileID: 674621908}
+    - target: {fileID: 8642817601435216447, guid: 5f9f8c067783e19468cd27e3d3cf09bf, type: 3}
+      propertyPath: deathMessage
+      value: 
+      objectReference: {fileID: 68842682}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f9f8c067783e19468cd27e3d3cf09bf, type: 3}
