@@ -49,21 +49,19 @@ public class PauseMenuBehaviour : MonoBehaviour
         pauseMenu.enabled = true;
     }
 
-    public void ExitToMainMenu(){
+    public void ExitToMainMenu()
+    {
         SceneManager.LoadScene("StartScene");
         Time.timeScale = 1;
     }
 
-    public void ResumeGame(){
+    public void ResumeGame()
+    {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         pauseMenu.enabled = false;
         Time.timeScale = 1;
-        if (FindObjectOfType<BossHealth>()!=null){
-            FindObjectOfType<AudioManager>().Play("BossMusic");
-        } else {
-            FindObjectOfType<AudioManager>().Play("BackgroundMusic");
-        }
+        FindObjectOfType<AudioManager>().Play("BackgroundMusic");
         FindObjectOfType<PlayerAttack>().isPaused = false;
     }
 

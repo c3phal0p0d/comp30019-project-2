@@ -15,6 +15,8 @@ public class MenuBehaviour : MonoBehaviour
     private Canvas controlsInfo;
     [SerializeField]
     private Canvas mainMenu;
+    [SerializeField]
+    private Canvas aboutTheGame;
 
     void Start()
     {
@@ -56,6 +58,15 @@ public class MenuBehaviour : MonoBehaviour
     public void DisplayInstructions()
     {
         gameplayInstructions.enabled = true;
+        aboutTheGame.enabled = false;
+        controlsInfo.enabled = false;
+        mainMenu.enabled = false;
+    }
+
+    public void DisplayAboutTheGame()
+    {
+        aboutTheGame.enabled = true;
+        gameplayInstructions.enabled = false;
         controlsInfo.enabled = false;
         mainMenu.enabled = false;
     }
@@ -63,6 +74,7 @@ public class MenuBehaviour : MonoBehaviour
     public void DisplayControls()
     {
         gameplayInstructions.enabled = false;
+        aboutTheGame.enabled = false;
         controlsInfo.enabled = true;
     }
 
@@ -71,6 +83,7 @@ public class MenuBehaviour : MonoBehaviour
         gameplayInstructions.enabled = false;
         controlsInfo.enabled = false;
         mainMenu.enabled = true;
+        aboutTheGame.enabled = false;
     }
 
     public void QuitGame()
