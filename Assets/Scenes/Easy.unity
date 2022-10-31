@@ -1979,6 +1979,10 @@ PrefabInstance:
       propertyPath: pauseMenu
       value: 
       objectReference: {fileID: 1965830807}
+    - target: {fileID: 6456609882737518734, guid: 3e8cbafce405748c4a96f8be47906a75, type: 3}
+      propertyPath: attackDistance
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6456609882737518735, guid: 3e8cbafce405748c4a96f8be47906a75, type: 3}
       propertyPath: pauseMenu
       value: 
