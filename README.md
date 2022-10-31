@@ -207,22 +207,22 @@ The stat pickups are randomly placed in each level and players will have to expl
 There are 4 different types of stats: 
 Health Stat which increases max health of the player
 <p align=“center">
-    <img src=“Assets/Images/HealthStat.jpeg">
+    <img src="Images/HealthStat.jpeg">
 </p>
 
 Stamina Stat which increases the max stamina of the player. When the player sprints, it consumes stamina in order to move at x1.5 speed.
 <p align=“center">
-    <img src=“Assets/Images/StaminaStat.jpeg">
+    <img src="Images/StaminaStat.jpeg">
 </p>
 
 Speed Stat which increases the speed of the player. 
 <p align=“center">
-    <img src=“Assets/Images/SpeedStat.jpeg">
+    <img src="Images/SpeedStat.jpeg">
 </p>
 
 StrengthStat which increases the strength of the player.
 <p align=“center">
-    <img src=“Assets/Images/StrengthStat.jpeg">
+    <img src="Images/StrengthStat.jpeg">
 </p>
 
 ### Graphical and Sound Assets
@@ -243,12 +243,12 @@ The [World Space Texture Shader](Assets/Shaders/WorldSpaceTexture.shader) was cr
 
 *Distorted textures when using Standard Unity Shader*  
 <p align=“center">
-    <img src=“Assets/Images/usingStandardShader.png">
+    <img src="Images/usingStandardShader.png">
 </p>
 
 *Fixed when using World Space Texture Shader*  
 <p align=“center">
-    <img src=“Assets/Images/usingWorldSpaceTextureShader.png">
+    <img src="Images/usingWorldSpaceTextureShader.png">
 </p>
 
 Instead of mapping the wall textures to the object UV maps, the texture is mapped to world space. The side of the wall that the texture is mapped to is first determined by calculating the direction of the normal of the wall and then assigning UV coordinates accordingly.
@@ -280,7 +280,7 @@ The fireball is a combination of 5 particle systems that each contribute a parti
 
 
 ### Querying and Observational Methods
-The querying method used was a [survey](https://forms.gle/Kgf2RmmW5nw386xCA). 7 people participated, all between the ages of 18-22, with a fairly even gender split and varied gaming experience. The responses from our survey can be found <a href = “Assets/QueryResponses”>here</a>
+The querying method used was a [survey](https://forms.gle/Kgf2RmmW5nw386xCA). 7 people participated, all between the ages of 18-22, with a fairly even gender split and varied gaming experience. The responses from our survey can be found <a href = "QueryResponses">here</a>
 
 
 The observational method used was the Think Aloud method, with the participants being asked to vocalise their thoughts while playing, which were recorded and analysed. 5 people participated, all between the ages of 19-21, with a fairly even gender split and varied gaming experience.
