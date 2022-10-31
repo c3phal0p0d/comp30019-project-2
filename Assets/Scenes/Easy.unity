@@ -1626,11 +1626,11 @@ PrefabInstance:
       objectReference: {fileID: 581613229}
     - target: {fileID: 4517670432373172249, guid: c2f6a8ae944b61444a4f5c81e9f75da0, type: 3}
       propertyPath: numSections
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4517670432373172249, guid: c2f6a8ae944b61444a4f5c81e9f75da0, type: 3}
       propertyPath: enemyDensity
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4517670432373172249, guid: c2f6a8ae944b61444a4f5c81e9f75da0, type: 3}
       propertyPath: isFinalLevel
@@ -1638,11 +1638,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4517670432373172249, guid: c2f6a8ae944b61444a4f5c81e9f75da0, type: 3}
       propertyPath: healthDensity
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4517670432373172249, guid: c2f6a8ae944b61444a4f5c81e9f75da0, type: 3}
       propertyPath: pickupDensity
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4517670432373172251, guid: c2f6a8ae944b61444a4f5c81e9f75da0, type: 3}
       propertyPath: m_RootOrder
