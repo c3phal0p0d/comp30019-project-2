@@ -42,7 +42,7 @@ public class PlayerAttack : MonoBehaviour
         }
 
         // Pause game
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !isPaused)
         {
             Cursor.lockState = CursorLockMode.None;
             pauseMenu.enabled = true;

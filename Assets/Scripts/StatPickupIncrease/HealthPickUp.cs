@@ -8,6 +8,7 @@ public class HealthPickUp : MonoBehaviour
     [SerializeField] private PlayerStats.StatType stat;
     [SerializeField] private Vector3 rotation;
     [SerializeField] private Canvas statIncreaseMessage;
+    [SerializeField] private float increaseAmount;
 
     private bool isPickedUp = false;
 
@@ -21,7 +22,7 @@ public class HealthPickUp : MonoBehaviour
 
         if (playerStat != null && !isPickedUp)
         {
-            playerStat.GetStat(stat).increment(1);
+            playerStat.GetStat(stat).increment(increaseAmount);
             FindObjectOfType<AudioManager>().Play("CollectStatPickup");
             statIncreaseMessage.enabled = true;
             isPickedUp = true;

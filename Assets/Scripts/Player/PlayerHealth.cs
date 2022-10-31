@@ -11,6 +11,7 @@ public class PlayerHealth : Health
     public override void Increment(float amount)
     {
         base.Increment(amount);
+        
         if (IsEmpty)
         {
             FindObjectOfType<AudioManager>().Stop("BackgroundMusic");

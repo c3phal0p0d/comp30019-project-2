@@ -499,7 +499,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1, y: -25}
+  m_AnchoredPosition: {x: -1, y: -31}
   m_SizeDelta: {x: 600, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &115363229
@@ -884,7 +884,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -109, y: 156}
+  m_AnchoredPosition: {x: -109, y: 223}
   m_SizeDelta: {x: 155, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &204764600
@@ -4538,7 +4538,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\n\nThe Minotaur is a mythical creature of great might, who had a labyrinth
+  m_text: "The Minotaur is a mythical creature of great might, who had a labyrinth
     created around it just to contain its power. Every year the king sends nine of
     his greatest warriors to try and defeat the unstoppable beast and after forty
     winters, no mortal has yet had the power to defeat it.\r\nTheseus, son of Aegeus
@@ -4553,8 +4553,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278236659
-  m_fontColor: {r: 0.93333334, g: 0.7607843, b: 0.56078434, a: 1}
+    rgba: 4287617262
+  m_fontColor: {r: 0.93333334, g: 0.8462253, b: 0.56078434, a: 1}
   m_enableVertexGradient: 1
   m_colorMode: 3
   m_fontColorGradient:
@@ -4577,7 +4577,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 16
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535

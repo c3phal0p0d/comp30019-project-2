@@ -29,6 +29,8 @@ public class BossHealth : EnemyHealth
         base.Increment(amount);
         if (IsEmpty)
         {
+            GetComponent<Collider>().enabled = false;
+            transform.GetChild(5).GetComponent<Collider>().enabled = false;
             // Pause enemy forward movement while animation is playing 
             agent.isStopped = true;
             isDead = true;
@@ -52,6 +54,9 @@ public class BossHealth : EnemyHealth
     {
         if (isDead)
         {
+            gameObject.GetComponent<ShootAtPlayer>().enabled = false;
+            gameObject.GetComponentInChildren<PlayerTooClose>().enabled = false;
+
             // Display win screen
             winScreen.enabled = true;
             pSystem.transform.rotation = Quaternion.identity;

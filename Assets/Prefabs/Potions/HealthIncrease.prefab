@@ -200,6 +200,7 @@ MonoBehaviour:
   rotation: {x: 0, y: 0, z: 0}
   fullHealthIndicator: {fileID: 8762092546025842153}
   statIncreaseMessage: {fileID: 1292708552358073896}
+  increaseAmount: 1
 --- !u!54 &6190246059872079443
 Rigidbody:
   m_ObjectHideFlags: 0

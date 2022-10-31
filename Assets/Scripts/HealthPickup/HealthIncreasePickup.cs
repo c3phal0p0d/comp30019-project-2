@@ -8,6 +8,7 @@ public class HealthIncreasePickup : MonoBehaviour
     [SerializeField] private Vector3 rotation;
     [SerializeField] private Canvas fullHealthIndicator;
     [SerializeField] private Canvas statIncreaseMessage;
+    [SerializeField] private float increaseAmount;
 
     private bool isPickedUp = false;
 

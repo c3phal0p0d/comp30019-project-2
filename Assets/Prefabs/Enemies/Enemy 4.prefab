@@ -10211,7 +10211,6 @@ GameObject:
   - component: {fileID: 6437181706992655038}
   - component: {fileID: 8241557870169269622}
   - component: {fileID: 1212054287818772789}
-  - component: {fileID: 4565413403198052117}
   m_Layer: 6
   m_Name: Enemy 4
   m_TagString: Enemy
@@ -10367,19 +10366,6 @@ MonoBehaviour:
   isDead: 0
   winScreen: {fileID: 5361234065168449241}
   pSystem: {fileID: 383404924}
---- !u!114 &4565413403198052117
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6437181706992655025}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 624fedae3864713428b31d64a5539dc4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxDamageCoolDown: 0.6
 --- !u!1 &6437181707836015551
 GameObject:
   m_ObjectHideFlags: 0

@@ -48,7 +48,7 @@ public class ShootAtPlayer : MonoBehaviour
             agent.isStopped = true;
 
             // Play attack animation
-            animator.SetTrigger("Attack");
+            animator.SetBool("IsAttacking", true);
             
             StartCoroutine("ShootProjectile");
 
@@ -58,10 +58,14 @@ public class ShootAtPlayer : MonoBehaviour
 
     IEnumerator ShootProjectile(){
         // Wait for animation to finish before shooting projectile
-        yield return new WaitForSeconds(shootDelay);
+        yield return new WaitForSeconds(shootDelay - 0.1f);
 
-        if (!(enemyHealth.isHit || enemyHealth.isDead)){
-            yield return new WaitForSeconds(Time.deltaTime);
+        if (!(enemyHealth.isHit || enemyHealth.isDead) && animator.GetBool("IsAttacking")){
+            AnimatorStateInfo animationState = animator.GetCurrentAnimatorStateInfo(0);
+            AnimatorClipInfo[] myAnimatorClip = animator.GetCurrentAnimatorClipInfo(0);
+            float animationPlayTime = myAnimatorClip[0].clip.length * animationState.normalizedTime;
+
+            yield return new WaitForSeconds(shootDelay - animationPlayTime);
             // Shoot projectile
             if (!(enemyHealth.isHit || enemyHealth.isDead)){
                 FindObjectOfType<AudioManager>().Play("Fireball");

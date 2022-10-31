@@ -1775,8 +1775,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3790195572757571476, guid: 3e8cbafce405748c4a96f8be47906a75, type: 3}
+      propertyPath: maxValues.Array.data[3]
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 3790195572757571476, guid: 3e8cbafce405748c4a96f8be47906a75, type: 3}
+      propertyPath: initialValues.Array.data[0]
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3790195572757571476, guid: 3e8cbafce405748c4a96f8be47906a75, type: 3}
       propertyPath: initialValues.Array.data[3]
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6456609882737518724, guid: 3e8cbafce405748c4a96f8be47906a75, type: 3}
       propertyPath: m_Name
@@ -2212,15 +2220,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2695124059926853649, guid: 320f3bf7af746ce44bb7f6bff11a1bd6, type: 3}
       propertyPath: enemyDensity
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2695124059926853649, guid: 320f3bf7af746ce44bb7f6bff11a1bd6, type: 3}
       propertyPath: healthDensity
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2695124059926853649, guid: 320f3bf7af746ce44bb7f6bff11a1bd6, type: 3}
       propertyPath: pickupDensity
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2695124059926853651, guid: 320f3bf7af746ce44bb7f6bff11a1bd6, type: 3}
       propertyPath: m_RootOrder
@@ -2272,11 +2280,11 @@ PrefabInstance:
       objectReference: {fileID: 581613229}
     - target: {fileID: 2695124059926853653, guid: 320f3bf7af746ce44bb7f6bff11a1bd6, type: 3}
       propertyPath: seed
-      value: 541580620
+      value: 981484410
       objectReference: {fileID: 0}
     - target: {fileID: 2695124059926853653, guid: 320f3bf7af746ce44bb7f6bff11a1bd6, type: 3}
       propertyPath: numLevels
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2695124059926853654, guid: 320f3bf7af746ce44bb7f6bff11a1bd6, type: 3}
       propertyPath: m_Name
