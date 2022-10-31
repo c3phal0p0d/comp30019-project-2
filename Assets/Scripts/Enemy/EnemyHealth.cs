@@ -51,6 +51,9 @@ public class EnemyHealth : BarStat
         if (IsEmpty)
         {
             GetComponent<Collider>().enabled = false;
+            SpawnPickups spawnPickupsOnDeath = GetComponent<SpawnPickups>();
+            if (spawnPickupsOnDeath??false)
+                spawnPickupsOnDeath.DoSpawn(transform.position);
             // Pause enemy forward movement while animation is playing 
             agent.isStopped = true;
 

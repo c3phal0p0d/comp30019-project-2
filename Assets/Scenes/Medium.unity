@@ -3281,15 +3281,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4151683032706198359, guid: 1e1b132cd9f7f8747863f2e0c52c69a1, type: 3}
       propertyPath: enemyDensity
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4151683032706198359, guid: 1e1b132cd9f7f8747863f2e0c52c69a1, type: 3}
-      propertyPath: healthDensity
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4151683032706198359, guid: 1e1b132cd9f7f8747863f2e0c52c69a1, type: 3}
+      propertyPath: healthDensity
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4151683032706198359, guid: 1e1b132cd9f7f8747863f2e0c52c69a1, type: 3}
       propertyPath: pickupDensity
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
